@@ -37,8 +37,6 @@ qfe_on_artifact_changed_owner = {
 					}
 				}
 			}
-			
-
-		
+		}
 	}
 }
