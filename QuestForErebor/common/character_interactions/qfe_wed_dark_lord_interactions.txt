@@ -1,0 +1,665 @@
+﻿dark_lord_ask_for_conversion_interaction = {
+	category = interaction_category_dark_lord
+	special_interaction = request_conversion_interaction
+	popup_on_receive = yes
+
+	desc = compel_conversion_interaction_desc
+
+	
+
+	is_shown = {
+		scope:actor.faith != scope:recipient.faith
+		scope:actor = {
+			this = character:lineofsauron
+			has_character_flag = unknown_sauron_flag
+		}
+		
+		scope:actor = { #LotR
+			NOT = { has_culture = culture:wastelands }
+			is_in_valinor = no
+		}
+		scope:recipient = { #LotR
+			NOT = { has_culture = culture:wastelands }
+			is_in_valinor = no
+			is_elf = no
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		valid_ask_for_conversion_conditions_trigger = yes
+		custom_tooltip = { #LotR
+			text = elves_cannot_be_forced_to_convert
+			NOT = {
+				AND = {
+					scope:recipient = { is_elf = yes }
+					scope:actor = { NOT = { is_elf = yes } }
+				}
+			}
+		}
+		custom_tooltip = { #LotR
+			text = elves_cannot_force_non_elves_to_convert
+			NOT = {
+				AND = {
+					scope:recipient = { NOT = { is_elf = yes } }
+					scope:actor = { is_elf = yes }
+				}
+			}
+		}
+	}
+
+	ai_accept = {
+		base = 0
+		religion_demand_conversion_default_modifier = yes
+
+		# We add a few extra modifiers if you have a state faith, to make the initial conversion rate more immersive and plausible
+		modifier = {
+			scope:actor = {
+				government_allows = state_faith
+
+				# If you fulfill a minimum amount of the below triggers, we consider that you hold enough sway within the realm to make it easier for others to abandon the state faith
+				calc_true_if = {
+					amount >= 4
+
+					diplomacy >= excellent_skill_level
+					learning >= excellent_skill_level
+					has_trait = august # You finished the August lifestyle tree
+					has_trait = theologian # You finished the Theologian lifestyle tree
+					AND = {
+						top_liege = this
+						legitimacy_level >= 4
+					}
+					influence_level >= 3
+					house = {
+						OR = {
+							is_dominant_family = yes
+							is_powerful_family = yes
+						}
+					}
+				}
+			}
+			add = {
+				value = 50
+				if = {
+					limit = {
+						scope:actor.influence_level = 5
+					}
+					add = 50
+				}
+				else_if = {
+					limit = {
+						scope:actor.influence_level >= 4
+					}
+					add = 25
+				}
+				if = {
+					limit = {
+						scope:actor = {
+							top_liege = this
+							legitimacy_level >= 5
+						}
+					}
+					add = 50
+				}
+			}
+			desc = STATE_FAITH_CREATE_FAITH_REASON
+		}
+		modifier = { # If you have the prophet perk, let's increase acceptance equal to half your diplomacy and learning
+			scope:actor = {
+				government_allows = state_faith
+				has_perk = prophet_perk
+			}
+			add = { value = scope:actor.learning add = scope:actor.diplomacy multiply = 0.5 }
+			desc = HAS_PERK_PROPHET_REASON
+		}
+	}
+
+	ai_min_reply_days = 1
+	ai_max_reply_days = 5
+
+	on_accept = {
+		seduce_to_shadow_conversion_effect = yes
+
+		# If we're a clan this interaction affects unity
+		accept_faith_conversion_add_clan_unity_effect = yes
+
+		# If character is converting to the state faith, we add influence
+		state_faith_conversion_add_piety_effect = yes
+
+		scope:actor = {
+			if = {
+				limit = {
+					any_character_struggle = {
+						involvement = involved
+						has_struggle_phase_parameter = piety_from_converting_involved_rulers
+						is_secondary_character_involvement_involved_trigger = {
+							CHAR = scope:recipient
+						}
+					}
+				}
+				add_piety = medium_piety_gain
+			}
+		}
+		
+		raise_suspicion_minor = yes
+	}
+
+	on_decline = {
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_bad
+				title = ask_for_conversion_decline_notification
+				right_icon = scope:recipient
+			}
+		}
+
+		# If we're a clan this interaction affects unity
+		refuse_faith_conversion_add_clan_unity_effect = yes
+
+		state_faith_refuse_conversion_add_piety_effect = yes
+	}
+
+	#Use hook
+	send_option = {
+		is_valid = {
+			always = no # Only here to ensure that religion_demand_conversion_default_modifier doesn't error
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	send_options_exclusive = no
+	
+	ai_will_do = {
+		base = 100
+	}
+}
+
+dark_lord_frontier_influence_war_interaction = {
+	category = interaction_category_dark_lord
+	interface_priority = 80
+	icon = icon_coax_to_war
+	desc = frontier_influence_war_interaction_desc
+
+	
+
+	is_highlighted = {
+		scope:recipient = {
+			is_at_war = no
+			is_adult = yes
+			
+		}
+	}
+
+	target_type = title
+	target_filter = secondary_recipient_de_jure_titles
+	can_be_picked_title = {
+		scope:target = {
+			is_title_created = yes
+			tier = tier_duchy
+			custom_tooltip = {
+				text = neighbor_with_recipient_trigger
+				scope:recipient = {
+					trigger_if = {
+						limit = { vassal_contract_has_flag = admin_theme_naval }
+						any_character_to_title_neighboring_and_across_water_duchy = {
+							this = scope:target
+						}
+					}
+					trigger_else = {
+						any_character_to_title_neighboring_duchy = {
+							this = scope:target
+						}
+					}
+				}
+			}
+		}
+	}
+
+	populate_recipient_list = {
+		scope:recipient = {
+			
+				
+				every_character_to_title_neighboring_duchy = {
+					limit = {
+						holder ?= { top_liege != scope:actor.top_liege }
+					}
+					holder ?= { add_to_list = characters }
+				}
+			
+				every_character_to_title_neighboring_and_across_water_duchy = {
+					limit = {
+						holder ?= { top_liege != scope:actor.top_liege }
+					}
+					holder ?= { add_to_list = characters }
+				}
+			
+		}
+	}
+
+	redirect = {
+		scope:recipient = {
+			
+				random_character_to_title_neighboring_duchy = {
+					limit = {
+						holder ?= { top_liege != scope:actor.top_liege }
+					}
+					holder = { save_scope_as = secondary_recipient }
+				}
+			
+			
+				random_character_to_title_neighboring_and_across_water_duchy = {
+					limit = {
+						holder ?= { top_liege != scope:actor.top_liege }
+					}
+					holder = { save_scope_as = secondary_recipient }
+				}
+			
+		}
+	}
+
+	has_valid_target = {
+		scope:target ?= {
+			is_title_created = yes
+			tier = tier_duchy
+			holder.top_liege != scope:actor
+		}
+	}
+
+	ai_min_reply_days = 3
+	ai_max_reply_days = 9
+	popup_on_receive = yes
+	ai_maybe = yes
+	can_send_despite_rejection = yes
+
+	greeting = positive
+	notification_text = REQUEST_DUCHY_INFLUENCE_WAR_PROPOSAL
+
+	pre_answer_yes_key = ACCEPT
+	pre_answer_no_key = DECLINE
+
+	cooldown_against_recipient = { years = 10 }
+
+	is_shown = {
+		scope:actor = {
+			this = character:lineofsauron
+			has_character_flag = unknown_sauron_flag
+		}
+		scope:recipient = {
+			faith_is_evil = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor != scope:recipient
+		scope:recipient = {
+			is_at_war = no
+			is_adult = yes
+			
+
+			custom_tooltip = {
+				text = admin_vassal_war_no_target_desc
+				trigger_if = {
+				
+					any_character_to_title_neighboring_duchy = {
+						holder ?= { top_liege != scope:actor.top_liege }
+					}
+				
+				
+					any_character_to_title_neighboring_and_across_water_duchy = {
+						holder ?= { top_liege != scope:actor.top_liege }
+					}
+				}
+			}
+		}
+	}
+
+	send_options_exclusive = no
+	
+	send_option = {
+		is_valid = {
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = GENERIC_SPEND_A_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	on_accept = {
+		raise_suspicion_minor = yes
+		scope:recipient = {
+			start_war = {
+				cb = duchy_conquest_cb
+				target = scope:secondary_recipient
+				claimant = scope:recipient
+				target_title = scope:target
+			}
+			
+		}
+		scope:actor = {
+			trigger_event = ep3_interactions_events.0210
+		}
+	}
+
+	on_decline = {
+		scope:recipient = {
+			change_influence = major_influence_loss
+		}
+		scope:actor = {
+			if = {
+				limit = { is_ai = yes }
+				add_opinion = {
+					modifier = refused_summons_to_war_opinion
+					target = scope:recipient
+				}
+			}
+			trigger_event = ep3_interactions_events.0211
+		}
+	}
+
+	cost = {
+		prestige = {
+			# BASE COSTS
+			add = {
+				value = massive_prestige_value
+				desc = BASE
+			}
+			# DOMINANT FAMILY DISCOUNTS
+			if = {
+				limit = { scope:actor.house ?= { is_dominant_family = yes } }
+				multiply = {
+					value = 0.75
+					desc = DOMINANT_FAMILY_DISCOUNT
+				}
+			}
+			# DOMICILE BUILDING DISCOUNTS
+		}
+	}
+
+	ai_potential = {
+		
+		top_liege = this
+	}
+
+	
+
+	auto_accept = {
+		custom_description = {
+			text = "spending_hook"
+			subject = scope:actor
+			object = scope:recipient
+			scope:hook = yes
+		}
+	}
+
+	ai_accept = {
+		base = 0
+		modifier = { # My house is powerful
+			add = -10
+			desc = MY_HOUSE_IS_POWERFUL
+			house ?= { is_powerful_family = yes }
+		}
+		modifier = { # My house is dominant
+			add = -25
+			desc = MY_HOUSE_IS_DOMINANT
+			house ?= { is_dominant_family = yes }
+		}
+		modifier = {
+			scope:actor.house = { is_powerful_family = yes }
+			add = 10
+			desc = YOUR_FAMILY_IS_POWERFUL
+		}
+		modifier = {
+			scope:actor.house = { is_dominant_family = yes }
+			add = 25
+			desc = YOUR_FAMILY_IS_DOMINANT
+		}
+		opinion_modifier = {
+			opinion_target = scope:actor
+			multiplier = 0.5
+		}
+		modifier = { # You're my friend :)
+			add = 10
+			desc = youre_my_friend_tt
+			has_relation_friend = scope:actor
+		}
+		modifier = { # You're my guardian
+			add = 10
+			desc = youre_my_guardian_tt
+			has_relation_guardian = scope:actor
+		}
+		modifier = {
+			exists = scope:actor.house
+			exists = scope:recipient.house
+			house.house_head.top_liege ?= scope:actor.house.house_head.top_liege
+			add = {
+				value = scope:actor.house.house_power_score
+				subtract = scope:recipient.house.house_power_score
+			}
+			desc = RELATIVE_FAMILY_RATING
+		}
+		modifier = {
+			exists = scope:actor.house
+			exists = house
+			scope:recipient.dynasty.dynasty_prestige_level != scope:actor.dynasty.dynasty_prestige_level
+			add = {
+				value = scope:actor.dynasty.dynasty_prestige_level
+				subtract = scope:recipient.dynasty.dynasty_prestige_level
+				multiply = 10
+			}
+			desc = RELATIVE_FAMILY_RENOWN
+		}
+		modifier = {
+			faith = {
+				faith_hostility_level = {
+					target = scope:actor.faith
+					value >= faith_astray_level
+				}
+			}
+			add = {
+				value = "faith.faith_hostility_level(scope:actor.faith)"
+				multiply = -10
+			}
+			desc = FAITH_HOSTILITY_LEVEL
+		}
+		modifier = {
+			exists = scope:actor.top_liege.primary_title.state_faith
+			faith = {
+				faith_hostility_level = {
+					target = scope:actor.top_liege.primary_title.state_faith
+					value >= faith_astray_level
+				}
+			}
+			add = {
+				value = "faith.faith_hostility_level(scope:actor.top_liege.primary_title.state_faith)"
+				multiply = -5
+			}
+			desc = FAITH_HOSTILITY_LEVEL_STATE_FAITH
+		}
+		modifier = {
+			culture != scope:actor.culture
+			"scope:recipient.culture.cultural_acceptance(scope:actor.culture)" < 50
+			add = {
+				value = 50
+				subtract = "scope:recipient.culture.cultural_acceptance(scope:actor.culture)"
+				multiply = -0.25
+				round = yes
+			}
+			desc = CULTURAL_ACCEPTANCE
+		}
+		modifier = {
+			culture != scope:actor.culture
+			"scope:recipient.culture.cultural_acceptance(scope:actor.culture)" >= 50
+			add = {
+				value = "scope:recipient.culture.cultural_acceptance(scope:actor.culture)"
+				subtract = 50
+				multiply = 0.25
+				round = yes
+			}
+			desc = CULTURAL_ACCEPTANCE
+		}
+		modifier = {
+			add = scope:recipient.current_military_strength
+			desc = RECIPIENT_MILITARY_STRENGTH
+		}
+		modifier = {
+			add = scope:actor.current_military_strength
+			scope:title_maa = yes
+			desc = PROMISED_TITLE_MAA
+		}
+		modifier = {
+			add = {
+				value = scope:secondary_recipient.top_liege.current_military_strength
+				multiply = -1
+			}
+			desc = SECONDARY_RECIPIENT_MILITARY_STRENGTH
+		}
+		modifier = { # Must not be at war already
+			is_at_war = yes
+			add = -1000
+			desc = ALREADY_AT_WAR
+		}
+	}
+
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 100
+		duchy = 100
+		kingdom = 120
+		empire = 120
+		hegemony = 120
+	}
+
+	ai_will_do = {
+		base = 100
+		modifier = { # The AI will only use a Hook if they couldn't otherwise do this
+			scope:hook = yes
+			add = -1
+		}
+		modifier = { # My house needs more members
+			add = 100
+			scope:actor.house = {
+				any_house_member = {
+					count < 3
+					save_temporary_scope_as = house_member_temp
+					NOT = {
+						scope:actor.top_liege.faith = { has_dominant_ruling_gender = scope:house_member_temp }
+					}
+				}
+			}
+		}
+		opinion_modifier = { # Opinion
+			opinion_target = scope:recipient
+			multiplier = 0.5
+		}
+		modifier = { # My rival
+			add = -25
+			scope:actor = { has_relation_rival = scope:recipient }
+		}
+		modifier = { # My friend
+			add = 25
+			scope:actor = { has_relation_friend = scope:recipient }
+		}
+		modifier = { # My ward
+			add = 25
+			scope:actor = { has_relation_guardian = scope:recipient }
+		}
+		modifier = { # I care about bloodlines and dynasties and whatnot
+			add = -25
+			scope:actor = {
+				OR = {
+					has_trait = arrogant
+					has_trait = callous
+				}
+			}
+		}
+		modifier = { # I will not adopt filthy filthy heretics
+			factor = 0
+			ai_zeal >= medium_positive_ai_value
+			faith = {
+				faith_hostility_level = {
+					target = scope:recipient.faith
+					value >= faith_astray_level
+				}
+			}
+		}
+		modifier = { # I'll not make them start a war they'll surely lose
+			factor = 0
+			scope:recipient.current_military_strength < {
+				value = scope:secondary_recipient.current_military_strength
+				multiply = 0.75
+			}
+		}
+	}
+}
+
+dark_lord_bestow_favor_interaction = {
+	category = interaction_category_dark_lord
+	
+	
+
+	desc = dark_lord_bestow_favor_interaction_desc
+
+	
+
+	is_shown = {
+		
+		scope:actor = {
+			this = character:lineofsauron
+			has_character_flag = unknown_sauron_flag
+		}
+		
+		scope:actor != scope:recipient
+		
+		scope:actor = { #LotR
+			NOT = { has_culture = culture:wastelands }
+			is_in_valinor = no
+		}
+		scope:recipient = { #LotR
+			NOT = { has_culture = culture:wastelands }
+			is_in_valinor = no
+			faith_is_evil = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = { #LotR
+			NOT = { has_culture = culture:wastelands }
+			is_in_valinor = no
+			faith_is_evil = yes
+		}
+	}
+	
+	cooldown_against_recipient = { years = 10 }
+
+	auto_accept = yes
+
+	ai_min_reply_days = 1
+	ai_max_reply_days = 5
+
+	on_accept = {
+		
+		scope:recipient = {
+			add_character_modifier = {
+                modifier = dark_favor_modifier
+				years = 10
+			}
+		}
+		
+		raise_suspicion_minor = yes
+	}
+
+	on_decline = {
+		
+	}
+
+	#Use hook
+	
+	
+	ai_will_do = {
+		base = 100
+	}
+}

@@ -1,0 +1,199 @@
+
+
+lineofinzilloniee1 = {
+	name = lineofinzilloniee1_name 
+	dynasty_house = house_kastaphel
+	religion = faith_edain
+	culture = kharadunaim
+	
+	father = lineofinzilloni41
+    
+	
+    trait = blood_of_numenor_2
+    trait = child_of_concubine_male
+	trait = intellect_good_1
+	
+	diplomacy = 10
+    martial = 10
+    stewardship = 10
+    intrigue = 10
+    learning = 10
+    prowess = 10
+	
+	trait = brave
+    trait = zealous 
+    trait = ambitious
+	
+	trait = education_learning_4
+	trait = holy_warrior
+	trait = populist_leader
+	
+	6956.1.1 = {
+		birth = yes
+	}
+    6970.1.1 = {
+        add_matrilineal_spouse = southern_faithful_adventurer
+		change_first_name = lineofinzilloniee1_name2
+    }
+	6980.1.1 = {
+		death = { death_reason = death_natural_causes }
+	}
+}
+
+southern_faithful_adventurer = {
+    name = southern_faithful_adventurer_name 
+    female = yes
+
+    dynasty = dynasty_eruthimar
+    religion = faith_edain
+    culture = dunedain_ranger
+	dna = southern_faithful_adventurer_dna
+
+    
+
+    sexuality = heterosexual
+
+    trait = brave
+    trait = shy
+    trait = ambitious
+
+    trait = intellect_good_3
+	trait = fecund
+	trait = military_engineer
+	trait = holy_warrior
+	trait = logistician
+	trait = populist_leader
+	
+	
+
+    diplomacy = 15
+    martial = 15
+    stewardship = 15
+    intrigue = 15
+    learning = 15
+    prowess = 15
+
+    trait = education_martial_5
+
+    trait = blood_of_numenor_4
+
+    6953.1.1 = {
+        birth = yes
+        	effect = {
+			learn_language = language_sindarin
+			learn_language = language_quenya
+		}
+    }
+    6980.1.1 = {
+        death = { death_reason = death_natural_causes }
+    }
+}
+
+lineofpercival1 = {
+    name = lineofpercival1_name 
+    
+
+    
+    religion = faith_edain
+    culture = gondorian
+	dna = percival_dna
+
+    
+
+    sexuality = heterosexual
+
+    trait = compassionate
+    trait = shy
+    trait = diligent
+
+    trait = intellect_good_2
+	
+	
+	trait = logistician
+	trait = populist_leader
+	trait = physique_bad_2
+	
+	disallow_random_traits = yes
+
+    diplomacy = 3
+    martial = 5
+    stewardship = 9
+    intrigue = 2
+    learning = 9
+    prowess = 1
+
+    trait = education_stewardship_4
+
+    trait = blood_of_numenor_2
+
+    6950.1.1 = {
+        birth = yes
+        effect = {
+			learn_language = language_sindarin
+			learn_language = language_quenya
+			add_character_flag = no_auto_family
+			}
+		
+	}
+    6980.1.1 = {
+        death = { death_reason = death_natural_causes }
+    }
+}
+
+lineofliuva1 = {
+    name = lineofliuva1_name 
+    dynasty = dynasty_rhovanion
+
+    
+    religion = faith_northmen
+    culture = rhovanorim
+	dna = rhovanion_restorer_dna
+
+    
+
+    sexuality = heterosexual
+
+    trait = ambitious
+    trait = gregarious
+    trait = diligent
+
+    trait = intellect_good_1
+	
+	
+	trait = logistician
+	trait = open_terrain_expert
+	trait = populist_leader
+	trait = physique_good_2
+	
+	disallow_random_traits = yes
+
+    diplomacy = 7
+    martial = 10
+    stewardship = 5
+    intrigue = 4
+    learning = 6
+    prowess = 9
+
+    trait = education_martial_4
+
+    
+
+    6950.1.1 = {
+        birth = yes
+        effect = {
+			add_trait_xp = {
+				trait = open_terrain_expert
+				value = 100
+			}
+			add_trait_xp = {
+				trait = logistician
+				value = 50
+			}
+			add_character_flag = no_auto_family
+		}
+		
+	}
+    6980.1.1 = {
+        death = { death_reason = death_natural_causes }
+    }
+}

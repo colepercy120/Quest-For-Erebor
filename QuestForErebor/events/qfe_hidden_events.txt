@@ -1,0 +1,1757 @@
+﻿namespace = qfe
+
+qfe.1 = { # history fix
+	hidden = yes
+ 	scope = none
+	
+	
+	immediate = {
+		if = {
+			limit = {
+				game_start_date = 6974.1.1
+			}
+			
+			thorin_company_member_set_up = yes
+			
+			character:lineofsauron = {
+				get_title = title:k_amon_lanc
+			}
+			
+			### Balan Lai
+			
+			#title:d_balan_lai_leader.holder = {
+			#	lotr_create_defensive_alliance = {
+			#		DEFENSIVE_ALLY = title:d_alsarias.holder
+			#		LOC_KEY = balan_lai
+			#	}
+			#	scope:new_confederation = {
+			#		set_variable = lotr_permanent_defensive_alliance
+			#	}
+			#	every_independent_ruler = {
+			#		limit = {
+			#			culture = culture:kharadunaim
+			#			highest_held_title_tier > tier_county
+			#			primary_title != title:d_mispir
+			#			primary_title != title:d_metkharan
+			#			any_held_title = {
+			#				tier = tier_county
+			#				empire = title:e_thani_hazad
+			#			}
+			#			is_confederation_member = no
+			#		}
+			#		add_trait = balan_lai_member
+			#		add_unpressed_claim = title:d_balan_lai_leader
+			#		scope:new_confederation = {
+			#			add_confederation_member = prev
+			#		}
+			#	}
+			#}
+			
+			### Rhun
+			
+			title:k_south_rhovanion = {
+				every_de_jure_county = {
+					limit = {
+						NOT = { 
+							any_county_province = {
+								has_holding_type = wastelands_holding 
+							}
+							this = title:c_anthar
+						}
+					}
+					holder.top_liege = {
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						change_liege = {
+							liege = title:e_golden_realm_rhun.holder
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+						
+					}
+				}	
+			}
+			title:k_usrievar = {
+				every_de_jure_county = {
+					limit = {
+						NOT = { 
+							any_county_province = {
+								has_holding_type = wastelands_holding 
+							}
+							
+						}
+					}
+					holder.top_liege = {
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						change_liege = {
+							liege = title:e_golden_realm_rhun.holder
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+						
+					}
+				}	
+			}
+			
+			### Harzun
+			title:k_haruzan = {
+				every_de_jure_county = {
+					limit = {
+						NOT = { 
+							any_county_province = {
+								has_holding_type = wastelands_holding 
+							}
+							duchy = {
+								this = title:d_ramlond
+							}
+						}
+					}
+					holder.top_liege = {
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						change_liege = {
+							liege = title:k_haruzan.holder
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+						
+					}
+				}	
+			}
+			
+			### Mag and Tumag
+			
+					title:k_korul.holder = {
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						change_liege = {
+							liege = title:e_mag_tumag.holder
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+						
+					}
+					
+			
+			### Dorwinion
+			
+			title:c_aldena.holder = {
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = change
+				}
+				change_liege = {
+					liege = title:k_dorwinion.holder
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+				
+			}
+			
+			### khy
+			
+			title:c_kalorun.holder = {
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = change
+				}
+				change_liege = {
+					liege = title:e_khy.holder
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+				
+			}
+			
+			### Tom History Fix
+			
+			character:k_wastelands_holder = {
+				every_held_county = {
+					limit = {
+						any_county_province = {
+							has_holding = yes
+							combined_building_level > 0
+						}
+					}
+					set_county_faith = faith:faith_wastelands_pagan
+					set_county_culture = culture:wastelands
+					change_development_level = -100
+					lotr_reset_or_generate_coa = yes
+					
+					every_county_province = {
+						limit = {
+							is_county_capital = yes
+							NOT = { has_holding_type = wastelands_holding }
+						}
+						set_holding_type = wastelands_holding
+					}
+					every_county_province = {
+						limit = {
+							is_county_capital = no
+							has_holding = yes
+						}
+						remove_holding = yes
+					}
+
+					every_county_province = {
+						limit = {
+							has_holding = yes
+						}
+						while = {
+							limit = {
+								combined_building_level > 0
+							}
+							destroy_random_building_variable_effect = yes
+							destroy_random_building_effect = yes
+						}
+					}
+					
+					
+					
+				}
+			}
+			
+			### Colonize
+			
+			title:k_durins_folk.holder = {
+				add_intrigue_skill = 5
+				add_learning_skill = 5
+				add_martial_skill = 5
+				add_prowess_skill = 5
+				add_stewardship_skill = 5
+				add_diplomacy_skill = 5
+				
+				title:c_bilakh_anut = {
+					
+					change_development_level = 3
+					
+					save_temporary_scope_as = target_county
+							
+					ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = title:k_durins_folk.holder }
+							
+					scope:target_county = {
+						if = {
+							limit = { root = { is_elf = yes } }
+							title_province = { set_holding_type = elven_holding }
+						} else_if = {
+							limit = { title_province = { terrain = halls } }
+							title_province = { set_holding_type = dwarven_holding }
+						} else_if = {
+							limit = { root = { is_hobbit = yes } }
+							title_province = { set_holding_type = city_holding }
+						} else = {
+							if = {
+								limit = { root = { has_government = tribal_government } }
+								title_province = { set_holding_type = tribal_holding }
+							} else = {
+								title_province = { set_holding_type = castle_holding }
+							}
+						}
+					}		
+	
+					if = { #Fallback
+						limit = { faith = faith:faith_wastelands_pagan }
+						set_county_faith = root.faith
+					}
+					if = { #Fallback
+						limit = { culture = culture:wastelands }
+						set_county_culture = root.culture
+					}
+				}
+				add_gold = 2000
+			}
+		
+			
+			
+			character:lineofpercival1 = {
+				title:c_tharbad = {
+					
+					
+					change_development_level = 3
+					
+					save_temporary_scope_as = target_county
+							
+					ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofpercival1 }
+							
+					scope:target_county = {
+						if = {
+							limit = { root = { is_elf = yes } }
+							title_province = { set_holding_type = elven_holding }
+						} else_if = {
+							limit = { title_province = { terrain = halls } }
+							title_province = { set_holding_type = dwarven_holding }
+						} else_if = {
+							limit = { root = { is_hobbit = yes } }
+							title_province = { set_holding_type = city_holding }
+						} else = {
+							if = {
+								limit = { root = { has_government = tribal_government } }
+								title_province = { set_holding_type = tribal_holding }
+							} else = {
+								title_province = { set_holding_type = castle_holding }
+							}
+						}
+					}		
+	
+					if = { #Fallback
+						limit = { faith = faith:faith_wastelands_pagan }
+						set_county_faith = root.faith
+					}
+					if = { #Fallback
+						limit = { culture = culture:wastelands }
+						set_county_culture = root.culture
+					}
+					
+					random_county_province = {
+						limit = {
+							has_holding = yes
+						}
+						
+						add_random_building_variable_effect = yes
+						add_random_building_construct_effect = yes
+						add_random_building_variable_effect = yes
+						add_random_building_construct_effect = yes
+					}
+					
+					set_coa = c_tharbad
+				}
+			
+				change_government = feudal_government
+			
+			
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = change
+				}
+				becomes_independent = {
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+				add_gold = 2000
+				add_legitimacy = 400
+				give_nickname = nick_master_of_the_haven
+				dynasty = {
+					set_coa = c_tharbad
+				}
+				get_title = title:d_tharbad_titular
+			}
+			
+			### Gundabad
+			
+				title:c_the_cloven_spire.holder = {
+					
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+					
+						
+						change_liege = {
+							liege = title:k_gundabad.holder
+							change = scope:change
+						}
+					
+						resolve_title_and_vassal_change = scope:change
+					
+				}
+			
+			
+			title:d_drakkenvast.holder = {
+				every_courtier = {
+					set_employer = title:c_esgaroth.holder
+				}
+				destroy_title = primary_title
+				set_employer = title:c_esgaroth.holder
+			}
+			
+			
+			### Mumakan
+			
+			#character:nazgul4 = {
+			#	title:d_amarukan = {
+			#		save_scope_as = titlegrab
+			#		character:nazgul4 = {
+			#			get_title = scope:titlegrab
+			#		}
+			#		every_de_jure_county = {
+			#			save_scope_as = titlegrab
+			#			character:nazgul4 = {
+			#				get_title = scope:titlegrab
+			#			}
+			#		}
+			#	}
+			#	create_title_and_vassal_change = {
+			#		type = swear_fealty
+			#		save_scope_as = change
+			#	}
+			#	title:e_mumakan.holder = {
+			#		change_liege = {
+			#				liege = character:nazgul4
+			#				change = scope:change
+			#			}
+			#		every_vassal = {
+			#			change_liege = {
+			#				liege = character:nazgul4
+			#				change = scope:change
+			#			}
+			#		}
+			#	}
+			#	get_title = title:e_mumakan
+			#	resolve_title_and_vassal_change = scope:change
+			#	set_character_faith = faith:faith_indur
+			#}
+			
+			
+			
+			character:nazgul5 = {
+				get_title = title:c_khorsaj
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = change
+				}
+				title:e_thon_an_kharlokh.holder = {
+					get_title = title:k_tulwang
+					change_liege = {
+							liege = character:nazgul5
+							change = scope:change
+						}
+					every_vassal = {
+						change_liege = {
+							liege = character:nazgul5
+							change = scope:change
+						}
+					}
+				}
+				get_title = title:e_thon_an_kharlokh
+				resolve_title_and_vassal_change = scope:change
+				set_character_faith = faith:faith_anballukhor
+				add_gold = 2000
+				add_legitimacy = 3000
+				add_martial_skill = 7
+				
+			}
+			
+			title:k_abrakhan = {
+				every_de_jure_county = {
+					limit = {
+						is_wasteland = yes
+					}
+					save_temporary_scope_as = target_county	
+					ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:nazgul7 }
+					change_development_level = { 7 10 }
+					
+					scope:target_county = {
+						if = {
+							limit = { root = { is_elf = yes } }
+							title_province = { set_holding_type = elven_holding }
+						} else_if = {
+							limit = { title_province = { terrain = halls } }
+							title_province = { set_holding_type = dwarven_holding }
+						} else_if = {
+							limit = { root = { is_hobbit = yes } }
+							title_province = { set_holding_type = city_holding }
+						} else = {
+							if = {
+								limit = { root = { has_government = tribal_government } }
+								title_province = { set_holding_type = tribal_holding }
+							} else = {
+								title_province = { set_holding_type = castle_holding }
+							}
+						}
+						set_county_culture = culture:lushek_pust 
+						set_county_faith = faith:faith_kanra
+					}
+					random_county_province = {
+						limit = {
+							has_holding = yes
+						}
+						
+						add_random_building_variable_effect = yes
+						add_random_building_construct_effect = yes
+						add_random_building_variable_effect = yes
+						add_random_building_construct_effect = yes
+					}
+					
+					
+				}
+				character:nazgul7 = {
+						get_title = title:k_abrakhan
+						set_character_faith = faith:faith_kanra
+						change_government = clan_government
+						add_gold = 2000
+						add_legitimacy = 3000
+						add_martial_skill = 7
+						add_stewardship_skill = 7
+						spawn_army = {
+							levies = 20000
+							location = character:nazgul7.location
+							name = orcsofmordor
+						}
+				}
+				every_de_jure_county = {
+					create_title_and_vassal_change = {
+						type = swear_fealty
+						save_scope_as = change
+					}
+					
+					holder.top_liege = {
+						change_liege = {
+							liege = character:nazgul7
+							change = scope:change
+						}
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+				
+			}
+			
+			title:k_rohan = {
+				every_de_jure_county = {
+					create_title_and_vassal_change = {
+						type = swear_fealty
+						save_scope_as = change
+					}
+					
+					holder.top_liege = {
+						change_liege = {
+							liege = title:k_rohan.holder
+							change = scope:change
+						}
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+			
+			title:k_mulambur = {
+				every_de_jure_county = {
+					limit = {
+						holder = {
+							this = title:e_mumakan.holder
+						}
+					}
+					save_scope_as = titlegrab
+					create_character = {
+						location = scope:titlegrab.title_province
+						template = administrator_character
+						gender_female_chance = 10
+						faith = scope:titlegrab.faith
+						culture = scope:titlegrab.culture
+						
+						save_scope_as = new_ruler
+					}
+					scope:new_ruler = {
+						get_title = scope:titlegrab
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						becomes_independent = {
+							
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+				}
+			}
+			
+			title:e_greenwood = {
+				every_de_jure_county = {
+					limit = {
+						culture = {
+							is_orc_culture = yes
+						}
+						holder = {
+							is_orc = no
+						}
+						NOT = {
+							this = title:c_amon_lanc
+							duchy = title:d_amon_lanc
+						}
+					}
+					save_scope_as = titlegrab
+					create_character = {
+						location = scope:titlegrab.title_province
+						template = orc_champion_character
+						gender_female_chance = 10
+						faith = scope:titlegrab.faith
+						culture = scope:titlegrab.culture
+						
+						save_scope_as = new_ruler
+					}
+					scope:new_ruler = {
+						get_title = scope:titlegrab
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						becomes_independent = {
+							
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+						start_tributary_interaction_effect = {
+							TRIBUTARY = scope:new_ruler
+							SUZERAIN = character:lineofsauron
+						}
+					}
+				}
+			}
+			
+			character:lineofbeorn1 = {
+				change_government = tribal_government
+				title:c_aldford = {
+					
+					
+					change_development_level = 3
+					
+					save_temporary_scope_as = target_county
+							
+					ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofbeorn1 }
+							
+					scope:target_county = {
+						title_province = { set_holding_type = tribal_holding }
+						
+					}		
+	
+					if = { #Fallback
+						limit = { faith = faith:faith_wastelands_pagan }
+						set_county_faith = root.faith
+					}
+					if = { #Fallback
+						limit = { culture = culture:wastelands }
+						set_county_culture = root.culture
+					}
+					
+					random_county_province = {
+						limit = {
+							has_holding = yes
+						}
+						add_random_building_variable_effect = yes
+						add_random_building_construct_effect = yes
+					}
+					
+					
+				}
+				
+				title:c_cirneford = {
+					
+					
+					change_development_level = 3
+					
+					save_temporary_scope_as = target_county
+							
+					ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofbeorn1 }
+							
+					scope:target_county = {
+						title_province = { set_holding_type = tribal_holding }
+						
+					}	
+	
+					if = { #Fallback
+						limit = { faith = faith:faith_wastelands_pagan }
+						set_county_faith = root.faith
+					}
+					if = { #Fallback
+						limit = { culture = culture:wastelands }
+						set_county_culture = root.culture
+					}
+					random_county_province = {
+						limit = {
+							has_holding = yes
+						}
+						add_random_building_variable_effect = yes
+						add_random_building_construct_effect = yes
+					}
+				}
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = change
+				}
+				becomes_independent = {
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+				add_gold = 300
+				add_legitimacy = 200
+				get_title = title:d_carrock_vale
+			}
+			
+			title:c_hudesfell = {
+				save_scope_as = titlegrab
+					create_character = {
+						location = scope:titlegrab.title_province
+						template = administrator_character
+						gender_female_chance = 30
+						faith = scope:titlegrab.faith
+						culture = scope:titlegrab.culture
+						
+						save_scope_as = new_ruler
+					}
+					scope:new_ruler = {
+						get_title = scope:titlegrab
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						becomes_independent = {
+							
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+			}
+			
+			title:c_feldlaes = {
+				change_development_level = 3
+				save_scope_as = titlegrab
+					create_character = {
+						location = scope:titlegrab.title_province
+						template = administrator_character
+						gender_female_chance = 30
+						faith = scope:titlegrab.faith
+						culture = scope:titlegrab.culture
+						
+						save_scope_as = new_ruler
+					}
+					scope:new_ruler = {
+						get_title = scope:titlegrab
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						becomes_independent = {
+							
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+						title:c_audaghaim = {
+							
+							
+							change_development_level = 3
+							
+							save_temporary_scope_as = target_county
+									
+							ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = scope:new_ruler }
+									
+							scope:target_county = {
+								title_province = { set_holding_type = tribal_holding }
+								
+							}	
+			
+							if = { #Fallback
+								limit = { faith = faith:faith_wastelands_pagan }
+								set_county_faith = root.faith
+							}
+							if = { #Fallback
+								limit = { culture = culture:wastelands }
+								set_county_culture = root.culture
+							}
+							random_county_province = {
+								limit = {
+									has_holding = yes
+								}
+								add_random_building_variable_effect = yes
+								add_random_building_construct_effect = yes
+							}
+						}
+					}
+			}
+			title:c_sarn_lothduin = {
+				change_development_level = 3
+				save_scope_as = titlegrab
+					create_character = {
+						location = scope:titlegrab.title_province
+						template = administrator_character
+						gender_female_chance = 30
+						faith = scope:titlegrab.faith
+						culture = scope:titlegrab.culture
+						
+						save_scope_as = new_ruler
+					}
+					scope:new_ruler = {
+						get_title = scope:titlegrab
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						becomes_independent = {
+							
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+			}
+			title:c_gladden_fields = {
+				change_development_level = 3
+				save_scope_as = titlegrab
+					create_character = {
+						location = scope:titlegrab.title_province
+						template = administrator_character
+						gender_female_chance = 30
+						faith = scope:titlegrab.faith
+						culture = scope:titlegrab.culture
+						
+						save_scope_as = new_ruler
+					}
+					scope:new_ruler = {
+						get_title = scope:titlegrab
+						create_title_and_vassal_change = {
+							type = swear_fealty
+							save_scope_as = change
+						}
+						becomes_independent = {
+							
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+						get_title = title:c_vinweald
+					}
+			}
+			
+			title:d_warnelath.holder = {
+				title:c_odarthalla = {
+					
+					
+					change_development_level = 3
+					
+					save_temporary_scope_as = target_county
+							
+					ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = title:d_warnelath.holder }
+							
+					scope:target_county = {
+						title_province = { set_holding_type = tribal_holding }
+						
+					}	
+	
+					if = { #Fallback
+						limit = { faith = faith:faith_wastelands_pagan }
+						set_county_faith = root.faith
+					}
+					if = { #Fallback
+						limit = { culture = culture:wastelands }
+						set_county_culture = root.culture
+					}
+					random_county_province = {
+						limit = {
+							has_holding = yes
+						}
+						add_random_building_variable_effect = yes
+						add_random_building_construct_effect = yes
+					}
+				}
+			}
+			
+			character:lineofliuva1 = {
+				get_title = title:c_east_bight
+				get_title = title:c_dunheath
+				get_title = title:d_heahand
+				get_title = title:d_east_bight
+				title:d_east_bight = {
+					every_de_jure_county = {
+						limit = {
+							is_wasteland = yes
+						}
+						change_development_level = 3
+						
+						save_temporary_scope_as = target_county
+								
+						ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofliuva1 }
+								
+						scope:target_county = {
+							title_province = { set_holding_type = tribal_holding }
+							
+						}	
+			
+						if = { #Fallback
+							limit = { faith = faith:faith_wastelands_pagan }
+							set_county_faith = root.faith
+						}
+						if = { #Fallback
+							limit = { culture = culture:wastelands }
+							set_county_culture = root.culture
+						}
+						random_county_province = {
+							limit = {
+								has_holding = yes
+							}
+							add_random_building_variable_effect = yes
+							add_random_building_construct_effect = yes
+						}
+					}
+					every_de_jure_county = {
+						limit = {
+							is_wasteland = no
+						}
+						holder = {
+							create_title_and_vassal_change = {
+								type = swear_fealty
+								save_scope_as = change
+							}
+							
+							change_liege = {
+								liege = title:d_east_bight.holder
+								change = scope:change
+							}
+							resolve_title_and_vassal_change = scope:change
+						}
+					}
+				}
+				title:d_heahand = {
+					every_de_jure_county = {
+						limit = {
+							is_wasteland = yes
+						}
+						change_development_level = 3
+						
+						save_temporary_scope_as = target_county
+								
+						ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofliuva1 }
+								
+						scope:target_county = {
+							title_province = { set_holding_type = tribal_holding }
+							
+						}	
+			
+						if = { #Fallback
+							limit = { faith = faith:faith_wastelands_pagan }
+							set_county_faith = root.faith
+						}
+						if = { #Fallback
+							limit = { culture = culture:wastelands }
+							set_county_culture = root.culture
+						}
+						random_county_province = {
+							limit = {
+								has_holding = yes
+							}
+							add_random_building_variable_effect = yes
+							add_random_building_construct_effect = yes
+						}
+					}
+					every_de_jure_county = {
+						limit = {
+							is_wasteland = no
+						}
+						holder = {
+							create_title_and_vassal_change = {
+								type = swear_fealty
+								save_scope_as = change
+							}
+							
+							change_liege = {
+								liege = title:d_east_bight.holder
+								change = scope:change
+							}
+							resolve_title_and_vassal_change = scope:change
+						}
+					}
+				}
+				add_gold = 1000
+				change_government = tribal_government
+			}
+			
+			
+			title:c_salur = {
+				change_development_level = 3
+				create_character = {
+					location = scope:titlegrab.title_province
+					template = administrator_character
+					gender_female_chance = 30
+					faith = faith:faith_northmen
+					culture = culture:rhovanorim
+					
+					save_scope_as = new_ruler
+				}
+	
+				save_temporary_scope_as = target_county
+						
+				ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = scope:new_ruler }
+						
+				scope:target_county = {
+					title_province = { set_holding_type = tribal_holding }
+					
+				}	
+			
+				if = { #Fallback
+					limit = { faith = faith:faith_wastelands_pagan }
+					set_county_faith = root.faith
+				}
+				if = { #Fallback
+					limit = { culture = culture:wastelands }
+					set_county_culture = root.culture
+				}
+				random_county_province = {
+					limit = {
+						has_holding = yes
+					}
+					add_random_building_variable_effect = yes
+					add_random_building_construct_effect = yes
+				}
+				scope:new_ruler = {
+					create_title_and_vassal_change = {
+						type = swear_fealty
+						save_scope_as = change
+					}
+					becomes_independent = {
+						
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+					change_government = tribal_government
+				}
+						
+					
+			}
+			
+			
+			### Desolation of Smaug Set Up
+			
+			every_county_in_region  = {
+				region = desolation_of_smaug
+				limit = {
+					title_province = { has_holding_type = wastelands_holding }
+				}
+				title_province = { remove_building = dragon_attack }
+				if = {
+					limit = { NOT = { title_province = { has_building = smaug_desolation } } }
+					title_province = { add_building = smaug_desolation	}
+
+					if = {
+						limit = {
+							AND = {
+								this = title:c_throne_of_erebor
+								NOT = {	title_province = { has_building = smaug }	}
+							}
+						}
+						title_province = { add_building = smaug }
+					}
+
+					
+
+					if = { #Dale Destroyed, Special removed
+						limit = {
+							AND = {
+								this = title:c_dale
+								this.title_province = { has_building = wonder_market_of_dale }
+							}
+						}
+
+						this.title_province = { remove_building = wonder_market_of_dale }
+					}
+
+					if = {
+						limit = {
+							AND = {
+								this = title:c_throne_of_erebor
+								title_province = { has_building_or_higher = erebor_mines_01 }
+							}
+						}
+						title_province = { remove_building_any_level_max_6 = { BUILDING = erebor_mines } }
+						hidden_effect = {
+							 title_province = {
+								add_special_building = erebor_mines_01
+								remove_building = erebor_mines_01
+							}
+						}
+					}
+				}	
+			}
+			title:c_throne_of_erebor.title_province = {	
+				add_great_building = wonder_erebor_broken
+				ruin_great_building = yes
+			}
+			
+			province:4908 = {
+				remove_building = wonder_thorins_hall
+				add_special_building = wonder_thorins_hall_01
+			}
+			
+			### Starting Situations
+			
+			
+			start_situation = {
+				type = desolation_of_smaug
+				
+			}
+			set_global_variable = { name = qfe_erebor_horde value = 500000 }
+			
+			
+			### Intro Events
+			
+			trigger_event = qfe.2
+			#trigger_event = {
+			#	id = qfe.3
+			#	days = 1
+			#}
+			
+			### Starting Claims
+			
+			title:k_durins_folk.holder = {
+				add_pressed_claim = title:k_erebor
+				add_pressed_claim = title:k_khazad_dum
+				add_pressed_claim = title:k_grey_mountains
+				add_pressed_claim = title:c_throne_of_erebor
+				add_pressed_claim = title:c_gondmaeglorn
+				add_pressed_claim = title:c_durins_hall
+			}
+			
+			
+			
+		}
+		
+		if = {
+			limit = {
+				game_start_date > 5133.1.1
+				game_start_date < 6975.1.1
+			}
+			start_situation = {
+				type = shadow_over_mirkwood
+				
+			}
+			
+			set_global_variable = { name = qfe_sauron_sus value = 300 }
+			character:lineofgandalf = {
+				add_trait = white_council
+			}
+			character:lineofsaruman = {
+				add_trait = white_council
+			}
+			character:lineoffinarfin5 = {
+				add_trait = white_council
+			}
+			character:lineofradagast = {
+				add_trait = white_council
+				change_government = elven_government
+			}
+			character:lineofelrond1 = {
+				add_trait = white_council
+				set_relation_ward = character:lineisildur42
+			}
+			
+			character:lineofgollum3 = {
+				create_artifact_one_ring_effect_qfe = { OWNER = this }
+			}
+			
+		}
+		if = {
+			limit = {
+				game_start_date > 6975.1.1
+			}
+			character:lineofbaggins12 = {
+				create_artifact_one_ring_effect_qfe = { OWNER = this }
+			}
+		}
+		
+		### Starting Prestige and Piety
+		
+		character:lineofgandalf = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineofsaruman = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineoffinarfin5 = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineofradagast = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineofelrond1 = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineofglorfindel = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineofcirdan = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineoffeanor2 = {
+			add_piety_level = 5
+			add_prestige_level = 5
+		}
+		character:lineofsauron = {
+			add_piety_level = 8
+			add_prestige_level = 5
+		}
+
+	}
+}
+
+qfe.2 = { # Starting events
+	hidden = yes
+ 	scope = none
+	
+	
+	immediate = {
+		### Quest for Erebor
+		
+		character:lineofdurin83 =  { 
+			trigger_event = { 
+				id = qfe_quest.001
+				days = 1
+			}
+			set_relation_friend = character:lineofuriVI
+		}
+		
+		character:lineofgandalf = {
+			trigger_event = { 
+				id = qfe_intro.001
+				days = 1
+			}
+			
+		}
+		character:lineofbaggins12 = {
+			trigger_event = { 
+				id = qfe_intro.002
+				days = 1
+			}
+			
+		}
+		character:lineofazog2 = {
+			trigger_event = { 
+				id = qfe_intro.003
+				days = 1
+			}
+			
+		}
+		
+		character:lineoforopher3 = {
+			
+			trigger_event = { 
+				id = qfe_intro.004
+				days = 1
+			}
+			
+		}
+		title:c_esgaroth.holder = {
+			trigger_event = { 
+				id = qfe_intro.005
+				days = 1
+			}
+			
+		}
+		character:lineofdurin90 = {
+			trigger_event = { 
+				id = qfe_intro.006
+				days = 1
+			}
+			set_relation_friend = character:lineofdurin83
+		}
+		
+		### Shadow over Mirkwood
+			set_global_variable = { name = qfe_sauron_sus value = 900 }
+			
+		character:lineofsaruman = {
+			trigger_event = { 
+				id = qfe_intro.007
+				days = 1
+			}
+		}
+		
+		character:lineofelrond1 = {
+			trigger_event = { 
+				id = qfe_intro.008
+				days = 1
+			}
+		}
+		
+		character:lineoffinarfin5 = {
+			trigger_event = { 
+				id = qfe_intro.009
+				days = 1
+			}
+		}
+		
+		character:lineofsauron = {
+			trigger_event = { 
+				id = qfe_intro.011
+				days = 1
+			}
+		}
+		
+		### Battle of hearts and minds
+		
+		character:southern_faithful_adventurer =  { 
+			trigger_event = { 
+				id = qfe_intro.010
+				days = 1
+			}
+			lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content }
+		}
+		
+		### Misc
+		character:lineisildur42 = {
+			trigger_event = { 
+				id = qfe_intro.012
+				days = 1
+			}
+			change_first_name = aragorn_estel
+			if = { # Aragorn's Return of the King event
+				limit = { is_alive = yes }
+				trigger_event = {
+					id = gondor.0500
+					years = 78
+				}
+			}
+			lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content }
+		}
+		character:lineofbeorn1 =  { 
+			trigger_event = { 
+				id = qfe_intro.014
+				days = 1
+			}
+			lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content }
+		}
+		character:lineofliuva1 = {
+			trigger_event = { 
+				id = qfe_rhovanion.001
+				days = 1
+			}
+			lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content }
+		}
+		
+		### Elves who trigger in all starts
+		
+		character:lineofcirdan = { # Cirdan
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0004
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event } #Already bookmarked character
+			}
+		}
+	
+		character:lineofbornmir3 = { # Bornmir
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0005
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		character:lineoflanthir1 = { # Lanthir
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0006
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content }
+			}
+		}
+	
+		character:lineofmeglasul3 = { # Terilaen
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0007
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event } #Already bookmarked character
+			}
+		}
+		
+		character:lineofglorfindel = { # Glorfindel
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0009
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content }
+			}
+		}
+	
+		character:lineofeltariel = { # Eltariel
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0010
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+		
+		character:lineoftainalann3 = { # Shelepinn
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				remove_claim = title:d_tanturak
+				remove_claim = title:d_azra_zhe
+				trigger_event = {
+					id = lotr_intro_events.0011
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content }
+			}
+		}
+	
+		
+		character:lineofalilel = { # Alilêl, the Solitary Blade
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0013
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+		
+		#Legolas
+		character:lineoforopher6 = { # Legolas
+			if = {
+				limit = { 
+					is_alive = yes 
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8000
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Celeborn
+		character:lineofelmo5 = { # Celeborn
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8001
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Haldir
+		character:lineoftirneldor3 = {
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8004
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Lauriel
+		character:lineoflauriel = {
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8005
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Karamar
+		character:lineofbornmir5 = {
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8007
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Deneroth
+		character:lineoflanthir5 = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8011
+					days = 3
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Laerdan
+		character:lineoflaerdan3 = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8012
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Calmiriel
+		character:lineofmeglasul6 = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8013
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+	
+		#Gildor
+		character:lineofgildor = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.8015
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+		
+		character:lineoftainalann10 = { # Modern King of Talilan
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0012
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content } #Already bookmarked character
+				every_maa_regiment = { destroy_maa_regiment = yes }
+				create_maa_regiment = { type = kinnlai_skirmishers check_can_recruit = no size = 10 }
+				create_maa_regiment = { type = annammon_kin check_can_recruit = no size = 3 }
+				create_maa_regiment = { type = annammon_kin check_can_recruit = no size = 3 }			
+			}
+		}
+		
+		character:lineofalilel = { # Alilêl, the Solitary Blade
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				trigger_event = {
+					id = lotr_intro_events.0013
+					days = 1
+				}
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = intro_event }
+			}
+		}
+		
+		character:lineoffeanor2 = { # Maglor
+			if = {
+				limit = {
+					is_alive = yes
+					is_landed = yes
+				}
+				
+				lotr_set_lore_character_for_bookmark = { TYPE_OF_CONTENT = story_content } #Already bookmarked character
+			}
+		}
+		
+		
+		
+	}
+}
+
+qfe.3 = { # Starting events
+	hidden = yes
+ 	scope = none
+	
+	
+	immediate = {
+		### Gundabad
+			
+			
+			
+			
+	}
+}
+
+qfe.4 = { # Sauron Capital Fix
+	hidden = yes
+ 	scope = none
+	
+	
+	immediate = {
+		
+		set_realm_capital = title:b_barad_dur
+		get_title = title:k_gorgoroth
+		title:k_gorgoroth = {
+			every_de_jure_county = {
+				if = {
+					limit = {
+						holder = {
+							has_trait = nazgul
+						}
+					}
+					save_scope_as = titlegrab
+					
+					root = {
+						get_title = scope:titlegrab
+					}
+				}
+				else = {
+					
+					create_title_and_vassal_change = {
+						type = swear_fealty
+						save_scope_as = change
+					}
+					
+					holder = {
+						change_liege = {
+							liege = character:lineofsauron
+							change = scope:change
+						}
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+			
+		}
+		title:k_nurn = {
+			every_de_jure_county = {
+				if = {
+					limit = {
+						holder = {
+							has_trait = nazgul
+						}
+					}
+					save_scope_as = titlegrab
+					
+					root = {
+						get_title = scope:titlegrab
+					}
+				}
+				else = {
+					
+					create_title_and_vassal_change = {
+						type = swear_fealty
+						save_scope_as = change
+					}
+					
+					holder = {
+						change_liege = {
+							liege = character:lineofsauron
+							change = scope:change
+						}
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+			
+		}	
+			
+	}
+}
+
+qfe.0100 = { # Ring of Power modifier switch
+	hidden  = yes
+	
+	trigger = {
+		any_character_artifact = { 
+			has_variable = one_ring 
+		}
+	}
+	
+	immediate = {
+		every_character_artifact = {
+			limit = { 
+				has_variable = one_ring 
+			}
+			remove_one_ring_modifiers = yes
+			
+			
+			if = {
+				limit = { # Elves and Istari
+					root = {
+						OR = {
+							is_elf = yes
+							is_istari = yes
+						}
+					}
+				}
+				add_artifact_modifier = one_ring_elves_modifier
+				set_artifact_rarity_illustrious = yes
+			}
+			
+			else_if = {
+				limit = { root = { is_sauron = yes } }
+				add_artifact_modifier = one_ring_sauron_modifier
+				if = { #A little additional layer of corruption
+					limit = { NOT = { has_variable = corrupted_ring } }
+					set_variable = corrupted_ring
+				}
+				set_artifact_rarity_illustrious = yes
+				root = {
+					trigger_event = qfe_situation.003
+				}
+			}
+			
+			else = { add_artifact_modifier = one_ring_men_modifier }
+		}
+	}
+}

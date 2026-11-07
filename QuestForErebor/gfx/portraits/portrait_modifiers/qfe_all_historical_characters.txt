@@ -1,0 +1,55 @@
+﻿qfe_historical_characters_accessories = {
+	usage = game
+	selection_behavior = max
+	priority = 2
+	
+	fankil_portrait = { 
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = barbershop_vanilla_hairstyles_ep2
+				accessory = m_hair_ep2_western_01
+			}
+			accessory = {
+				mode = add
+				gene = legwear
+				template = barbershop_legwear_lotr
+				accessory = male_legwear_secular_agot_trousers_01
+			}
+			accessory = {
+				mode = add
+				gene = clothes
+				template = gondorian_low_clothes
+				accessory = male_clothes_gondorian_nobility_04_low
+			}
+			accessory = {
+				mode = add
+				gene = clothes_hoods
+				template = dunedain_war_headgear
+				accessory = male_hoods
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = spectacles
+				accessory = male_headgear_special_spectacles_01
+			}
+		}   
+		weight = {
+			base = 0
+			modifier = {
+				add = 999
+				exists = this
+				exists = character:lineofpercival1
+				this = character:lineofpercival1
+			}
+		}
+	}
+	
+	
+	
+	
+	
+
+}

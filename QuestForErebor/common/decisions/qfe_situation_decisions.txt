@@ -1,0 +1,1008 @@
+﻿
+decision_investigate_necromancer = {
+	title = decision_investigate_necromancer
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_mordor_02.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+	
+	cooldown = {
+		years = 10
+	}
+
+	selection_tooltip = decision_investigate_necromancer_tooltip
+	desc = decision_investigate_necromancer_desc
+	confirm_text = decision_investigate_necromancer_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		has_trait = white_council
+		faith_is_good = yes
+		
+		character:lineofsauron = { has_character_flag = unknown_sauron_flag }
+	}
+
+	is_valid = {
+		
+		has_trait = white_council
+		faith_is_good = yes
+		custom_tooltip = {
+			text = decision_reveal_necromancer_tt_2
+			title:c_amon_lanc.holder = {
+				has_character_flag = unknown_sauron_flag
+			}
+		}
+		
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		custom_tooltip = white_council_investigate
+		start_travel_plan = {
+				destination = title:c_amon_lanc.title_province
+				
+				on_arrival_event = qfe_situation.012
+				
+				return_trip = yes
+				players_use_planner = no
+				on_arrival_destinations = all_but_last
+			}
+	}
+}
+
+decision_reveal_necromancer_woodmen = {
+	title = decision_reveal_necromancer_woodmen
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_mordor_02.dds"
+	}
+
+	selection_tooltip = decision_reveal_necromancer_woodmen_tooltip
+	desc = decision_reveal_necromancer_woodmen_desc
+	confirm_text = decision_reveal_necromancer_woodmen_confirm
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_independent_ruler = yes
+		title:c_amon_lanc.holder = { has_character_flag = unknown_sauron_flag }
+		NOT = { faith_is_evil = yes }
+		is_elf = no
+		OR = {
+			exists = title:k_lasgalen.holder 
+			exists = title:k_lothlorien.holder 
+		}
+		OR = {
+			title:k_amon_lanc = {
+				is_neighbor_to_realm = root
+			}
+			title:d_amon_lanc = {
+				is_neighbor_to_realm = root
+			}
+			title:c_amon_lanc = {
+				is_neighbor_to_realm = root
+			}
+			capital_province = {
+				geographical_region = middleearth_west_rhovanion
+			}
+		}
+	}
+
+	is_valid = {
+		highest_held_title_tier >= tier_kingdom
+		is_independent_ruler = yes
+		faith_is_good = yes
+		OR = {
+			title:k_lothlorien.holder ?= { is_elf = yes }
+			title:k_lasgalen.holder ?= { is_elf = yes }
+		}
+		custom_tooltip = {
+			text = decision_reveal_necromancer_tt_2
+			title:c_amon_lanc.holder = {
+				has_character_flag = unknown_sauron_flag
+			}
+		}
+		custom_tooltip = {
+			text = decision_reveal_necromancer_tt
+			title:c_amon_lanc = {
+				is_neighbor_to_realm = root
+			}
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_available_adult = yes
+		is_at_war = no
+	}
+
+	cost = {
+		gold = medium_gold_value
+	}
+
+	effect = {
+		raise_suspicion_major = yes
+	}
+
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 36
+		kingdom = 36
+		empire = 36
+		hegemony = 36
+	}
+	
+	cooldown = { years = 10 }
+}
+
+
+decision_recall_khorahil = {
+	title = decision_recall_khorahil
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_black_ships.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = no
+	}
+	ai_will_do = {
+		base = 0
+	}
+	
+	
+
+	selection_tooltip = decision_recall_khorahil_tooltip
+	desc = decision_recall_khorahil_desc
+	confirm_text =decision_recall_khorahil_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		character:nazgul5 = {
+			is_landed = yes
+		}
+		
+		
+	}
+
+	is_valid = {
+		character:nazgul5 = {
+			is_landed = yes
+			is_ai = yes
+		}
+		
+		
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		lower_suspicion_major = yes
+		character:nazgul5 = {
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			every_held_title = {
+				change_title_holder = {
+					holder = character:nazgul5.primary_heir
+                	change = scope:change
+            	}
+			}
+			every_vassal = {
+				change_liege = {
+					liege = character:nazgul5.primary_heir
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		add_courtier = character:nazgul5
+	}
+}
+
+decision_recall_ard = {
+	title = decision_recall_ard
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_harad_04.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = no
+	}
+	ai_will_do = {
+		base = 0
+	}
+	
+	
+
+	selection_tooltip = decision_recall_ard_tooltip
+	desc = decision_recall_ard_desc
+	confirm_text = decision_recall_ard_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		character:nazgul7 = {
+			is_landed = yes
+		}
+		
+		
+	}
+
+	is_valid = {
+		character:nazgul7 = {
+			is_landed = yes
+			is_ai = yes
+		}
+		
+		
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		lower_suspicion_major = yes
+		character:nazgul7 = {
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			every_held_title = {
+				change_title_holder = {
+					holder = character:nazgul7.primary_heir
+                	change = scope:change
+            	}
+			}
+			every_vassal = {
+				change_liege = {
+					liege = character:nazgul7.primary_heir
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		add_courtier = character:nazgul7
+	}
+}
+
+decision_dispatch_witch_king = {
+	title = decision_dispatch_witch_king
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_angmar_01.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 1000
+	}
+	
+	
+
+	selection_tooltip = decision_dispatch_witch_king_tooltip
+	desc = decision_dispatch_witch_king_desc
+	confirm_text = decision_dispatch_witch_king_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		exists = character:nazgul1
+		character:nazgul1 = {
+			NOT = {
+				has_title = title:e_angmar
+			}
+		}
+		
+	}
+
+	is_valid = {
+		
+		OR = {
+			AND = {
+				custom_tooltip = {
+					text = decision_dispatch_witch_king_trigger3
+					title:k_erebor.holder = {
+						faith_is_evil = yes
+					}
+				}
+				custom_tooltip = {
+					text = decision_dispatch_witch_king_trigger4
+					title:k_gundabad.holder = {
+						faith_is_evil = yes
+					}
+				}
+				custom_tooltip = {
+					text = decision_dispatch_witch_king_trigger5
+					title:k_khazad_dum.holder = {
+						faith_is_evil = yes
+					}
+				}
+			}
+			AND = {
+				
+				custom_tooltip = {
+					text = decision_dispatch_witch_king_trigger2
+					title:e_arnor = {
+						any_de_jure_county = { 
+							percent < 0.50 
+							any_county_province = {
+									has_holding_type = wastelands_holding
+													
+								}
+						}	
+					}
+					any_ruler = {
+						has_title = title:e_arnor
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = decision_dispatch_witch_king_trigger 
+			title:k_angmar = {
+				any_de_jure_county = { 
+					percent > 0.5 
+					any_county_province = {
+							has_holding_type = wastelands_holding
+											
+						}
+				}	
+			}
+		}
+		
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		raise_suspicion_major = yes
+		custom_tooltip = {
+			text = decision_dispatch_witch_king_effect
+		}
+		character:nazgul1 = {
+			trigger_event = {
+				id = qfe_misc.10
+			
+			}
+		}
+	}
+}
+
+decision_recall_witch_king = {
+	title = decision_recall_witch_king
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_angmar_01.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = no
+	}
+	ai_will_do = {
+		base = 0
+	}
+	
+	
+
+	selection_tooltip = decision_recall_witch_king_tooltip
+	desc = decision_recall_witch_king_desc
+	confirm_text = decision_recall_witch_king_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		character:nazgul1 = {
+			is_landed = yes
+		}
+		NOT = {
+			character:nazgul1 = {
+				has_title = title:e_mordor
+			}
+		}
+		
+	}
+
+	is_valid = {
+		character:nazgul1 = {
+			is_landed = yes
+			is_ai = yes
+		}
+		
+		
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		lower_suspicion_major = yes
+		if = {
+			limit = {
+				character:nazgul1.primary_heir = {
+					faith_is_evil = no
+				}
+			}
+			create_character = {
+					location = character:nazgul1.location
+					template = administrator_character
+					gender_female_chance = 30
+					faith = faith:faith_angmar_evil
+					culture = culture:angmarrim
+					
+					save_scope_as = new_ruler
+			}
+		}
+		else = {
+			character:nazgul1.primary_heir = {
+				save_scope_as = new_ruler
+			}
+		}
+		
+		character:nazgul1 = {
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			every_held_title = {
+				change_title_holder = {
+					holder = scope:new_ruler
+                	change = scope:change
+            	}
+			}
+			every_vassal = {
+				change_liege = {
+					liege = scope:new_ruler
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		add_courtier = character:nazgul1
+	}
+}
+
+decision_dispatch_indur = {
+	title = decision_dispatch_indur
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_mumakan_06.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 1000
+	}
+	
+	
+
+	selection_tooltip = decision_dispatch_indur_tooltip
+	desc = decision_dispatch_indur_desc
+	confirm_text = decision_dispatch_indur_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		exists = character:nazgul4
+		character:nazgul4 = {
+			NOT = {
+				has_title = title:e_mumakan
+			}
+		}
+		
+	}
+
+	is_valid = {
+		
+		OR = {
+			AND = {
+				custom_tooltip = {
+					text = decision_dispatch_indur_trigger1
+					title:e_mumakan.holder = {
+						faith_is_evil = yes
+					}
+				}
+			}
+			AND = {
+				custom_tooltip = {
+					text = decision_dispatch_indur_trigger3
+					
+					any_county_in_region = {
+						region = middleearth_uttersouth
+						holder.top_liege = {
+							faith_is_evil = yes
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = decision_dispatch_indur_trigger2
+			any_county_in_region = {
+				region = middleearth_uttersouth
+				holder.top_liege = {
+					current_military_strength >= 300000
+					faith_is_good = yes
+				}
+			}
+		}
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		raise_suspicion_major = yes
+		custom_tooltip = {
+			text = decision_dispatch_indur_effect
+		}
+		character:nazgul4 = {
+			trigger_event = {
+				id = qfe_misc.12
+			
+			}
+		}
+	}
+}
+
+decision_recall_indur = {
+	title = decision_recall_indur
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_mumakan_06.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = no
+	}
+	ai_will_do = {
+		base = 0
+	}
+	
+	
+
+	selection_tooltip = decision_recall_indur_tooltip
+	desc = decision_recall_indur_desc
+	confirm_text = decision_recall_indur_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		character:nazgul4 = {
+			is_landed = yes
+		}
+		NOT = {
+			character:nazgul4 = {
+				has_title = title:e_mordor
+			}
+		}
+		
+	}
+
+	is_valid = {
+		character:nazgul4 = {
+			is_landed = yes
+			is_ai = yes
+		}
+		
+		
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		lower_suspicion_major = yes
+		
+		
+		character:nazgul4 = {
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			every_held_title = {
+				change_title_holder = {
+					holder = character:nazgul4.primary_heir
+                	change = scope:change
+            	}
+			}
+			every_vassal = {
+				change_liege = {
+					liege = character:nazgul4.primary_heir
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		add_courtier = character:nazgul4
+	}
+}
+
+decision_dispatch_ovatha = {
+	title = decision_dispatch_ovatha
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_nazgul_01.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 1000
+	}
+	
+	
+
+	selection_tooltip = decision_dispatch_ovatha_tooltip
+	desc = decision_dispatch_ovatha_desc
+	confirm_text = decision_dispatch_ovatha_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		exists = character:nazgul9
+		character:nazgul9 = {
+			NOT = {
+				has_title = title:e_khand
+			}
+		}
+		
+	}
+
+	is_valid = {
+		
+		OR = {
+			AND = {
+				custom_tooltip = {
+					text = decision_dispatch_ovatha_trigger1
+					title:e_khand.holder = {
+						faith_is_evil = yes
+					}
+				}
+			}
+			AND = {
+				custom_tooltip = {
+					text = decision_dispatch_ovatha_trigger2
+					
+					any_county_in_region = {
+						region = middleearth_rhun_khand
+						holder.top_liege = {
+							faith_is_evil = yes
+						}
+					}
+				}
+			}
+		}
+		OR = {
+			custom_tooltip = {
+				text = decision_dispatch_ovatha_trigger3
+				any_county_in_region = {
+					region = middleearth_rhun_khand
+					holder.top_liege = {
+						current_military_strength >= 300000
+						faith_is_good = yes
+					}
+				}
+			}
+			custom_tooltip = {
+				text = decision_dispatch_ovatha_trigger4
+				any_county_in_region = {
+					region = middleearth_harad_near
+					holder.top_liege = {
+						current_military_strength >= 300000
+						faith_is_good = yes
+					}
+				}
+			}
+			custom_tooltip = {
+				text = decision_dispatch_ovatha_trigger5
+				any_county_in_region = {
+					region = middleearth_west_rhovanion
+					holder.top_liege = {
+						current_military_strength >= 300000
+						faith_is_good = yes
+					}
+				}
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		raise_suspicion_major = yes
+		custom_tooltip = {
+			text = decision_dispatch_ovatha_effect
+		}
+		character:nazgul9 = {
+			trigger_event = {
+				id = qfe_misc.14
+			
+			}
+		}
+	}
+}
+
+decision_recall_ovatha = {
+	title = decision_recall_ovatha
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_nazgul_01.dds"
+	}
+
+	sort_order = 100
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 10
+		empire = 10
+		hegemony = 10
+	}
+	ai_potential = {
+		always = no
+	}
+	ai_will_do = {
+		base = 0
+	}
+	
+	
+
+	selection_tooltip = decision_recall_ovatha_tooltip
+	desc = decision_recall_ovatha_desc
+	confirm_text = decision_recall_ovatha_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		is_ai = no
+		is_sauron = yes
+		character:nazgul9 = {
+			is_landed = yes
+		}
+		NOT = {
+			character:nazgul9 = {
+				has_title = title:e_mordor
+			}
+		}
+		
+	}
+
+	is_valid = {
+		character:nazgul9 = {
+			is_landed = yes
+			is_ai = yes
+		}
+		
+		
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_lotr_adult = yes
+	}
+
+	effect = {
+		lower_suspicion_major = yes
+		
+		
+		character:nazgul9 = {
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			every_held_title = {
+				change_title_holder = {
+					holder = character:nazgul9.primary_heir
+                	change = scope:change
+            	}
+			}
+			every_vassal = {
+				change_liege = {
+					liege = character:nazgul9.primary_heir
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		add_courtier = character:nazgul9
+	}
+}
+
+decision_sauron_go_home = {
+	title = decision_sauron_go_home
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_mordor_02.dds"
+	}
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 12
+		duchy = 12
+		kingdom = 12
+		empire = 12
+		hegemony = 12
+	}
+	selection_tooltip = decision_sauron_go_home_tooltip
+	desc = decision_sauron_go_home_desc
+	confirm_text = decision_sauron_go_home_confirm
+
+	decision_group_type = realms_in_exile_minor
+
+	is_shown = {
+		NOT = { has_character_flag = unknown_sauron_flag }
+		is_sauron = yes
+		NOT = {
+			has_title = title:e_mordor
+		
+		}
+	}
+
+	is_valid = {
+		has_title = title:c_amon_lanc
+		NOT = {
+			has_title = title:e_mordor
+		
+		}
+		title:e_mordor.holder = {
+			faith_is_evil = yes
+		}
+	}
+
+	effect = {
+		custom_tooltip = sauron_sent_mordor_willing
+		title:k_wastelands.holder = {
+				trigger_event = {
+					id = mordor.1009
+				}
+			}
+		character:lineofsauron = {
+			trigger_event = {
+					id = qfe.4
+					delayed = yes
+				}
+		}
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+}

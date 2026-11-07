@@ -1,0 +1,1939 @@
+﻿namespace = qfe_situation
+
+qfe_situation.001 = { # Win Event for Thorin
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.001.t
+	desc = qfe_situation.001.desc
+	theme = war
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = title:k_erebor.holder
+		animation = war_over_win
+	}
+	right_portrait = {
+		character = title:k_gundabad.holder
+		animation = war_over_loss
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_situation.001.a
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		if = {
+			limit = {
+				character:lineofbeorn1 = {
+					is_alive = yes
+				}
+			}
+			character:lineofbeorn1 = {
+				trigger_event = qfe_misc.02
+			}
+		}
+	}
+}
+
+qfe_situation.002 = { # Win Event for Bolg
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.002.t
+	desc = qfe_situation.002.desc
+	theme = war
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = title:k_gundabad.holder
+		animation = war_over_win
+	}
+	right_portrait = {
+		character = title:k_erebor.holder
+		animation = war_over_loss
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_situation.002.a
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.003 = { # Sauron Gets the Ring
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.003.t
+	desc = qfe_situation.003.desc
+	theme = war
+	override_background = {
+		reference = barad_dur
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = celebrate_dagger
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	
+	
+	
+	immediate = {
+		remove_trait = sauron_ringless
+		add_trait = conqueror
+		create_story = story_conqueror
+		add_character_modifier = {
+                modifier = ai_extreme_conqueror_modifier 
+        }
+		random_artifact = {
+			limit = {
+				has_variable = one_ring
+			}
+			save_scope_as = artifact1
+		}
+		reveal_sauron = yes
+	}
+
+	option = {
+		name = qfe_situation.003.a
+		
+		every_ruler = {
+			trigger_event = qfe_situation.004
+		}
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.004 = { # 
+	content_source = realms_dlc
+	type = character_event
+	window = fullscreen_event
+	title = qfe_situation.004.t
+	desc = qfe_situation.004.desc
+	theme = death 
+	override_background = { 
+		reference = mordor_fullscreen 
+	}
+	
+	
+	
+	immediate = { 
+		
+	}
+
+	option = { 
+		name = qfe_situation.004.a # This suckss
+		trigger = {
+			faith_is_good = yes
+		}
+	}
+	option = { 
+		name = qfe_situation.004.b # All hail the Dark Lord!
+		trigger = {
+			faith_is_evil = yes
+		}
+	}
+	option = { 
+		name = qfe_situation.004.c # Let's see what comes of this
+		trigger = {
+			faith_is_neutral = yes
+		}
+	}
+}
+
+qfe_situation.005 = { # Smaug Attacks your home
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.005.t
+	desc = qfe_situation.005.desc
+	theme = war
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	
+	immediate = {
+		ordered_sub_realm_county = {
+			order_by = development_level
+			save_scope_as = smaug_target
+		}
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.005.a
+		
+		duel = {
+			skill = prowess 
+			value = 40
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 5
+				}
+				min = 5
+				send_interface_toast = {	
+					title = qfe_situation.005.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_situation.005.a.sucess
+				}
+				
+				add_prestige = 500
+				
+				
+			}
+			20 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_situation.005.a.failure
+					
+				}
+				min = 5
+				custom_tooltip = {
+					text = qfe_situation.005.a.failure
+				}
+				increase_wounds_effect = { REASON = wild_animal }
+				scope:smaug_target = {
+					change_development_level = -10
+				}
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					add = 1000
+				}
+				
+				save_scope_value_as = { #Thror loses 90% of his gold
+					name = lost_gold
+					value = {
+						value = 0
+						add = {
+							value = root.gold
+							multiply = 0.9
+						}
+					}
+				}
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					add = scope:lost_gold
+				}
+				remove_short_term_gold = scope:lost_gold
+				custom_tooltip = smaug_horde_grows
+			}
+			5 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_situation.005.a.failure
+					
+				}
+				min = 5
+				custom_tooltip = {
+					text = qfe_situation.005.a.failure
+				}
+				death = { 
+					death_reason = death_burned 
+				}
+				scope:smaug_target = {
+					change_development_level = -10
+				}
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					add = 1000
+				}
+				
+				save_scope_value_as = { #Thror loses 90% of his gold
+					name = lost_gold
+					value = {
+						value = 0
+						add = {
+							value = root.gold
+							multiply = 0.9
+						}
+					}
+				}
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					add = scope:lost_gold
+				}
+				remove_short_term_gold = scope:lost_gold
+				custom_tooltip = smaug_horde_grows
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_situation.005.b
+		
+		scope:smaug_target = {
+					change_development_level = -10
+				}
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					add = 1000
+				}
+				
+				save_scope_value_as = { #Thror loses 90% of his gold
+					name = lost_gold
+					value = {
+						value = 0
+						add = {
+							value = root.gold
+							multiply = 0.9
+						}
+					}
+				}
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					add = scope:lost_gold
+				}
+				remove_short_term_gold = scope:lost_gold
+				custom_tooltip = smaug_horde_grows
+				add_prestige = -500
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+### Shadow over Mirkwood
+
+qfe_situation.006 = { # Smaug Attacks your home
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.006.t
+	desc = qfe_situation.006.desc
+	theme = war
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	right_portrait = {
+		character = character:lineofsauron
+		animation = war_over_win
+	}
+	
+	left_portrait = {
+		character = root
+		animation = war_over_loss
+	}
+	
+	immediate = {
+		
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.006.a
+		
+		every_character_war = {
+			limit = {
+				any_war_defender = {
+					this = character:lineofsauron 
+					has_character_flag = unknown_sauron_flag
+				}
+			}
+			end_war = white_peace
+		}
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.007 = { # Smaug Attacks your home
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.007.t
+	desc = qfe_situation.007.desc
+	theme = ring_quest
+	override_background = {
+		reference = wilderness_underground
+	}
+	
+	left_portrait = {
+		character = character:lineofsauron
+		animation = celebrate_mace
+	}
+	
+	right_portrait = {
+		character = character:lineofgollum3
+		animation = rage
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	immediate = {
+		random_artifact = {
+			limit = {
+				has_variable = one_ring
+			}
+			save_scope_as = artifact1
+		}
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.007.a
+		
+		scope:artifact1 = {
+			set_owner = character:lineofsauron
+		}
+		imprison = {
+			target = character:lineofgollum3
+			type = dungeon
+		}
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	option = {
+		name = qfe_situation.007.b
+		
+		scope:artifact1 = {
+			set_owner = character:lineofsauron
+		}
+		
+		character:lineofgollum3 = {
+			death = { 
+				death_reason = death_execution 
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+
+qfe_situation.010 = { # White Council Assemble to Attack Sauron
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.010.t
+	desc = qfe_situation.010.desc
+	theme = war
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	lower_left_portrait = {
+		character = scope:wcmenber1
+		animation = aggressive_sword
+	}
+	lower_center_portrait = {
+		character = scope:wcmenber2
+		animation = aggressive_sword
+	}
+	lower_right_portrait = {
+		character = scope:wcmenber3
+		animation = aggressive_sword
+	}
+	
+	immediate = {
+		random_ruler = {
+			limit = {
+				has_trait = white_council
+				NOT = {
+					this = root
+				}
+			}
+			save_scope_as = wcmenber1	
+		}
+		random_ruler = {
+			limit = {
+				has_trait = white_council
+				NOT = {
+					this = root
+					this = scope:wcmenber1
+				}
+			}
+			save_scope_as = wcmenber2	
+		}
+		random_ruler = {
+			limit = {
+				has_trait = white_council
+				NOT = {
+					this = root
+					this = scope:wcmenber1
+					this = scope:wcmenber2
+				}
+			}
+			save_scope_as = wcmenber3	
+		}
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.010.a
+		
+		if = {
+			limit = {
+				is_ai = yes
+				any_ruler = {
+					is_ai = no
+					has_trait = white_council
+				}
+			}
+			random_ruler = {
+				limit = {
+					is_ai = no
+					has_trait = white_council
+				}
+				trigger_event = qfe_situation.010
+			}
+		}
+		else = {
+			custom_tooltip = {
+				text = marchondolguldur
+				start_travel_plan = {
+					destination = title:c_amon_lanc.title_province
+					
+					on_arrival_event = qfe_situation.011
+					
+					return_trip = yes
+					players_use_planner = no
+					on_arrival_destinations = all_but_last
+				}
+			
+				every_ruler = {
+					limit = {
+						has_trait = white_council
+					}
+					save_scope_as = wc_member
+					root.current_travel_plan = {
+						add_companion = scope:wc_member
+					}
+				}
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.011 = { # White Council Assemble to Attack Sauron
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.011.t
+	desc = qfe_situation.011.desc
+	theme = war
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	right_portrait = {
+		character = character:lineofsauron
+		animation = aggressive_mace
+	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	lower_left_portrait = {
+		character = scope:wcmenber1
+		animation = aggressive_sword
+	}
+	lower_center_portrait = {
+		character = scope:wcmenber2
+		animation = aggressive_sword
+	}
+	lower_right_portrait = {
+		character = scope:wcmenber3
+		animation = aggressive_sword
+	}
+	
+	immediate = {
+		random_ruler = {
+			limit = {
+				has_trait = white_council
+				NOT = {
+					this = root
+				}
+			}
+			save_scope_as = wcmenber1	
+		}
+		random_ruler = {
+			limit = {
+				has_trait = white_council
+				NOT = {
+					this = root
+					this = scope:wcmenber1
+				}
+			}
+			save_scope_as = wcmenber2	
+		}
+		random_ruler = {
+			limit = {
+				has_trait = white_council
+				NOT = {
+					this = root
+					this = scope:wcmenber1
+					this = scope:wcmenber2
+				}
+			}
+			save_scope_as = wcmenber3	
+		}
+		
+		delay_travel_plan = {
+			weeks = 2
+		}
+		character:lineofsauron = {
+			reveal_sauron = yes
+		}
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.011.a
+		trigger = {
+			character:lineofsauron = {
+				is_ai = yes
+			}
+		}
+		duel = {
+			skills = { learning prowess intrigue }
+			target = character:lineofsauron
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					modifier = {
+						add = 20
+						this = character:lineofgandalf
+					}
+					min = 5
+					send_interface_toast = {	
+						title = qfe_situation.011.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_situation.011.a.sucess
+					}
+					return_sauron = yes
+					every_ruler = {
+						limit = {
+							has_trait = white_council
+						}
+						add_prestige = 2000
+						add_piety = 1000
+					}
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					min = 5
+					send_interface_toast = {	
+						title = qfe_situation.011.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_situation.011.a.failure
+					}
+					every_ruler = {
+						limit = {
+							has_trait = white_council
+							cannot_be_killed = no
+						}
+						increase_wounds_effect = { REASON = wild_animal }
+					}
+				}
+			}
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_situation.011.b
+		trigger = {
+			character:lineofsauron = {
+				is_ai = no
+			}
+		}
+		character:lineofsauron = {
+			trigger_event = {
+				id = qfe_quest.073
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.012 = { # White Council member investigates Sauron
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.012.t
+	desc = qfe_situation.012.desc
+	theme = war
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	right_portrait = {
+		character = character:lineofsauron
+		animation = aggressive_mace
+	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.012.a
+		trigger = {
+			character:lineofsauron = {
+				is_ai = yes
+			}
+		}
+		duel = {
+			skills = { intrigue }
+			target = character:lineofsauron
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					min = 5
+					send_interface_toast = {	
+						title = qfe_situation.012.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_situation.012.a.sucess
+					}
+					
+					raise_suspicion_major = yes
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					min = 5
+					send_interface_toast = {	
+						title = qfe_situation.012.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_situation.012.a.failure
+					}
+					
+				}
+			}
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_situation.012.b
+		trigger = {
+			character:lineofsauron = {
+				is_ai = no
+			}
+		}
+		character:lineofsauron = {
+			trigger_event = {
+				id = qfe_quest.073
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+### Generic Mirkwood events
+
+qfe_situation.020 = { # Stress Pulse
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.020.t
+	desc = qfe_situation.020.desc
+	theme = war
+	override_background = {
+		reference = wilderness_scope
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = paranoia
+	}
+	
+	immediate = {
+		
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.020.a
+		
+		add_stress = 30
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.021 = { # Spiders Attack your home
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.021.t
+	desc = qfe_situation.021.desc
+	theme = war
+	override_background = {
+		reference = wilderness_scope
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	
+	immediate = {
+		ordered_sub_realm_county = {
+			order_by = development_level
+			save_scope_as = targetcounty
+		}
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.021.a
+		
+		duel = {
+			skills = { prowess martial }
+			value = 10
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 5
+				}
+				min = 5
+				send_interface_toast = {	
+					title = qfe_situation.021.a.success
+					
+				}
+				custom_tooltip = {
+					text = qfe_situation.021.a.success
+				}
+				
+				add_prestige = 500
+				
+				
+			}
+			20 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_situation.021.a.failure
+					
+				}
+				min = 5
+				custom_tooltip = {
+					text = qfe_situation.021.a.failure
+				}
+				increase_wounds_effect = { REASON = wild_animal }
+				scope:targetcounty = {
+					change_development_level = -1
+				}
+				
+			}
+			5 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_situation.021.a.failure
+					
+				}
+				min = 5
+				custom_tooltip = {
+					text = qfe_situation.021.a.failure
+				}
+				death = { 
+					death_reason = death_wild_animal 
+				}
+				scope:targetcounty = {
+					change_development_level = -1
+				}
+				
+				
+				
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_situation.021.b
+		
+		scope:targetcounty = {
+			change_development_level = -1
+		}
+				
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.022 = { # Wargs Attack your home
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.022.t
+	desc = qfe_situation.022.desc
+	theme = war
+	override_background = {
+		reference = wilderness_scope
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	immediate = {
+		ordered_sub_realm_county = {
+			order_by = development_level
+			save_scope_as = targetcounty
+		}
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.021.a
+		
+		duel = {
+			skills = { prowess martial }
+			value = 10
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 5
+				}
+				min = 5
+				send_interface_toast = {	
+					title = qfe_situation.021.a.success
+					
+				}
+				custom_tooltip = {
+					text = qfe_situation.021.a.success
+				}
+				
+				add_prestige = 500
+				
+				
+			}
+			20 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_situation.021.a.failure
+					
+				}
+				min = 5
+				custom_tooltip = {
+					text = qfe_situation.021.a.failure
+				}
+				increase_wounds_effect = { REASON = wild_animal }
+				scope:targetcounty = {
+					change_development_level = -1
+				}
+				
+			}
+			5 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_situation.021.a.failure
+					
+				}
+				min = 5
+				custom_tooltip = {
+					text = qfe_situation.021.a.failure
+				}
+				death = { 
+					death_reason = death_wild_animal 
+				}
+				scope:targetcounty = {
+					change_development_level = -1
+				}
+				
+				
+				
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_situation.021.b
+		
+		scope:targetcounty = {
+			change_development_level = -1
+		}
+				
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.023 = { # Sauron Recruits you
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.023.t
+	desc = qfe_situation.023.desc
+	theme = witchcraft
+	
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = paranoia
+	}
+	
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	immediate = {
+		
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.023.a
+		
+		duel = {
+			skills = { learning intrigue }
+			target = character:lineofsauron
+			500 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				min = 5
+				send_interface_toast = {	
+					title = qfe_situation.023.a.success
+					
+				}
+				custom_tooltip = {
+					text = qfe_situation.023.a.success
+				}
+				
+				add_stress = 100
+				
+				
+			}
+			10 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_situation.023.a.failure
+					
+				}
+				min = 5
+				custom_tooltip = {
+					text = qfe_situation.023.a.failure
+				}
+				
+				set_character_faith = character:lineofsauron.faith
+				start_tributary_interaction_effect = {
+					TRIBUTARY = root
+					SUZERAIN = character:lineofsauron
+				}
+				
+				raise_suspicion_minor = yes
+			}
+			
+				
+				
+				
+			
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_situation.023.b
+		
+		set_character_faith = character:lineofsauron.faith
+		start_tributary_interaction_effect = {
+			TRIBUTARY = root
+			SUZERAIN = character:lineofsauron
+		}
+		
+		raise_suspicion_minor = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.024 = { # elven hope drain
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.024.t
+	desc = qfe_situation.024.desc
+	theme = elven
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = paranoia
+	}
+	
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	immediate = {
+		
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.024.a
+		
+		add_elven_hope_effect = { VALUE = minor_elven_hope_loss HOPE_EFFECT = effect_elven_hope_negative_event_choice }
+		
+		raise_suspicion_minor = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_situation.024.b
+		
+		lower_suspicion_minor = yes 
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.025 = { # Plague Pulse
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.025.t
+	desc = qfe_situation.025.desc
+	theme = death
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = paranoia
+	}
+	
+	immediate = {
+		random_sub_realm_county = {
+			save_scope_as = plaguetarget1
+			title_province = {
+				save_scope_as = plaguetarget
+			}
+		}
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.025.a
+		
+		random_list = { 
+			10 = {
+				scope:plaguetarget = {
+					create_epidemic_outbreak = {
+						type = bubonic_plague
+						intensity = minor
+					}
+				}
+			}
+			10 = {
+				
+				scope:plaguetarget = {
+					create_epidemic_outbreak = {
+						type = consumption
+						intensity = minor
+					}
+				}
+			}
+			10 = {
+				
+				scope:plaguetarget = {
+					create_epidemic_outbreak = {
+						type = smallpox
+						intensity = minor
+					}
+				}
+			}
+			10 = {
+				
+				scope:plaguetarget = {
+					create_epidemic_outbreak = {
+						type = typhus
+						intensity = minor
+					}
+				}
+			}
+			10 = {
+				
+				scope:plaguetarget = {
+					create_epidemic_outbreak = {
+						type = dysentery
+						intensity = minor
+					}
+				}
+			}
+			10 = {
+				
+				scope:plaguetarget = {
+					create_epidemic_outbreak = {
+						type = measles
+						intensity = minor
+					}
+				}
+			}
+		}
+		
+		raise_suspicion_minor = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.026 = { # Orc spread
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.026.t
+	desc = qfe_situation.026.desc
+	theme = stewardship_domain_focus
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	immediate = {
+		random_sub_realm_county = {
+			limit = {
+				any_neighboring_county = {
+					is_wasteland = yes
+				}
+			}
+			random_neighboring_county = {
+				limit = {
+					is_wasteland = yes
+				}
+				save_scope_as = spreadtarget
+			}
+		}
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.026.a
+		
+		ai_colonisation_effect = { WASTELANDS = scope:spreadtarget ROOT_SCOPE = root }
+		raise_suspicion_minor = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_situation.026.b
+		
+		
+		
+		
+		
+	
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_situation.027 = { # sauron demands tribute
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_situation.027.t
+	desc = qfe_situation.027.desc
+	theme = war
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	immediate = {
+		
+		
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_situation.027.a
+		
+		start_tributary_interaction_effect = {
+			TRIBUTARY = root
+			SUZERAIN = character:lineofsauron
+		}
+		raise_suspicion_minor = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_situation.027.b
+		
+		
+		
+		
+		
+	
+	}
+	
+	
+	
+	after = {
+		
+	}
+}

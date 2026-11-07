@@ -1,0 +1,696 @@
+﻿namespace = qfe_rhovanion
+
+qfe_rhovanion.001 = { # Start
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_rhovanion.001.t
+	desc = qfe_rhovanion.001.desc
+	theme = war
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	
+	
+	
+	immediate = {
+	
+	}
+
+	option = {
+		name = qfe_rhovanion.001.a
+		custom_tooltip = travel_minas_tirith
+		start_travel_plan = {
+			destination = title:c_minas_tirith.title_province
+			
+			on_arrival_event = qfe_rhovanion.002
+			
+			return_trip = yes
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+	}
+}
+
+qfe_rhovanion.002 = { # convince steward
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_rhovanion.002.t
+	desc = qfe_rhovanion.002.desc
+	theme = war
+	override_background = {
+		reference = minas_tirith
+	}
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	
+	right_portrait = {
+		character = title:e_gondor_steward.holder
+		animation = thinking
+	}
+	
+	
+	
+	immediate = {
+	
+	}
+
+	option = {
+		name = qfe_rhovanion.002.a
+		trigger = {
+			title:e_gondor_steward.holder = {
+				is_ai = yes
+			}
+		}
+		duel = {
+			skill = diplomacy
+			target = title:e_gondor_steward.holder
+			75 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_rhovanion.002.a.sucess
+					
+				}
+				custom_tooltip = qfe_rhovanion.002.a.sucess
+				trigger_event = qfe_rhovanion.003
+				
+				
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_rhovanion.002.a.failure
+					
+				}
+				custom_tooltip = qfe_rhovanion.002.a.failure
+				
+				
+			}
+		}
+		
+	}
+	option = {
+		name = qfe_rhovanion.002.b
+		trigger = {
+			title:e_gondor_steward.holder = {
+				is_ai = no
+			}
+		}
+		title:e_gondor_steward.holder = {
+			trigger_event = qfe_rhovanion.008
+		}
+		
+	}
+}
+
+qfe_rhovanion.008 = { # convince steward
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_rhovanion.008.t
+	desc = qfe_rhovanion.008.desc
+	theme = war
+	override_background = {
+		reference = minas_tirith
+	}
+	
+	right_portrait = {
+		character = character:lineofliuva1
+		animation = marshal
+	}
+	
+	left_portrait = {
+		character = title:e_gondor_steward.holder
+		animation = thinking
+	}
+	
+	
+	
+	immediate = {
+	
+	}
+
+	option = {
+		name = qfe_rhovanion.008.a
+		character:lineofliuva1 = {
+			trigger_event = qfe_rhovanion.003
+		}
+		
+	}
+	option = {
+		name = qfe_rhovanion.008.b
+		
+	}
+}
+
+qfe_rhovanion.003 = { # Start War
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_rhovanion.003.t
+	desc = qfe_rhovanion.003.desc
+	theme = war
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = title:e_gondor_steward.holder
+		animation = aggressive_sword
+	}
+	override_background = {
+		reference = wilderness_steppe
+	}
+	
+	
+	immediate = {
+	
+	}
+
+	option = {
+		name = qfe_rhovanion.003.a
+		current_travel_plan = {
+			complete_travel_plan = yes
+		}
+		start_war = {
+			casus_belli = rhovanion_invasion_war 
+			target = title:e_golden_realm_rhun.holder 
+		
+			target_title = title:e_rhovanion
+		}
+		add_legitimacy = 400
+		every_character_war = {
+				
+			add_attacker = title:e_gondor_steward.holder
+			
+		}
+		every_county_in_region = {
+			region = custom_plains_rhovanion
+			limit = {
+				holder = {
+					faith_is_good = no
+					is_independent_ruler = yes
+					NOT = {
+						title:k_wastelands.holder = this
+					}
+					culture = {
+						has_same_culture_heritage = culture:magriag
+					}
+				}
+			}
+			holder = {
+				save_scope_as = target1
+				root = {
+					every_character_war = {
+						add_defender = scope:target1
+					}
+				}
+				
+			}
+		}
+		every_independent_ruler = {
+			limit = {
+				culture = culture:rhovanorim
+				NOT = {
+					this = root
+				}
+			}
+			
+			trigger_event = qfe_rhovanion.004
+			
+		}
+		every_war_enemy = {
+			trigger_event = qfe_rhovanion.005
+		}
+		title:e_mordor.holder = {
+			trigger_event = qfe_rhovanion.006
+		}
+	}
+	after = {
+		
+	}
+}
+
+qfe_rhovanion.004 = { # Beorn Orders
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_rhovanion.004.t
+	desc = qfe_rhovanion.004.desc
+	theme = war
+	override_background = {
+		reference = wilderness_steppe
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = character:lineofliuva1
+		animation = marshal
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_rhovanion.004.a
+		
+		character:lineofliuva1 = {
+			every_character_war = {
+				
+				add_attacker = root
+			
+			}
+		}
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		change_liege = {
+			liege = character:lineofliuva1
+			change = scope:change
+		}
+		resolve_title_and_vassal_change = scope:change
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_rhovanion.004.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_rhovanion.005 = { # Notice for Golden Realm!
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_rhovanion.005.t
+	desc = qfe_rhovanion.005.desc
+	theme = war
+	override_background = {
+		reference = wilderness_steppe
+	}
+	
+	
+	
+	left_portrait = {
+		character = title:e_gondor_steward.holder
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = character:lineofliuva1
+		animation = aggressive_sword
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_rhovanion.005.a
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_rhovanion.006 = { # Notice for Mordor!
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_rhovanion.006.t
+	desc = qfe_rhovanion.006.desc
+	theme = war
+	override_background = {
+		reference = wilderness_steppe
+	}
+	
+	
+	
+	left_portrait = {
+		character = title:e_gondor_steward.holder
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = character:lineofliuva1
+		animation = aggressive_sword
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_rhovanion.006.a
+			character:lineofliuva1 = {
+				every_character_war = {
+						add_defender = root
+					}
+			}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	option = {
+		name = qfe_rhovanion.006.b
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_rhovanion.007 = { # victory event
+	content_source = realms_dlc
+	type = character_event
+	title = dale.2010.t
+	desc = dale.2010.desc
+	theme = rohan_theme
+	override_background = {
+		reference = wilderness_steppe
+	}
+	
+	
+	
+	
+	right_portrait = {
+		character = character:lineofliuva1
+		animation = celebrate_sword
+	}
+	
+	
+	
+	immediate = {
+		create_title_and_vassal_change = {
+			type = created
+			save_scope_as = title_change
+			add_claim_on_loss = yes
+		}
+		title:k_rhovanion = {
+			change_title_holder = {
+				holder = root
+				change = scope:title_change
+			}
+		}
+		resolve_title_and_vassal_change = scope:title_change
+		set_primary_title_to = title:k_rhovanion
+		custom_tooltip = rhovanion_formation_drift_tooltip
+
+		root.dynasty = {
+			add_dynasty_modifier = {
+				modifier = heir_of_vidugavia
+				years = 100
+			}
+		}
+
+		# custom_tooltip = decision_restore_rhovanion_tt 
+		# province:3826 = { # Moved to decision event ~Aerien
+			# add_special_building_slot = wonder_high_hall_alcisbaurg
+		# }
+
+		# Removed 'Scattered People' and add 'A People Reforged'
+		root.culture = {
+			custom_tooltip = {
+				text = decision_remove_rhovannorim_tradition_1
+				remove_culture_tradition = tradition_a_scattered_people
+			}
+		}
+		root.culture = {
+			custom_tooltip = {
+				text = decision_rhovannorim_new_tradition_1
+				add_culture_tradition = tradition_a_people_reforged
+			}
+		}
+		#root.culture = {
+		#	custom_tooltip = {
+		#		text = decision_rhovannorim_new_innovation_1
+		#		remove_innovation = innovation_rhovanorim_scattered_warfare
+		#		add_innovation = innovation_rhovanorim_reforged_warfare
+		#	}
+		#}
+
+		if = {
+			limit = { government_has_flag = government_is_tribal }
+			convert_whole_realm_to_feudalism_effect = yes
+			add_realm_law_skip_effects = crown_authority_1
+			root.dynasty = {
+				add_dynasty_prestige = 500
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					government_has_flag = government_is_clan
+					government_has_flag = government_is_feudal
+				}
+			}
+			root.dynasty = {
+				add_dynasty_prestige = 500
+			}
+			if = {
+				limit ={
+					NOR = {
+						has_realm_law = crown_authority_2
+						has_realm_law = crown_authority_3
+					}
+				}
+				add_realm_law_skip_effects = crown_authority_3
+			}
+			add_piety = 1000
+			add_prestige = 1000
+		}
+
+		hidden_effect = {
+			title:d_heahand = {
+				set_de_jure_liege_title = title:k_rhovanion
+			}
+			title:d_east_bight = {
+				set_de_jure_liege_title = title:k_rhovanion
+			}
+			if = {
+				limit = {
+					completely_controls = title:d_anthardor
+				}
+				title:d_anthardor = {
+					set_de_jure_liege_title = title:k_rhovanion
+				}
+			}
+			if = {
+				limit = {
+					completely_controls = title:d_sunnarinna
+				}
+				title:d_sunnarinna = {
+					set_de_jure_liege_title = title:k_rhovanion
+				}
+			}
+			if = {
+				limit = {
+					completely_controls = title:d_rinnavuld
+				}
+				title:d_rinnavuld = {
+					set_de_jure_liege_title = title:k_rhovanion
+				}
+			}
+			title:k_rhovanion = {
+				set_de_jure_liege_title = title:e_rhovanion
+			}
+		}
+
+		set_primary_title_to = title:k_rhovanion
+
+		# trigger_event = dale.2010
+
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:decision_restore_rhovanion
+		}
+		title:k_rhovanion.holder = {
+			save_scope_as = vidugavia_heir
+		}
+		
+		hidden_effect = {
+			create_title_and_vassal_change = {
+				type = conquest
+				save_scope_as = change
+				add_claim_on_loss = yes
+			}
+			every_vassal = {
+				limit = {
+					culture = {
+						has_same_culture_heritage = culture:magriag
+					}
+				}
+				every_sub_realm_county = {
+					change_title_holder = {
+						holder = root
+						change = scope:change
+					}
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		
+		if = { # Lords of Bridle and Wind | Achievement
+			limit = {
+				is_ai = no
+				NOT = { exists = global_var:lotr_achievement_11 }
+				realms_achievements_enabled = yes
+			}
+			set_global_variable = lotr_achievement_11
+		}
+	}
+
+	option = {
+		name = qfe_rhovanion.007.a
+		if = {
+			limit = { NOT = { has_title = title:c_alcisbaurg } }
+			get_title = title:c_alcisbaurg 
+		}
+		province:3826 = {
+			add_special_building_slot = wonder_high_hall_alcisbaurg
+		}
+		province:3856 = {
+			add_special_building_slot = wonder_golden_hall_vidusbaurg
+		}
+		set_realm_capital = title:c_alcisbaurg
+		title:k_rhovanion = { set_capital_county = title:c_alcisbaurg }
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}

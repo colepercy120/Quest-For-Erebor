@@ -1,0 +1,423 @@
+﻿shadow_over_mirkwood = { # Earthquake (Land)
+	situation_group_type = major
+	is_unique = yes
+	map_mode = sub_regions
+	
+	illustration = "gfx/interface/illustrations/event_scenes/forest_deep.dds"
+
+	##################################################
+	# Regions
+	##################################################
+	sub_regions = {
+		inner_region = {
+			icon = "gfx/interface/icons/icon_game_concept_powerful_house.dds"
+			map_color = { 1 0.2 0.2 }
+			geographical_regions = { shadow_over_mirkwood_inner }
+		}
+		outer_region = {
+			icon = "gfx/interface/icons/situations/icon_county_fertility.dds"
+			map_color = { 1 0.2 0.2 }
+			geographical_regions = { shadow_over_mirkwood_outer }
+		}
+		
+	}
+
+	##################################################
+	# On Actions
+	##################################################
+
+	on_start = {
+		add_manual_participant = character:lineofgandalf
+		add_manual_participant = character:lineofelrond1
+		add_manual_participant = character:lineofsaruman
+		add_manual_participant = character:lineofradagast
+		add_manual_participant = character:lineoffinarfin5
+		add_manual_participant = character:lineofsauron
+		shadow_over_mirkwood_sus_setup = yes
+	}
+
+	on_end = {
+		
+	}
+
+	on_monthly = {
+		shadow_over_mirkwood_sus_tick = yes
+		character:lineofsauron = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				trigger_event = murder_scheme_maintenance.1
+			}
+			if = {
+				limit = {
+					character:lineofgollum3 = {
+						any_character_artifact = {
+							has_variable = one_ring
+						}
+					}
+				}
+				random_list = {
+					9999 = {
+						
+					}
+					1 = {
+						trigger_event = qfe_situation.007
+					}
+				}
+			}
+		}
+		
+		
+	}
+	
+	on_yearly = {
+		every_situation_participant = {
+			limit = {
+				capital_province = {
+					geographical_region = shadow_over_mirkwood_inner
+				}
+				
+			}
+			random_list = {
+				90 = {
+					
+				}
+				10 = {
+					random_list = {
+						10 = {
+							trigger = {
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.020
+								weeks = { 0 40 }
+							}
+						}
+						10 = {
+							trigger = {
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.021
+								weeks = { 0 40 }
+							}
+						}
+						10 = {
+							trigger = {
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.022
+								weeks = { 0 40 }
+							}
+						}
+						1 = {
+							trigger = {
+								is_elf = no
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.023
+								weeks = { 0 40 }
+							}
+						}
+						
+						1 = {
+							trigger = {
+								is_elf = yes
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.024
+								weeks = { 0 40 }
+							}
+						}
+						10 = {
+							trigger = {
+								is_elf = no
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.025
+								weeks = { 0 40 }
+							}
+						}
+						1 = {
+							trigger = {
+								is_orc = yes
+								faith_is_evil = yes
+								NOT = {
+									this = character:lineofsauron
+								}
+								any_sub_realm_county = {
+									any_neighboring_county = {
+										is_wasteland = yes
+									}
+								}
+							}
+							trigger_event = {
+								id = qfe_situation.026
+								weeks = { 0 40 }
+							}
+						}
+						1 = {
+							trigger = {
+								is_orc = yes
+								faith_is_evil = yes
+								NOT = { 
+									is_tributary_of = character:lineofsauron
+								}
+							}
+							trigger_event = {
+								id = qfe_situation.027
+								weeks = { 0 40 }
+							}
+						}
+					}
+				}
+				
+			}
+		}
+		every_situation_participant = {
+			limit = {
+				capital_province = {
+					geographical_region = shadow_over_mirkwood_outer
+				}
+				
+			}
+			random_list = {
+				190 = {
+					
+				}
+				10 = {
+					random_list = {
+						10 = {
+							trigger = {
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.020
+								weeks = { 0 40 }
+							}
+						}
+						10 = {
+							trigger = {
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.021
+								weeks = { 0 40 }
+							}
+						}
+						10 = {
+							trigger = {
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.022
+								weeks = { 0 40 }
+							}
+						}
+						1 = {
+							trigger = {
+								is_elf = no
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.023
+								weeks = { 0 40 }
+							}
+						}
+						
+						1 = {
+							trigger = {
+								is_elf = yes
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.024
+								weeks = { 0 40 }
+							}
+						}
+						10 = {
+							trigger = {
+								is_elf = no
+								faith_is_evil = no
+							}
+							trigger_event = {
+								id = qfe_situation.025
+								weeks = { 0 40 }
+							}
+						}
+						1 = {
+							trigger = {
+								is_orc = yes
+								faith_is_evil = yes
+								NOT = {
+									this = character:lineofsauron
+								}
+								any_sub_realm_county = {
+									any_neighboring_county = {
+										is_wasteland = yes
+									}
+								}
+							}
+							trigger_event = {
+								id = qfe_situation.026
+								weeks = { 0 40 }
+							}
+						}
+						1 = {
+							trigger = {
+								is_orc = yes
+								faith_is_evil = yes
+								NOT = { 
+									is_tributary_of = character:lineofsauron
+								}
+							}
+							trigger_event = {
+								id = qfe_situation.027
+								weeks = { 0 40 }
+							}
+						}
+					}
+				}
+				
+			}
+		}
+	}
+
+	on_leave = {
+		
+	}
+
+	##################################################
+	# Groups
+	##################################################
+	participant_groups = {
+		# read order is first valid
+		sauron = {
+			icon = "gfx/interface/icons/flat_icons/sauron_icon.dds"
+			require_realm_in_sub_region = yes
+			auto_add_rulers = yes
+			map_color = rgb{ 250 100 0 }
+			is_character_valid = {
+				is_landed = yes # ensures landless adventurers don't get duplicate projects
+				is_independent_ruler = yes
+				NOT = { is_wastelands = yes }
+				this = character:lineofsauron
+			}
+			on_join = {
+				
+			}
+		}
+		white_council = {
+			icon = "gfx/interface/icons/flat_icons/white_council.dds"
+			require_realm_in_sub_region = no
+			auto_add_rulers = yes
+			map_color = rgb{ 250 100 0 }
+			is_character_valid = {
+				NOT = { is_wastelands = yes }
+				has_trait = white_council
+			}
+			on_join = {
+				
+			}
+		}
+		mirkwood_inhabitant = {
+			icon = "gfx/interface/icons/flat_icons/map_modes/settlement.dds"
+			require_realm_in_sub_region = yes
+			auto_add_rulers = yes
+			map_color = rgb{ 250 100 0 }
+			is_character_valid = {
+				is_landed = yes # ensures landless adventurers don't get duplicate projects
+				is_independent_ruler = yes
+				NOT = { is_wastelands = yes }
+			}
+			on_join = {
+				
+			}
+		}
+		
+	}
+
+	##################################################
+	# Phases
+	##################################################
+	start_phase = shadow
+
+	phases = {
+		shadow = {
+			max_duration = { years = 500 }
+			icon = "gfx/interface/icons/situation_types/situation_dol_guldur_shadow.dds"
+			illustration = "gfx/interface/illustrations/event_scenes/forest_deep.dds"
+			map_province_effect = snow
+			map_province_effect_intensity = 1.0
+			on_start = {
+				
+			}
+			modifier_sets = {
+				shadow_effects = {
+					icon = "gfx/interface/icons/modifiers/magic_negative.dds"
+					mirkwood_inhabitant = {
+						character_modifier = {
+							
+							monthly_income_mult = -0.05
+							stress_gain_mult = 0.25
+							stress_loss_mult = -0.25
+						}
+						county_modifier = {
+							development_growth_factor = -0.1
+						}
+					}
+					
+				
+				}
+				necromancer_effects = {
+					icon = "gfx/interface/icons/modifiers/grandeur_positive.dds"
+					sauron = {
+						character_modifier = {
+							max_hostile_schemes_add = 3
+							stress_loss_mult = 0.25
+							diplomatic_range_mult = 10
+							dread_baseline_add = 100
+							owned_hostile_scheme_success_chance_max_add = 10
+							owned_scheme_secrecy_add = 10
+							owned_hostile_scheme_phase_duration_add = 14
+						  
+							ai_honor =  -100
+							ai_boldness = 100
+						}
+						county_modifier = {
+							fort_level = 25
+						}
+					}
+				}
+				council_effects = {
+					icon = "gfx/interface/icons/modifiers/learning_mixed.dds"
+					white_council = {
+						character_modifier = {
+							stress_gain_mult = 0.25
+							stress_loss_mult = -0.25
+							enemy_hostile_scheme_phase_duration_add = 100
+							enemy_hostile_scheme_success_chance_max_add = -100
+						}
+					}
+				}
+				
+			}
+			future_phases = {
+				
+			}
+		}
+		
+	}
+
+	##################################################
+	# GUI
+	##################################################
+	gui_window_name = window_shadow_over_mirkwood
+	
+}
+

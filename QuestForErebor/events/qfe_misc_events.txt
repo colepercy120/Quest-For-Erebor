@@ -1,0 +1,1486 @@
+﻿namespace = qfe_misc
+
+qfe_misc.01 = {	# Unite the Western Elves
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.01.t
+	desc = qfe_misc.01.desc
+	theme = stewardship_duty_focus
+	override_background = {
+		reference = lorien_day
+	}
+
+	left_portrait = {
+		character = root
+		animation = steward
+	}
+	
+	immediate = {
+		root = {
+			save_scope_as = root
+		}
+		
+	}
+
+	option = {
+		name = qfe_misc.01.a
+	}
+}
+
+### Beorn Event Chain
+qfe_misc.02 = { # Bolg Orders
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.02.t
+	desc = qfe_misc.02.desc
+	theme = war
+	override_background = {
+		reference = carrock
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.02.a
+		
+		start_war = {
+			casus_belli = destory_goblin_town_war 
+			target = title:d_goblin_town.holder 
+		
+			target_title = title:d_goblin_town
+		}
+		
+		every_independent_ruler = {
+			limit = {
+				culture = root.culture
+				NOT = {
+					this = root
+				}
+			}
+			trigger_event = {
+				id = qfe_misc.03
+			
+			}
+			
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.02.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_misc.03 = { # Beorn Orders
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.03.t
+	desc = qfe_misc.03.desc
+	theme = war
+	override_background = {
+		reference = carrock
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = character:lineofbeorn1
+		animation = marshal
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.03.a
+		
+		character:lineofbeorn1 = {
+			every_character_war = {
+				
+				add_attacker = root
+			
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.03.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_misc.04 = { # King Beorn
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.04.t
+	desc = qfe_misc.04.desc
+	theme = war
+	override_background = {
+		reference = carrock
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = war_over_win
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.04.a
+		
+		get_title = title:k_anduin_vale
+		
+		every_independent_ruler = {
+			limit = {
+				culture = root.culture
+				NOT = {
+					this = root
+				}
+			}
+			trigger_event = {
+				id = qfe_misc.05
+				days = 0
+			}
+			
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.04.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		character:lineofelrond1 = {
+			trigger_event = {
+				id = qfe_misc.06
+				days = 0
+			}
+		}
+	}
+}
+
+qfe_misc.05 = { # vale set up
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.05.t
+	desc = qfe_misc.05.desc
+	theme = crown
+	override_background = {
+		reference = carrock
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = war_over_win
+	}
+	
+	right_portrait = {
+		character = character:lineofbeorn1
+		animation = war_over_win
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.05.a
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		change_liege = {
+			liege = title:k_anduin_vale.holder
+			change = scope:change
+		 }
+		resolve_title_and_vassal_change = scope:change
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.05.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_misc.06 = { # Elrond Resettle Goblin Town
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.06.t
+	desc = qfe_misc.06.desc
+	theme = war
+	override_background = {
+		reference = wilderness_mountains
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = character:lineofbeorn1
+		animation = war_over_win
+	}
+	lower_center_portrait = {
+		character = title:k_erebor.holder
+		animation = thinking
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.06.a
+		
+		custom_tooltip = qfe_misc.06.a.tt
+		title:k_erebor.holder = {
+			trigger_event = {
+				id = qfe_misc.07
+				days = 0
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.06.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_misc.07 = { # Thorin Resettle Goblin Town
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.07.t
+	desc = qfe_misc.07.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_mountains
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = character:lineofelrond1
+		animation = thinking
+	}
+	lower_left_portrait = {
+		character = scope:settler1
+		animation = thinking
+	}
+	lower_center_portrait = {
+		character = scope:settler2
+		animation = thinking
+	}
+	lower_right_portrait = {
+		character = scope:settler3
+		animation = thinking
+	}
+	
+	
+	
+	immediate = {
+		random_in_global_list = {
+			variable = thorin_company
+			limit = {
+				is_dwarf = yes
+			}
+			save_scope_as = settler1
+		}
+		random_in_global_list = {
+			variable = thorin_company
+			limit = {
+				is_dwarf = yes
+			}
+			save_scope_as = settler2
+		}
+		random_in_global_list = {
+			variable = thorin_company
+			limit = {
+				is_dwarf = yes
+			}
+			save_scope_as = settler3
+		}
+	}
+
+	option = {
+		name = qfe_misc.07.a
+		custom_tooltip = qfe_misc.07.a.tt
+		scope:settler1 = {
+			goblin_town_colony_effect = yes
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.07.b
+		custom_tooltip = qfe_misc.07.b.tt
+		scope:settler2 = {
+			goblin_town_colony_effect = yes
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.07.c
+		custom_tooltip = qfe_misc.07.c.tt
+		scope:settler3 = {
+			goblin_town_colony_effect = yes
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.07.d
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_misc.08 = { # New Realm Set up
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.08.t
+	desc = qfe_misc.08.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_mountains
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = title:d_goblin_town.holder
+		animation = marshal
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.08.a
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.08.b
+		
+		set_player_character = title:d_goblin_town.holder
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+
+### Witch King Return
+
+qfe_misc.10 = { # Return to Angmar
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.10.t
+	desc = qfe_misc.10.desc
+	theme = war
+	
+	left_portrait = {
+		character = root
+		animation = accepting
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul2 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul2 =  { 
+				save_scope_as = lordmordor 
+			}
+			
+		}
+		else_if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul3 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul3 =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+		else_if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul4 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul4 =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+		else_if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul5 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul5 =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+		else_if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul6 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul6 =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+		else_if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul7 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul7 =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+		else_if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul8 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul8 =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+		else_if = {
+			limit = {
+				is_independent_ruler = yes
+				character:nazgul9 = {
+					is_independent_ruler = no
+				}
+			}
+			character:nazgul9 =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+		
+		else = {
+			character:lineofsauron =  { 
+				save_scope_as = lordmordor 
+			}
+		}
+			
+	}
+
+	option = {
+		name = qfe_misc.10.a
+		hidden_effect = {
+			title:k_angmar = {
+					every_de_jure_county = {
+						limit = {
+							any_county_province = {
+							has_holding_type = wastelands_holding
+											
+							}
+						}
+						random_list = {
+							33 = { change_development_level = 2 }
+							33 = { change_development_level = 3 }
+							33 = { change_development_level = 4 }
+						}
+						save_temporary_scope_as = target_county
+						
+						ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = root }
+						
+								scope:target_county = {
+									if = {
+										limit = { root = { is_elf = yes } }
+										title_province = { set_holding_type = elven_holding }
+									} else_if = {
+										limit = { title_province = { terrain = halls } }
+										title_province = { set_holding_type = dwarven_holding }
+									} else_if = {
+										limit = { root = { is_hobbit = yes } }
+										title_province = { set_holding_type = city_holding }
+									} else = {
+										if = {
+											limit = { root = { has_government = tribal_government } }
+											title_province = { set_holding_type = tribal_holding }
+										} else = {
+											title_province = { set_holding_type = castle_holding }
+										}
+									}
+									set_county_culture = culture:uruk_ongmair
+								}
+					
+							
+			
+
+						if = { #Fallback
+							limit = { faith = faith:faith_wastelands_pagan }
+							set_county_faith = root.faith
+						}
+						if = { #Fallback
+							limit = { culture = culture:wastelands }
+							set_county_culture = culture:uruk_ongmair
+						}
+					}
+			}
+		}
+		
+		set_realm_capital = title:c_carn_dum
+		add_gold = 10000
+		
+		root.culture = {
+			change_cultural_acceptance = {
+				target = culture:uruk_ongmair
+				value = 100
+				desc = base
+			}
+		}
+		
+		culture:uruk_ongmair = {
+			get_all_innovations_from = culture:murdurhai
+		}
+		
+		every_held_title = {
+			limit = {
+				NOT = {
+					any_county_province = {
+						geographical_region	= middleearth_forodwaith_angmar
+					}
+				}
+			}
+			create_title_and_vassal_change = {
+				type = conquest 
+				save_scope_as = change 
+				add_claim_on_loss = yes
+			}
+			change_title_holder	= {
+				holder = scope:lordmordor
+				change = scope:change
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		every_vassal = {
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change2
+				add_claim_on_loss = no
+			}
+			change_liege = {
+				liege = scope:lordmordor
+				change = scope:change2
+			}
+			resolve_title_and_vassal_change = scope:change2
+		}
+			
+		get_title = title:e_angmar
+		get_title = title:k_angmar
+		
+		title:k_angmar = {
+			every_de_jure_county = {
+				save_temporary_scope_as = target_county
+				scope:target_county = {
+				
+					title_province = { add_building  = uruk_pits_03 }
+					title_province = { add_building  = furnaces_03 }
+
+				}
+			}
+		}
+		
+
+			
+				
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		every_tributary = {
+			end_tributary = yes
+			start_tributary = {
+					contract_group = tributary_subjugated
+					suzerain = scope:lordmordor
+				}
+		}
+		
+		
+		
+		ai_chance = { base = 100 }
+	}
+	
+	option = {
+		name = qfe_misc.10.b
+		hidden_effect = {
+			title:k_angmar = {
+					every_de_jure_county = {
+						limit = {
+							any_county_province = {
+							has_holding_type = wastelands_holding
+											
+							}
+						}
+						random_list = {
+							33 = { change_development_level = 2 }
+							33 = { change_development_level = 3 }
+							33 = { change_development_level = 4 }
+						}
+						save_temporary_scope_as = target_county
+						
+						ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = root }
+						
+								scope:target_county = {
+									if = {
+										limit = { root = { is_elf = yes } }
+										title_province = { set_holding_type = elven_holding }
+									} else_if = {
+										limit = { title_province = { terrain = halls } }
+										title_province = { set_holding_type = dwarven_holding }
+									} else_if = {
+										limit = { root = { is_hobbit = yes } }
+										title_province = { set_holding_type = city_holding }
+									} else = {
+										if = {
+											limit = { root = { has_government = tribal_government } }
+											title_province = { set_holding_type = tribal_holding }
+										} else = {
+											title_province = { set_holding_type = castle_holding }
+										}
+									}
+									set_county_culture = culture:uruk_ongmair
+								}
+					
+							
+			
+
+						if = { #Fallback
+							limit = { faith = faith:faith_wastelands_pagan }
+							set_county_faith = root.faith
+						}
+						if = { #Fallback
+							limit = { culture = culture:wastelands }
+							set_county_culture = culture:uruk_ongmair
+						}
+					}
+			}
+		}
+		
+		set_realm_capital = title:c_carn_dum
+		add_gold = 10000
+		
+		root.culture = {
+			change_cultural_acceptance = {
+				target = culture:uruk_ongmair
+				value = 100
+				desc = base
+			}
+		}
+		
+		culture:uruk_ongmair = {
+			get_all_innovations_from = culture:murdurhai
+		}
+		
+		every_held_title = {
+			limit = {
+				NOT = {
+					any_county_province = {
+						geographical_region	= middleearth_forodwaith_angmar
+					}
+				}
+			}
+			create_title_and_vassal_change = {
+				type = conquest 
+				save_scope_as = change 
+				add_claim_on_loss = yes
+			}
+			change_title_holder	= {
+				holder = scope:lordmordor
+				change = scope:change
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		every_vassal = {
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = change2
+					add_claim_on_loss = no
+				}
+				change_liege = {
+					liege = scope:lordmordor
+					change = scope:change2
+				}
+				resolve_title_and_vassal_change = scope:change2
+		}
+			
+		get_title = title:e_angmar
+		get_title = title:k_angmar
+		
+		title:k_angmar = {
+			every_de_jure_county = {
+				save_temporary_scope_as = target_county
+				scope:target_county = {
+				
+					title_province = { add_building  = uruk_pits_03 }
+					title_province = { add_building  = furnaces_03 }
+
+				}
+			}
+		}
+		
+		
+		
+		every_tributary = {
+			end_tributary = yes
+			start_tributary = {
+					contract_group = tributary_subjugated
+					suzerain = scope:lordmordor
+				}
+		}
+		
+		set_player_character = scope:lordmordor
+		
+		ai_chance = { base = 100 }
+	}
+		
+	
+	after = {
+		add_legitimacy = 1000
+		every_independent_ruler = {
+			limit = {
+				faith_is_evil = yes
+				capital_province = {
+					OR = {
+						empire = title:e_forodwaith
+						empire = title:e_misty_mountains
+						empire = title:e_iron_mountains
+					}
+				}
+				NOT = {
+					this = root
+				}
+			}
+			trigger_event = qfe_misc.11
+		}
+	}
+}
+
+qfe_misc.11 = { # angmar set up
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.11.t
+	desc = qfe_misc.11.desc
+	theme = crown
+	
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = war_over_win
+	}
+	
+	right_portrait = {
+		character = character:nazgul1
+		animation = war_over_win
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.11.a
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		change_liege = {
+			liege = character:nazgul1
+			change = scope:change
+		 }
+		resolve_title_and_vassal_change = scope:change
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.11.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_misc.12 = { # Return to Mumakan
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.12.t
+	desc = qfe_misc.12.desc
+	theme = war
+	
+	left_portrait = {
+		character = root
+		animation = accepting
+	}
+	
+	immediate = {
+		
+			
+	}
+
+	option = {
+		name = qfe_misc.12.a
+		
+		get_title = title:c_amaru
+		get_title = title:k_mumakan
+		get_title = title:e_mumakan
+		
+		set_character_faith = faith:faith_indur
+		add_gold = 2000
+		add_legitimacy = 3000
+		
+		ai_chance = { base = 100 }
+	}
+	
+	
+		
+	
+	after = {
+		every_independent_ruler = {
+			limit = {
+				faith_is_evil = yes
+				capital_province = {
+					OR = {
+						empire = title:e_mumakan
+						
+					}
+				}
+				NOT = {
+					this = root
+				}
+			}
+			trigger_event = qfe_misc.13
+		}
+	}
+}
+
+qfe_misc.13 = { # angmar set up
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.13.t
+	desc = qfe_misc.13.desc
+	theme = crown
+	
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = war_over_win
+	}
+	
+	right_portrait = {
+		character = character:nazgul4
+		animation = war_over_win
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.13.a
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		change_liege = {
+			liege = character:nazgul4
+			change = scope:change
+		 }
+		resolve_title_and_vassal_change = scope:change
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.13.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_misc.14 = { # Return to Khand
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.14.t
+	desc = qfe_misc.14.desc
+	theme = war
+	
+	left_portrait = {
+		character = root
+		animation = accepting
+	}
+	
+	immediate = {
+		
+			
+	}
+
+	option = {
+		name = qfe_misc.14.a
+		
+		get_title = title:c_starlurtsa_khand
+		
+		get_title = title:e_khand
+		
+		set_character_faith = faith:faith_khandish_sauronic
+		add_gold = 2000
+		add_legitimacy = 3000
+		
+		ai_chance = { base = 100 }
+	}
+	
+	
+		
+	
+	after = {
+		every_independent_ruler = {
+			limit = {
+				faith_is_evil = yes
+				capital_province = {
+					OR = {
+						empire = title:e_khand
+						
+					}
+				}
+				NOT = {
+					this = root
+				}
+			}
+			trigger_event = qfe_misc.15
+		}
+	}
+}
+
+qfe_misc.15 = { # angmar set up
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_misc.15.t
+	desc = qfe_misc.15.desc
+	theme = crown
+	
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = war_over_win
+	}
+	
+	right_portrait = {
+		character = character:nazgul9
+		animation = war_over_win
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_misc.15.a
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		change_liege = {
+			liege = character:nazgul9
+			change = scope:change
+		 }
+		resolve_title_and_vassal_change = scope:change
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_misc.15.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}

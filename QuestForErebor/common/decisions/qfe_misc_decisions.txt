@@ -1,0 +1,316 @@
+decision_restore_atyamar = {
+	title = decision_restore_atyamar
+	desc = decision_restore_atyamar_desc
+	confirm_text = decision_restore_atyamar_confirm
+	selection_tooltip = decision_restore_atyamar_tooltip
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_elves_03.dds"
+	}
+	
+
+	# AI
+	ai_goal = yes
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+	
+	# IS SHOWN
+	decision_group_type = realms_in_exile_major
+	
+	is_shown = {
+		is_elf = yes
+		OR = {
+			
+			capital_province = {
+				geographical_region = custom_atyamar
+			}
+			
+		
+		}
+		highest_held_title_tier > tier_kingdom
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:decision_restore_atyamar
+			}		
+		}
+	}
+	
+	cost = {
+		prestige = 10000
+		piety = 5000
+	}
+	
+	# IS VALID
+	is_valid = {
+		legitimacy_level >= 5
+		prestige_level >= 5
+		piety_level >= 5
+		has_high_hope_or_higher = yes
+		completely_controls = title:k_brownlands
+		completely_controls = title:e_anduin_vale
+		OR = {
+			AND = {
+				has_title = title:e_laurelindorenan
+				completely_controls = title:e_laurelindorenan
+			}
+			AND = {
+				trigger_if = {
+					limit = {
+						title:e_laurelindorenan.holder = {
+							exists = yes
+							
+						}
+					}
+					title:e_laurelindorenan.holder = {
+					
+						has_relation_friend = root
+					}	
+				}
+			}
+		}
+		OR = {
+			AND = {
+				has_title = title:e_greenwood
+				completely_controls = title:e_greenwood
+			}
+			AND = {
+				trigger_if = {
+					limit = {
+						title:e_greenwood.holder = {
+							exists = yes
+							
+						}
+					}
+					title:e_greenwood.holder = {
+					
+						has_relation_friend = root
+					}	
+				}
+					
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_available_adult = yes
+		is_at_war = no
+	}
+
+	# EFFECT
+	effect = {
+		
+		
+		
+		#Create the title and make it primary
+		create_title_and_vassal_change = {
+			type = created
+			save_scope_as = title_change
+			add_claim_on_loss = yes
+		}
+		
+		title:h_atyamar = {
+			change_title_holder = {
+				holder = root
+				change = scope:title_change
+			}
+		}
+		resolve_title_and_vassal_change = scope:title_change
+		
+		
+		if = {
+			limit = { highest_held_title_tier < tier_hegemony }
+			set_primary_title_to = title:h_atyamar
+		}
+		
+		if = {
+			limit = {
+				title:e_laurelindorenan.holder = {
+					NOT = { this = root }
+					is_independent_ruler = yes
+				}
+			}
+			create_title_and_vassal_change = {
+				type = created
+				save_scope_as = title_change
+				add_claim_on_loss = yes
+			}
+			title:e_laurelindorenan.holder = {
+				change_liege = {
+					liege = root
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:title_change
+		}
+		if = {
+			limit = {
+				title:e_greenwood.holder = {
+					NOT = { this = root }
+					is_independent_ruler = yes
+				}
+			}
+			create_title_and_vassal_change = {
+				type = created
+				save_scope_as = title_change
+				add_claim_on_loss = yes
+			}
+			title:e_greenwood.holder = {
+				change_liege = {
+					liege = root
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:title_change
+		}
+		
+		
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:decision_restore_atyamar
+		}
+		
+		
+		
+		custom_tooltip = {
+			text = decision_atyamar_effect
+			every_empire= {
+				limit = {
+					title_capital_county = {
+						any_county_province = {
+							OR = {
+								geographical_region = custom_atyamar
+								
+							}
+						}
+					}
+				}
+				set_de_jure_liege_title = title:h_atyamar
+			}
+			title:k_brownlands = {
+				set_de_jure_liege_title = title:e_laurelindorenan
+			}
+		}
+
+		custom_tooltip = {
+			text = decision_atyamar_effect_2
+			every_county_in_region = {
+				region = custom_atyamar
+				add_county_modifier = elven_homeland_county_modifier
+				
+			}	
+		}
+
+		trigger_event = {
+			id = ee_elf.09	# Reclaim Nenuial Kingdom
+		}
+	}
+}
+
+decision_import_gondorian_tech = {
+	title = decision_import_gondorian_tech
+	desc = decision_import_gondorian_tech_desc
+	confirm_text = decision_import_gondorian_tech_confirm
+	selection_tooltip = decision_import_gondorian_tech_tooltip
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_dunland_04.dds"
+	}
+	
+
+	# AI
+	ai_goal = yes
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+	
+	# IS SHOWN
+	decision_group_type = realms_in_exile_major
+	
+	is_shown = {
+		has_title = title:k_anduin_vale
+		has_government = tribal_government
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:decision_import_gondorian_tech
+			}		
+		}
+	}
+	
+	cost = {
+		gold = 500
+	}
+	
+	# IS VALID
+	is_valid = {
+		
+		prestige_level >= 3
+		has_government = tribal_government
+		faith_is_good = yes
+		trigger_if = {
+			limit = {
+				title:e_gondor.holder = {
+					exists = yes
+				}
+			}
+			title:e_gondor.holder = {
+				opinion = {
+					target = root
+					value >= 100
+				}		
+			}
+		}
+		trigger_else = {
+			title:e_gondor_steward.holder = {
+				opinion = {
+					target = root
+					value >= 100
+				}		
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_available_adult = yes
+		is_at_war = no
+	}
+
+	# EFFECT
+	effect = {
+		root.culture = {
+			get_random_innovation_from = culture:gondorian
+			get_random_innovation_from = culture:gondorian
+			get_random_innovation_from = culture:gondorian
+			get_random_innovation_from = culture:gondorian
+			get_random_innovation_from = culture:gondorian
+		}
+		random_sub_realm_county = {
+			set_county_culture = culture:gondorian
+		}
+		
+		trigger_event = major_decisions.0001
+		save_scope_as = actor
+		convert_whole_realm_to_feudalism_effect = yes
+		hidden_effect = {
+			every_vassal = {
+				trigger_event = {
+					id = major_decisions.0002
+					days = 3
+				}
+			}
+		}
+		
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:decision_import_gondorian_tech
+		}
+	}
+}

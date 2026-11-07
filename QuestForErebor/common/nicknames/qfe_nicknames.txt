@@ -1,0 +1,12 @@
+﻿	##################
+	# TRIGGERED ONLY #
+	##################
+
+
+	
+	nick_dragonslayer = {}
+	nick_master_of_the_haven = {}
+	nick_luckwearer = {}
+	
+	nick_redeemer = {}
+	nick_faithful = {}

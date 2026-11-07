@@ -1,0 +1,1049 @@
+﻿
+thorin_company_member_set_up = {
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin95 # Balin
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin96 # Dwalin
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin98 # Óin 
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin99 # Glóin
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin86 # Fíli
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin87 # Kíli
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin104 # Dori 
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin105 # Nori
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofdurin106 # Ori 
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofbifur # Bifur
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofbomfur2 # Bofur
+	}
+	add_to_global_variable_list = {
+		name = thorin_company
+		target = character:lineofbomfur1 # Bombur
+	}
+	
+	every_living_character = {
+		limit = {
+			OR = {
+				this = character:lineofdurin95 # Balin
+				this = character:lineofdurin96 # Dwalin
+				this = character:lineofdurin98 # Óin
+				this = character:lineofdurin99 # Glóin
+				this = character:lineofdurin86 # Fíli
+				this = character:lineofdurin87 # Kíli
+				this = character:lineofdurin104 # Dori
+				this = character:lineofdurin105 # Nori
+				this = character:lineofdurin106 # Ori
+				this = character:lineofbifur # Bifur
+				this = character:lineofbomfur2 # Bofur
+				this = character:lineofbomfur1 # Bombur
+				this = character:lineofbaggins12 # Bilbo
+				
+				this = character:lineofgollum3 # gollum
+			}
+			
+		}
+		add_character_flag = percival_safe
+	}
+	every_in_global_list = {
+			variable = thorin_company
+			set_employer = character:lineofdurin83
+		}
+}
+
+thorin_company_member_redo = {
+	every_entourage_character = {
+		set_variable = thorin_company_member
+	}
+}
+
+thorin_company_entorage = {
+	hidden_effect = {
+		
+		every_in_global_list = {
+			variable = thorin_company
+			save_scope_as = tc_member
+			character:lineofdurin83.current_travel_plan = {
+				add_companion = scope:tc_member
+			}
+		}
+		
+	}
+	
+}
+
+create_artifact_one_ring_effect_qfe = {
+	# Get the character the artifact is being made for.
+	$OWNER$ = { save_scope_as = owner }
+	# Not really used, but if we don't set the scopes we get errors in the feature selection
+	set_artifact_rarity_illustrious = yes
+
+	# Create the artifact
+	create_artifact = {
+		name = one_ring_name
+		description = one_ring_description
+		creator = character:lineofsauron #Sauron
+		type = miscellaneous
+		visuals = one_ring
+		wealth = scope:wealth
+		quality = scope:quality
+		template = ring_of_mortals_template # Template is where you set restrictions on usability!
+		history = {
+			type = created
+			date = 2192.1.1
+			actor = character:lineofsauron #Sauron
+			recipient = character:lineofsauron #Sauron
+			location = province:621 #Orodruin
+		}
+		modifier = one_ring_men_modifier
+		save_scope_as = newly_created_artifact
+		decaying = no
+	}
+
+	scope:newly_created_artifact ?= {
+		equip_artifact_to_owner_replace = yes
+		set_variable = { name = historical_unique_artifact value = yes }
+		set_variable = one_ring
+		set_variable = ring_of_power
+		set_variable = ai_ungiftable 
+		save_scope_as = epic
+
+		lotr_add_artifact_history = { # Isildur takes the Ring for himself
+			ARTIFACT = this
+			TYPE = won_in_duel
+			DATE = 4033.7.12
+			RECIPIENT = character:lineisildur0 #Isildur
+		}
+		lotr_add_artifact_history_location = { # Déagol finds the Ring
+			ARTIFACT = this
+			TYPE = discovered
+			DATE = 6496.5.10
+			LOCATION = province:776 #Gladden Fields
+			ACTOR = character:lineofgollum5 #Déagol
+			RECIPIENT = character:lineofgollum5 #Déagol
+		}
+		lotr_add_artifact_history = { # Sméagol takes the Ring from Déagol
+			ARTIFACT = this
+			TYPE = stolen
+			DATE = 6496.5.10
+			RECIPIENT = character:lineofgollum3 #Sméagol
+		}
+		lotr_add_artifact_history = { # Bilbo Baggins wins the Ring in a game of riddles
+			ARTIFACT = this
+			TYPE = won_in_duel
+			DATE = 6974.6.25
+			RECIPIENT = character:lineofbaggins12 #Bilbo Baggins
+		}
+	}
+}
+
+remove_one_ring_modifiers = {
+	remove_artifact_modifier ?= one_ring_men_modifier
+	remove_artifact_modifier ?= one_ring_elves_modifier
+	remove_artifact_modifier ?= one_ring_nazgul_modifier
+	remove_artifact_modifier ?= one_ring_sauron_modifier
+	remove_artifact_modifier ?= one_ring_orcs_modifier
+	remove_artifact_modifier ?= one_ring_dwarves_modifier
+}
+
+increase_quest_points = {
+	change_global_variable = { 
+		name = qfe_quest_points 
+		add = 1 
+	}
+	custom_tooltip = increase_quest_points_tooltip
+}
+
+increase_quest_points_2 = {
+	change_global_variable = { 
+		name = qfe_quest_points 
+		add = 2 
+	}
+	custom_tooltip = increase_quest_points_tooltip2
+}
+increase_quest_points_3 = {
+	change_global_variable = { 
+		name = qfe_quest_points 
+		add = 3 
+	}
+	custom_tooltip = increase_quest_points_tooltip3
+}
+
+decrease_quest_points = {
+	change_global_variable = { 
+		name = qfe_quest_points 
+		add = -1 
+	}
+	custom_tooltip = decrease_quest_points_tooltip
+}
+decrease_quest_points_2 = {
+	change_global_variable = { 
+		name = qfe_quest_points 
+		add = -2 
+	}
+	custom_tooltip = decrease_quest_points_tooltip2
+}
+
+### End of Quest
+
+reclaim_erebor = {
+	hidden_effect = {
+		title:k_erebor = {
+			every_de_jure_county = {
+				
+				change_development_level = 1
+				
+				save_temporary_scope_as = target_county
+						
+				ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = title:k_durins_folk.holder }
+						
+				scope:target_county = {
+					if = {
+						limit = { root = { is_elf = yes } }
+						title_province = { set_holding_type = elven_holding }
+					} else_if = {
+						limit = { title_province = { terrain = halls } }
+						title_province = { set_holding_type = dwarven_holding }
+					} else_if = {
+						limit = { root = { is_hobbit = yes } }
+						title_province = { set_holding_type = city_holding }
+					} else = {
+						if = {
+							limit = { root = { has_government = tribal_government } }
+							title_province = { set_holding_type = tribal_holding }
+						} else = {
+							title_province = { set_holding_type = castle_holding }
+						}
+					}
+				}		
+		
+				if = { #Fallback
+					limit = { faith = faith:faith_wastelands_pagan }
+					set_county_faith = root.faith
+				}
+				if = { #Fallback
+					limit = { culture = culture:wastelands }
+					set_county_culture = root.culture
+				}
+				generate_coa = yes
+			}
+			
+		}
+		title:k_durins_folk.holder = {
+			
+			get_title = title:k_erebor
+			get_title = title:d_erebor
+			set_realm_capital = title:b_throne_of_erebor
+			current_travel_plan = {
+				abort_travel_plan = yes
+			}
+			set_location_to_default = yes
+			add_piety = 3000
+		}
+		
+		kill_smaug = yes
+		
+		
+	}
+	custom_tooltip = reclaim_erebor
+}
+
+kill_smaug = {
+	situation:desolation_of_smaug = {
+			every_situation_sub_region = {
+				change_phase = { phase = scramble }
+			}
+	}
+	title:c_throne_of_erebor.title_province = {
+		remove_building = smaug
+	}
+}
+
+kill_great_goblin = {
+	
+	character:lineofgreatgoblin1 = {
+		create_character = {
+			location = root.location
+			template = orc_champion_character
+			gender_female_chance = 10
+			faith = character:lineofgreatgoblin1.faith
+			culture = character:lineofgreatgoblin1.culture
+			
+			save_scope_as = new_ruler
+		}
+		create_title_and_vassal_change = {
+			type = conquest
+			save_scope_as = change
+		}
+		every_held_title = {
+		change_title_holder = {
+			holder = scope:new_ruler
+			change = scope:change
+			take_baronies = yes
+		}
+		}
+		every_vassal = {
+			change_liege = {
+				liege = scope:new_ruler
+				change = scope:change
+			}
+		}
+		resolve_title_and_vassal_change = scope:change
+		
+		if = {
+			limit = {
+				is_ai = no
+			}
+		}
+		set_player_character = scope:new_ruler
+		
+		death = { 
+			killer = character:lineofgandalf
+			death_reason = death_duel
+		}
+	}
+}
+
+bard_set_up = {
+	give_nickname = nick_dragonslayer
+	add_prestige = 10000
+	title:c_dale = {
+		
+		change_development_level = 1
+		
+		save_temporary_scope_as = target_county
+				
+		ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofdale46 }
+		set_coa = c_dale		
+		scope:target_county = {
+			if = {
+				limit = { root = { is_elf = yes } }
+				title_province = { set_holding_type = elven_holding }
+			} else_if = {
+				limit = { title_province = { terrain = halls } }
+				title_province = { set_holding_type = dwarven_holding }
+			} else_if = {
+				limit = { root = { is_hobbit = yes } }
+				title_province = { set_holding_type = city_holding }
+			} else = {
+				if = {
+					limit = { root = { has_government = tribal_government } }
+					title_province = { set_holding_type = tribal_holding }
+				} else = {
+					title_province = { set_holding_type = castle_holding }
+				}
+			}
+		}		
+	
+		if = { #Fallback
+			limit = { faith = faith:faith_wastelands_pagan }
+			set_county_faith = root.faith
+		}
+		if = { #Fallback
+			limit = { culture = culture:wastelands }
+			set_county_culture = root.culture
+		}
+	}
+	
+	change_government = feudal_government
+		
+		
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		becomes_independent = {
+			change = scope:change
+		}
+		resolve_title_and_vassal_change = scope:change
+	
+	get_title = title:k_dale
+	get_title = title:d_dalelands
+	
+}
+
+bard_set_up_dragonless = {
+	
+	title:c_dale = {
+		
+		change_development_level = 1
+		
+		save_temporary_scope_as = target_county
+				
+		ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofdale46 }
+		
+		scope:target_county = {
+			if = {
+				limit = { root = { is_elf = yes } }
+				title_province = { set_holding_type = elven_holding }
+			} else_if = {
+				limit = { title_province = { terrain = halls } }
+				title_province = { set_holding_type = dwarven_holding }
+			} else_if = {
+				limit = { root = { is_hobbit = yes } }
+				title_province = { set_holding_type = city_holding }
+			} else = {
+				if = {
+					limit = { root = { has_government = tribal_government } }
+					title_province = { set_holding_type = tribal_holding }
+				} else = {
+					title_province = { set_holding_type = castle_holding }
+				}
+			}
+		}		
+	
+		if = { #Fallback
+			limit = { faith = faith:faith_wastelands_pagan }
+			set_county_faith = root.faith
+		}
+		if = { #Fallback
+			limit = { culture = culture:wastelands }
+			set_county_culture = root.culture
+		}
+		
+		set_coa = c_dale
+	}
+	
+	change_government = feudal_government
+		
+		
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		becomes_independent = {
+			change = scope:change
+		}
+		resolve_title_and_vassal_change = scope:change
+	
+	add_gold = 300
+	
+}
+
+battle_five_armies_war_set_up = {
+	custom_tooltip = march_on_erebor
+	start_war = {
+		casus_belli = battle_five_armies_war 
+		target = title:k_erebor.holder 
+		
+		target_title = title:k_erebor
+	}
+	every_independent_ruler = {
+		limit = {
+			is_orc = yes
+			capital_province = {
+				geographical_region = battle_of_five_armies_orcs
+			}
+			NOT = {
+				This = title:k_gundabad.holder
+			}
+			is_landed = yes
+		}
+		trigger_event = {
+			id = qfe_quest.042
+			
+		}
+	}
+	every_independent_ruler = {
+		limit = {
+			is_good = yes
+			capital_province = {
+				geographical_region = desolation_of_smaug
+			}
+			NOT = {
+				This = title:k_erebor.holder
+			}
+			is_landed = yes
+		}
+		trigger_event = {
+			id = qfe_quest.043
+			
+		}
+	}
+	title:k_erebor.holder = {
+		trigger_event = {
+			id = qfe_quest.044
+		}
+	}
+	
+	trigger_event = {
+		id = qfe_quest.047
+		days = 7
+	}
+}
+
+smaug_rebiuld = {
+	situation:desolation_of_smaug = {
+			every_situation_sub_region = {
+				change_phase = { phase = rebiuld }
+			}
+	}
+}
+
+thorin_company_end_effect = {
+	set_global_variable = { name = qfe_company_members value = 1 }
+	every_in_global_list = {
+		variable = thorin_company
+		change_global_variable = { 
+			name = qfe_company_members 
+			add = 1 
+		}
+		add_trait = lifestyle_traveler
+		add_trait = adventurer_follower
+		add_trait_xp = {
+				trait = lifestyle_traveler
+				track = travel
+				value = 50
+			}
+			add_trait_xp = {
+				trait = lifestyle_traveler
+				track = danger
+				value = 30
+			}
+	}
+	save_scope_value_as = {
+		name = gold_amount
+		value = {
+			add = global_var:qfe_erebor_horde
+			divide = global_var:qfe_company_members
+		}
+	}
+	add_gold = scope:gold_amount
+	every_in_global_list = {
+		variable = thorin_company
+		add_gold = scope:gold_amount
+	}
+	set_global_variable = { name = qfe_erebor_horde value = 0 }
+	trigger_event = qfe_quest.048
+	add_trait = lifestyle_traveler
+	add_trait = adventurer
+	add_trait_xp = {
+				trait = lifestyle_traveler
+				track = travel
+				value = 100
+			}
+	if = {
+			limit = {
+				is_target_in_global_variable_list = {
+					name = thorin_company
+					target = character:lineofbaggins12
+				}
+				character:lineofbaggins12 = {
+					is_alive = yes
+				}
+			}
+			character:lineofbaggins12 = {
+				create_artifact_mithril_mail_effect = { OWNER = this }
+			}
+		}
+}
+
+dispurse_horde_effect = {
+	add_gold = global_var:qfe_erebor_horde
+	set_global_variable = { name = qfe_erebor_horde value = 0 }
+	create_artifact_arkenstone_effect = { OWNER = this }
+}
+
+create_artifact_lisgmaica_effect = {
+	# Get the character the artifact is being made for.
+	$OWNER$ = { save_scope_as = owner }
+	# Not really used, but if we don't set the scopes we get errors in the feature selection
+	set_artifact_rarity_illustrious = yes
+
+	# Create the artifact
+	create_artifact = {
+		name = lisgmaica_name
+		description = {
+			desc = lisgmaica_description
+			
+		}
+		type = sword
+		visuals = orcrist
+		wealth = scope:wealth
+		quality = scope:quality
+		history = {
+			type = created
+			date = 118.1.1
+			recipient = character:lineoffeanor10 #Turgon
+		}
+		modifier = orcrist_modifier
+		save_scope_as = newly_created_artifact
+		decaying = no
+	}
+
+	scope:newly_created_artifact ?= {
+		equip_artifact_to_owner_replace = yes
+		set_variable = { name = historical_unique_artifact value = yes }
+		set_variable = orcrist
+		set_variable = elven
+		elven_artifact_reclaimed_effect = yes
+		set_variable = relic 
+		save_scope_as = epic
+		
+		
+		lotr_add_artifact_history_location = {
+			ARTIFACT = this
+			TYPE = discovered
+			DATE = 6974.5.1
+			LOCATION = province:4469 #Ettenmoors
+			ACTOR = character:lineofbaggins12 # Bilbo Baggins
+			RECIPIENT = character:lineofdurin83 # Thorin II Oakenshield
+		}
+	}
+}
+
+kill_balrog_decision_effect_qfe = {
+	custom_tooltip = struggle_balrog_ending_kill_balrog_decision_effect_4
+	add_prestige = 2500
+	dynasty = { add_dynasty_prestige = 1500 }
+	dynasty = { add_dynasty_prestige_level = 1 }
+	struggle:balrog_struggle = { end_struggle = yes }
+	add_to_global_variable_list = {
+		name = unavailable_unique_decisions
+		target = flag:balrog_slain
+	}
+	trigger_event = {
+			id = qfe_quest.80
+			days = 0
+		}
+	# Nickname
+	if = {
+		limit = {
+			is_dwarf = yes
+		}
+		give_nickname = nick_durin_bane_bane
+	}
+	else = {
+		give_nickname = nick_flame_of_moria
+	}
+	# Legend
+	if = {
+		limit = {
+			has_dlc_feature = legends
+		}
+		custom_tooltip = balrog_slayer_legend.tt
+		hidden_effect = {
+			create_legend_seed = {
+				type = heroic
+				quality = illustrious
+				chronicle = beast_slayer
+				properties = {
+					beast = flag:balrog
+					location = province:4913 # Endless Stairs
+				}
+			}
+		}
+	}
+}
+
+moria_colony_effect = {
+	hidden_effect = {
+		title:c_dimrill_dale = {
+			
+			
+			change_development_level = 3
+			
+			save_temporary_scope_as = target_county
+					
+			ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = character:lineofdurin95 }
+					
+			scope:target_county = {
+				if = {
+					limit = { root = { is_elf = yes } }
+					title_province = { set_holding_type = elven_holding }
+				} else_if = {
+					limit = { title_province = { terrain = halls } }
+					title_province = { set_holding_type = dwarven_holding }
+				} else_if = {
+					limit = { root = { is_hobbit = yes } }
+					title_province = { set_holding_type = city_holding }
+				} else = {
+					if = {
+						limit = { root = { has_government = tribal_government } }
+						title_province = { set_holding_type = tribal_holding }
+					} else = {
+						title_province = { set_holding_type = castle_holding }
+					}
+				}
+			}		
+	
+			if = { #Fallback
+				limit = { faith = faith:faith_wastelands_pagan }
+				set_county_faith = root.faith
+			}
+			if = { #Fallback
+				limit = { culture = culture:wastelands }
+				set_county_culture = root.culture
+			}
+			
+			set_coa = c_dimrill_dale
+		}
+
+		change_government = feudal_government
+		create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			change_liege = {
+				liege = title:k_durins_folk.holder
+				change = scope:change
+			}
+			resolve_title_and_vassal_change = scope:change
+	}
+	
+	custom_tooltip = moria_colony_tooltip
+}
+
+goblin_town_colony_effect = {
+	
+	save_scope_as = goblin_town_settler
+	hidden_effect = {
+		title:d_goblin_town = {
+			every_de_jure_county = {
+					
+					change_development_level = 1
+					
+					save_temporary_scope_as = target_county
+							
+					ai_colonisation_effect = { WASTELANDS = scope:target_county ROOT_SCOPE = scope:goblin_town_settler }
+							
+					scope:target_county = {
+						if = {
+							limit = { root = { is_elf = yes } }
+							title_province = { set_holding_type = elven_holding }
+						} else_if = {
+							limit = { title_province = { terrain = halls } }
+							title_province = { set_holding_type = dwarven_holding }
+						} else_if = {
+							limit = { root = { is_hobbit = yes } }
+							title_province = { set_holding_type = city_holding }
+						} else = {
+							if = {
+								limit = { root = { has_government = tribal_government } }
+								title_province = { set_holding_type = tribal_holding }
+							} else = {
+								title_province = { set_holding_type = castle_holding }
+							}
+						}
+					}		
+			
+					if = { #Fallback
+						limit = { faith = faith:faith_wastelands_pagan }
+						set_county_faith = root.faith
+					}
+					if = { #Fallback
+						limit = { culture = culture:wastelands }
+						set_county_culture = root.culture
+					}
+					generate_coa = yes
+				scope:goblin_town_settler = {
+					add_gold = colonise_cost_val
+				}
+			}
+		}
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		change_liege = {
+			liege = title:k_durins_folk.holder
+			change = scope:change
+		}
+		resolve_title_and_vassal_change = scope:change
+		
+		change_government = feudal_government
+		
+		get_title = title:d_goblin_town
+		
+		add_legitimacy = 200
+		
+		liege = {
+			trigger_event = {
+				id = qfe_misc.08
+				days = 0
+			}
+		}
+		character:lineofelrond1 = {
+			trigger_event = {
+				id = qfe_misc.08
+				days = 0
+			}
+		}
+	}
+}
+
+### Shadow over Mirkwood effects 
+
+return_sauron = {
+	custom_tooltip = sauron_sent_mordor
+	title:k_wastelands.holder = {
+			trigger_event = {
+				id = mordor.1009
+			}
+		}
+	character:lineofsauron = {
+		trigger_event = {
+				id = qfe.4
+				delayed = yes
+			}
+	}
+	character:lineoffeanor2 = { # Maglor
+		if = {
+			limit = {
+				is_alive = yes
+				is_landed = yes
+			}
+			trigger_event = {
+				id = lotr_intro_events.0008
+				days = 1
+			}
+		}
+	}
+}
+reveal_sauron = {
+	hidden_effect = { change_first_name = "Sauron" }
+	give_nickname = nick_the_deceiver_sauron
+	remove_character_flag = unknown_sauron_flag
+	trigger_event = mordor.1023
+	every_neighboring_realm_same_rank_owner = {
+		trigger_event = { id = mordor.1024 days = 2 }
+	}
+	title:k_lasgalen.holder = { trigger_event = { id = mordor.1024 days = 2 } }
+	title:k_lothlorien.holder =  { trigger_event = { id = mordor.1024 days = 2 } }
+	situation:shadow_over_mirkwood = {
+		end_situation = yes
+	}
+	
+	
+}
+
+shadow_over_mirkwood_sus_setup = {
+	shadow_over_mirkwood_sus_tick = yes
+	change_global_variable = { 
+		name = qfe_sauron_sus 
+		subtract = global_var:qfe_sauron_sus_change
+	}
+}
+
+shadow_over_mirkwood_sus_tick = {
+	set_global_variable = { name = qfe_sauron_sus_change value = 0 }
+	set_global_variable = { name = qfe_sauron_sus_change_land_evil value = 0 }
+	set_global_variable = { name = qfe_sauron_sus_change_land_good value = 0 }
+	set_global_variable = { name = qfe_sauron_sus_change_world_evil value = 0 }
+	change_global_variable = { 
+			name = qfe_sauron_sus_change 
+			add = -1 
+		}
+	every_county_in_region = {
+		region = shadow_over_mirkwood_inner
+		limit = {
+			holder = {
+				faith_is_evil = yes
+			}
+		}
+		change_global_variable = { 
+			name = qfe_sauron_sus_change_land_evil 
+			add = 0.2 
+		}
+	}
+	every_county_in_region = {
+		region = shadow_over_mirkwood_outer
+		limit = {
+			holder = {
+				faith_is_evil = yes
+			}
+		}
+		change_global_variable = { 
+			name = qfe_sauron_sus_change_land_evil
+			add = 0.1 
+		}
+	}
+	change_global_variable = { 
+		name = qfe_sauron_sus_change
+		add = global_var:qfe_sauron_sus_change_land_evil
+	}
+	every_county_in_region = {
+		region = shadow_over_mirkwood_inner
+		limit = {
+			holder = {
+				faith_is_good = yes
+			}
+		}
+		change_global_variable = { 
+			name = qfe_sauron_sus_change_land_good 
+			add = -0.05
+		}
+	}
+	every_county_in_region = {
+		region = shadow_over_mirkwood_outer
+		limit = {
+			holder = {
+				faith_is_good = yes
+			}
+		}
+		change_global_variable = { 
+			name = qfe_sauron_sus_change_land_good
+			add = -0.025 
+		}
+	}
+	
+	change_global_variable = { 
+		name = qfe_sauron_sus_change
+		add = global_var:qfe_sauron_sus_change_land_good
+	}
+	
+	every_county = {
+		limit = {
+			holder = {
+				faith_is_evil = yes
+			}
+		}
+		change_global_variable = { 
+			name = qfe_sauron_sus_change_world_evil
+			add = 1
+		}
+	}
+	change_global_variable = { 
+			name = qfe_sauron_sus_change_world_evil
+			divide = 1000
+	}
+	change_global_variable = { 
+		name = qfe_sauron_sus_change
+		add = global_var:qfe_sauron_sus_change_world_evil
+	}
+	
+	change_global_variable = { 
+		name = qfe_sauron_sus 
+		add = global_var:qfe_sauron_sus_change
+	}
+	if = {
+		limit = {
+			global_var:qfe_sauron_sus > 1000
+		}
+		set_global_variable = { name = qfe_sauron_sus value = 1000 }
+	}
+	if = {
+		limit = {
+			global_var:qfe_sauron_sus < 0
+		}
+		set_global_variable = { name = qfe_sauron_sus value = 0 }
+	}
+}
+
+raise_suspicion_minor = {
+	change_global_variable = { 
+		name = qfe_sauron_sus 
+		add = 10 
+	}
+	if = {
+		limit = {
+			faith_is_evil = no
+		}
+		custom_tooltip = raise_suspicion_minor_tooltip_good
+	}
+	else = {
+		custom_tooltip = raise_suspicion_minor_tooltip_evil
+	}
+	
+}
+
+lower_suspicion_minor = {
+	change_global_variable = { 
+		name = qfe_sauron_sus 
+		add = -10 
+	}
+	if = {
+		limit = {
+			faith_is_evil = no
+		}
+		custom_tooltip = lower_suspicion_minor_tooltip_good
+	}
+	else = {
+		custom_tooltip = lower_suspicion_minor_tooltip_evil
+	}
+	
+}
+
+raise_suspicion_major = {
+	change_global_variable = { 
+		name = qfe_sauron_sus 
+		add = 100 
+	}
+	if = {
+		limit = {
+			faith_is_evil = no
+		}
+		custom_tooltip = raise_suspicion_major_tooltip_good
+	}
+	else = {
+		custom_tooltip = raise_suspicion_major_tooltip_evil
+	}
+	
+}
+
+lower_suspicion_major = {
+	change_global_variable = { 
+		name = qfe_sauron_sus 
+		add = -100
+	}
+	if = {
+		limit = {
+			faith_is_evil = no
+		}
+		custom_tooltip = lower_suspicion_major_tooltip_good
+	}
+	else = {
+		custom_tooltip = lower_suspicion_major_tooltip_evil
+	}
+	
+}
+
+seduce_to_shadow_conversion_effect = {
+	# Convert Capital (if of same faith as recipient's old faith)
+	if = {
+		limit = {
+			scope:recipient = {
+				is_playable_character = yes
+				highest_held_title_tier > tier_barony
+				capital_county.faith = scope:recipient.faith
+			}
+		}
+		scope:recipient.capital_county = {
+			set_county_faith = scope:actor.faith
+		}
+	}
+
+	# Convert family to new faith
+	grab_spouses_and_family_to_convert_effect = yes
+	convert_family_to_faith_effect = {
+		FALSE_CONVERSION = no
+		FORCED = yes
+	}
+}

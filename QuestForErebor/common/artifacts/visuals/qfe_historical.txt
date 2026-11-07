@@ -1,0 +1,7 @@
+﻿### RINGS OF POWER ###
+
+one_ring = { #The One Ring
+    icon = "qfe_one_ring.dds"
+    asset = ep1_generic_jewelry_01_a_entity
+}
+

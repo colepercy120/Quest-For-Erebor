@@ -1,0 +1,277 @@
+decision_southern_faithful_invasion = {
+	title = decision_southern_faithful_invasion
+	desc = decision_southern_faithful_invasion_desc
+	confirm_text = decision_southern_faithful_invasion_confirm
+	selection_tooltip = decision_southern_faithful_invasion_tooltip
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_minas_tirith_02.dds"
+	}
+	
+
+	# AI
+	ai_goal = yes
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+	
+	# IS SHOWN
+	decision_group_type = realms_in_exile_major
+	
+	is_shown = {
+		has_character_flag = southern_faithful
+		has_religion = religion:dunedain_religion
+		
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:decision_southern_faithful_invasion
+			}		
+		}
+	}
+	
+	cost = {
+		prestige = major_prestige_value
+		
+	}
+	
+	# IS VALID
+	is_valid = {
+		prestige_level >= 4
+		piety_level >= 4
+		has_religion = religion:dunedain_religion
+		custom_tooltip = {
+				text = become_conqueror_decision_enough_troops
+				current_military_strength >= 4000
+			}
+		
+		custom_tooltip = {
+			text = is_settled_area
+			location.county.holder = { is_wastelands = no }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_available_adult = yes
+		is_at_war = no
+	}
+
+	# EFFECT
+	effect = {
+		
+		
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:decision_southern_faithful_invasion
+		}
+		
+		custom_tooltip = become_conqueror_decision_reward
+		custom_tooltip = become_conqueror_decision_troops
+		if = {
+			limit = { has_dlc_feature = legends }
+			custom_tooltip = become_conqueror_decision_legend_seed
+		}
+		trigger_event = ep3_laamp_decision_event.1110
+		show_as_tooltip = {
+			if = {
+				limit = {
+					exists = location.kingdom.holder
+				}
+				add_pressed_claim = location.kingdom
+				start_war = {
+					cb = ep3_laamp_adventurer_kingdom_invasion
+					target = location.kingdom.holder
+					claimant = root
+					target_title = location.kingdom
+					target_title = location.kingdom.title_capital_county
+				}
+			}
+			else_if = {
+				limit = {
+					exists = location.duchy.holder
+				}
+				add_pressed_claim = location.duchy
+				start_war = {
+					cb = claim_cb
+					target = location.duchy.holder
+					claimant = root
+					target_title = location.duchy
+					target_title = location.duchy.title_capital_county
+				}
+			}
+			else_if = {
+				limit = {
+					exists = location.county.holder
+				}
+				add_pressed_claim = location.county
+				start_war = {
+					cb = claim_cb
+					target = location.county.holder
+					claimant = root
+					target_title = location.county
+				}
+			}
+		}
+
+		add_character_modifier = {
+					modifier = ai_extreme_conqueror_modifier
+				}
+			create_story = story_conqueror
+	}
+}
+
+decision_southern_faithful_culture = {
+	title = decision_southern_faithful_culture
+	desc = decision_southern_faithful_culture_desc
+	confirm_text = decision_southern_faithful_culture_confirm
+	selection_tooltip = decision_southern_faithful_culture_tooltip
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_minas_tirith_02.dds"
+	}
+	
+
+	# AI
+	ai_goal = yes
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+	
+	# IS SHOWN
+	decision_group_type = realms_in_exile_major
+	
+	is_shown = {
+		this = character:southern_faithful_adventurer
+		
+		
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:decision_southern_faithful_culture
+			}		
+		}
+	}
+	
+	cost = {
+		prestige = major_prestige_value
+		
+	}
+	
+	# IS VALID
+	is_valid = {
+		prestige_level >= 4
+		piety_level >= 4
+		has_religion = religion:dunedain_religion
+		has_title = title:e_thani_hazad
+		realm_size >= 90
+		
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_available_adult = yes
+		is_at_war = no
+	}
+
+	# EFFECT
+	effect = {
+		
+		set_culture = culture:otsonorian
+		
+		every_vassal_or_below = {
+			limit = {
+				culture = {
+					OR = {
+						has_same_culture_heritage = culture:gondorian
+						has_same_culture_heritage = culture:kharadunaim
+						
+					}
+				}
+				has_religion = religion:dunedain_religion
+			}
+			every_courtier = {
+				limit = {
+					culture = {
+						OR = {
+							has_same_culture_heritage = culture:gondorian
+							has_same_culture_heritage = culture:kharadunaim
+						}
+					}
+					has_religion = religion:dunedain_religion
+				}
+				
+				set_culture = culture:otsonorian
+			}
+			set_culture = culture:otsonorian
+		}
+		
+		every_courtier = {
+				limit = {
+					culture = {
+						OR = {
+							has_same_culture_heritage = culture:gondorian
+							has_same_culture_heritage = culture:kharadunaim
+						}
+					}
+					has_religion = religion:dunedain_religion
+				}
+				set_culture = culture:otsonorian
+			}
+		every_close_family_member = {
+			limit = {
+				culture = {
+					OR = {
+						has_same_culture_heritage = culture:gondorian
+						has_same_culture_heritage = culture:kharadunaim
+					}
+				}
+				has_religion = religion:dunedain_religion
+			}
+			set_culture = culture:otsonorian
+		}
+		every_consort = {
+			limit = {
+				culture = {
+					OR = {
+						has_same_culture_heritage = culture:gondorian
+						has_same_culture_heritage = culture:kharadunaim
+					}
+				}
+				has_religion = religion:dunedain_religion
+			}
+			set_culture = culture:otsonorian
+		
+		}
+		
+		culture:otsonorian = {
+			reset_culture_creation_date = yes
+			get_all_innovations_from = culture:gondorian
+			get_all_innovations_from = culture:arnorian
+			get_all_innovations_from = culture:kharadunaim
+		}
+		
+		every_sub_realm_county = {
+			limit = {
+				culture = {
+					OR = {
+						has_same_culture_heritage = culture:gondorian
+						has_same_culture_heritage = culture:kharadunaim
+					}
+				}
+			}
+			set_county_culture = culture:otsonorian
+		}
+		
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:decision_southern_faithful_culture
+		}
+		
+		give_nickname = nick_redeemer
+	}
+}

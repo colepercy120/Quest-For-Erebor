@@ -1,0 +1,285 @@
+﻿### LotR: This file needs to be kept in sync with the release version.
+ 
+ ### Edited the dates
+ 
+ ### Edited the loading screen text
+ 
+l_english:
+
+ ### Game Concepts
+ 
+ game_concept_smaug: "Smaug"
+ game_concept_smauggolden: "Smaug the Golden"
+ game_concept_smaugcalamity: "Smaug the Chiefest and Greatest of Calamities"
+ game_concept_smaug_desc: "Smaug the Golden, also known as Smaug the Chiefest and Greatest of Calamities, was the strongest [dragon|e] of the [thirdage|e]. He famously destroyed the kingdom of [erebor|e] in the [sackoferebor|e] and ruled under the mountain for 170 years before being slain by Bard the bowman in [ageTA|e] 2941. His body would lie in the Long Lake for centuries, the dragon's memory preventing all but the bravest looters."
+ 
+ game_concept_sackoferebor: "Sack of Erebor"
+ game_concept_sackoferebor_desc: "#emphasis The pines were roaring on the height,\nThe winds were moaning in the night.\nThe fire was red, it flaming spread;\nThe trees like torches blazed with light.#! \n\nBy the late [thirdage|e] the Dwarves of [erebor|e] were considered among the greatest artisans and smiths in all Middle-earth, perhaps the single greatest group left. Their gold was plenty, their warriors strong, and they were friends with both the [elves|e] of [mirkwood|e] and the men of Dale. however, that wealth drew the ire of the [dragon|e] [smaug|e] \n\nIn late 2770 [smaug|e] descended on the [lonelymountian|E] and sacked it. killing most of the [longbeards|e] living within the mountain and leveling the city of Dale built at its base. holding the mountain as his own for the next century."
+ 
+ game_concept_quest: "Quest"
+ game_concept_quest_points: "Quest Points"
+ game_concept_quest_desc: "Quests are a special system introduced by #emphasis Quest for Erebor#!. You will travel to a specific destination and encounter several scripted events depending on your choices. You will earn [quest_points|e] based on your actions during those events. culminating in a final series of [skill|e] challenges with the difficulty based on your number of points."
+ 
+ game_concept_smaughorde: "Hoard"
+ game_concept_smaughorde_desc: "The Hoard represents all of the #highlight [gold|e] @gold_icon! #![smaug|e] has stolen over the years. It will be given out to whoever slays the dragon at the end of the [situation|e]."
+ 
+ game_concept_suspicion: "Suspicion"
+ game_concept_suspicion_desc: "A measure of how suspicious the [whitecouncil|e] is of the [necromancer_sauron|e], #warning If Suspicion reaches 1000 the Council will attack and try to drive the Necromancer from the forest #!"
+ 
+ ### Effects
+ increase_quest_points_tooltip: "[quest_points|e] will increase by #positive_value 1 #!"
+ increase_quest_points_tooltip2: "[quest_points|e] will increase by #positive_value 2 #!"
+ decrease_quest_points_tooltip: "[quest_points|e] will decrease by #negative_value 1 #!"
+ decrease_quest_points_tooltip2: "[quest_points|e] will decrease by #negative_value 2 #!"
+ increase_quest_points_tooltip3: "[quest_points|e] will increase by #positive_value 3 #!"
+ reclaim_erebor: "[erebor|e] is reclaimed"
+ sauron_sent_mordor: "[sauroncharacter|e] is banished to [mordor|e]"
+ moria_colony_tooltip: "[THIS.Char.GetFirstName] Establishes a colony in [GetTitleByKey('c_dimrill_dale').GetNameNoTier]"
+ 
+ raise_suspicion_minor_tooltip_good: "[suspicion|e] increases by ['(CFixedPoint)10'|+|0]"
+ raise_suspicion_minor_tooltip_evil: "[suspicion|e] increases by ['(CFixedPoint)10'|-|0]"
+ lower_suspicion_minor_tooltip_evil: "[suspicion|e] decreases by ['(CFixedPoint)10'|+|0]"
+ lower_suspicion_minor_tooltip_good: "[suspicion|e] decreases by ['(CFixedPoint)10'|-|0]"
+ 
+ raise_suspicion_major_tooltip_good: "[suspicion|e] increases by ['(CFixedPoint)100'|+|0]"
+ raise_suspicion_major_tooltip_evil: "[suspicion|e] increases by ['(CFixedPoint)100'|-|0]"
+ lower_suspicion_major_tooltip_evil: "[suspicion|e] decreases by ['(CFixedPoint)100'|+|0]"
+ lower_suspicion_major_tooltip_good: "[suspicion|e] decreases by ['(CFixedPoint)100'|-|0]"
+ 
+ ### Situation
+ situation_desolation_of_smaug: "The Desolation of Smaug"
+ situation_desolation_of_smaug_description: "#emphasis The pines were roaring on the height,\nThe winds were moaning in the night.\nThe fire was red, it flaming spread;\nThe trees like torches blazed with light.#!"
+ situation_desolation_of_smaug_description2: "in [ageTA|e] 2770 the dragon [smaug|e] attacked the [ereborrealm|e] in the [sackoferebor|e]. destroying the kingdom and most of the surrounding area. Now, the land around [erebor|e] is known as the Desolation of Smaug, a blasted and barren land that is warped by the [dragons|e] very presence. Those who remain in the area have to constantly beware the serpent, ever hoping for the return of the King Under the Mountain."
+ 
+ desolation_of_smaug_desolation_situation_phase: "Desolation"
+ desolation: "Desolation"
+ desolation_desc: "[smaug|e] remains in the [lonelymountain|E] occasionally coming forth to harvest people and gold from the local region."
+ desolation_of_smaug_scramble_situation_phase: "Scramble"
+ scramble: "Scramble"
+ scramble_desc: "The Dragon's death, has left the vast [smaughorde|e] undefended! Rulers from across the world are rushing to the mountain to take their cut before it's gone!"
+ desolation_of_smaug_rebiuld_situation_phase: "Reconstruction"
+ rebiuld: "Reconstruction"
+ rebiuld_desc: "Things have settled down around the mountain once again, the land and its people are rebuilding"
+ desolation_of_smaug_participant_group_affected_ruler: "Affected Ruler"
+ desolation_of_smaug_participant_group_affected_ruler_desc: "Rulers involved in the Situation."
+ 
+ desolation_of_smaug_affected_ruler: "Situation Phase Effects"
+ 
+ SITUATION_WINDOW_CURRENT_GOLD: "#credits_header @gold_icon![smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue|0]@gold_icon!#!"
+ 
+ situation_disaster_desolation_description: "[smauggolden|E] is lying in [erebor|e], occasionally venturing out to attack the surrounding lands, stealing gold and eating flocks."
+ situation_disaster_scramble_description: "The Dragon's dead! [smaug|e] has fallen and his treasure [smaughorde|e] is up for grabs, [rulers|e] from across the region are venturing in to take a cut before it's too late."
+ situation_disaster_rebiuld_description: "Things have settled down at the mountain and nature has begun to heal, the cities are building and [ereborrealm|e] rises again!"
+ 
+ situation_disaster_desolation_recommendations: "- Avoid having to much [gold|E], else the dragon will emerge and take it from you\n- venture into the mountain to attempt to slay the beast or steal his treasure\n - prepare your realm for the aftermath of the dragon's fall."
+ situation_disaster_scramble_recommendations: "- Travel to the mountain to secure your cut of the [smaughorde|e] \n-battle the dragonslayer to secure the mountain for yourself!"
+ 
+ desolation_effects: "Desolation Effects"
+ desolation_effects_concept: "Desolation Effects Concept"
+ scramble_effects: "Scramble Effects"
+ scramble_effects_concept: "Scramble Effects Concept"
+ rebiuld_effects: "Reconstruction Effects"
+ rebiuld_effects_concept: "Reconstruction Effects Concept"
+ 
+ situation_shadow_over_mirkwood: "Shadow Over Mirkwood"
+ situation_shadow_over_mirkwood_description: "A Shadow has fallen over [mirkwood|e], the [necromancer_sauron|e] has taken up residence in [dolguldur|e] and from there darkness festers and foul things grow. the [whitecouncil|e] has grown suspicious of the shadow and has begun investigating, while the [darklord|e] gathers his power..."
+ situation_shadow_over_mirkwood_description2: "#flavor A sickness lies over the Greenwood. The Woodsmen who live there now call it Mirkwood and, uh, they say... They speak of a Necromancer living in Dol Guldur, a sorcerer who could summon the dead. - Radagast the Brown#!"
+ 
+ situation_shadow_over_mirkwood_sus1: "#tooltip_heading [suspicion|e] of the [necromancer_sauron|e]: [GetGlobalVariable('qfe_sauron_sus').GetValue|2]#!"
+ situation_shadow_over_mirkwood_sus2: "Monthly Change: [GetGlobalVariable('qfe_sauron_sus_change').GetValue|-]"
+ situation_shadow_over_mirkwood_sus_expalin: "Factors Affecting [suspicion|e]: \n-Base: ['(CFixedPoint)-1'|-] \n-[counties|e] held by Evil Rulers: [GetGlobalVariable('qfe_sauron_sus_change_land_evil').GetValue|-] \n-[counties|e] held by Good Rulers: [GetGlobalVariable('qfe_sauron_sus_change_land_good').GetValue|-] \n-World Evil: [GetGlobalVariable('qfe_sauron_sus_change_world_evil').GetValue|-]"
+  
+ shadow_over_mirkwood_participant_group_mirkwood_inhabitant: "Affected Ruler"
+ shadow_over_mirkwood_participant_group_mirkwood_inhabitant_desc: "Affected Ruler"
+ 
+ shadow_over_mirkwood_participant_group_sauron: "The Necromancer"
+ shadow_over_mirkwood_participant_group_sauron_desc: "The Dark Lord of Dol Guldur"
+ 
+ shadow_over_mirkwood_participant_group_white_council: "Member of the White Council"
+ shadow_over_mirkwood_participant_group_white_council_desc: "Member of the White Council"
+ 
+ shadow_over_mirkwood_sub_region_inner_region: "Mirkwood Proper"
+ shadow_over_mirkwood_sub_region_outer_region: "The Forest Fringe"
+ 
+ SITUATION_WINDOW_SUB_REGIONS: "Subregions"
+ 
+ MIRKWOOD_SITUATION_WINDOW_CURRENT_HEADER: "Current Effects"
+ 
+ shadow_over_mirkwood_shadow_situation_phase: "Shadow of Dol Guldur"
+ 
+ shadow_effects: "Shadow"
+ shadow_effects_concept: "Situation Effects"
+ necromancer_effects: "Necromancer"
+ necromancer_effects_concept: "Situation Effects"
+ council_effects: "White Council"
+ council_effects_concept: "Situation Effects"
+ 
+ shadow_over_mirkwood_sauron: "Necromancer Modifiers"
+ 
+ ### Nicknames
+ 
+ nick_dragonslayer: "The Dragonslayer"
+ nick_dragonslayer_desc: "This character slew [smauggolden|E] in battle, saving his people from the dread wyrm."
+ 
+ nick_faithful: "The Faithful"
+ nick_faithful_desc: "[CHARACTER.GetShortUINameNoTooltipNoFormat|U] is a [adunai|e] convert to the ways of the [dunedain|e]"
+ 
+ nick_redeemer: "The Redeemer"
+ nick_redeemer_desc: "[CHARACTER.GetShortUINameNoTooltipNoFormat|U] traveled from the lands of the [faithful|e] to convert the [adunai|e] and succeeded in returning them to the ways of the [dunedain|e]"
+ 
+ nick_master_of_the_haven: "Master of the Haven"
+ nick_master_of_the_haven_desc: "[CHARACTER.GetShortUINameNoTooltipNoFormat|U] was a rich [gondorian|e] merchant and self-declared master of the haven of [GetTitleByKey('c_tharbad').GetNameNoTier], aiming to resettle the city after it was destroyed in the Fell Winter."
+ 
+ nick_luckwearer: "Luckwearer"
+ nick_luckwearer_desc: "[CHARACTER.GetShortUINameNoTooltipNoFormat|U] survived the Quest for Erebor, overcoming impossible odds to help the dwarves reclaim their home. through the help of a certain ring…"
+ 
+ ### Bookmarks
+ 
+ bm_2941_quest_for_erebor_01: "The Quest for Erebor"
+ bm_2941_quest_for_erebor_01_desc: "It's been 170 years since the Sack of Erebor, and things are once again moving in the north. The dragon Smaug has lain dormant for decades, and the Exiles of Erebor are preparing to challenge the dragon once more.\n\nIn Mirkwood, the Necromancer is continuing his search for the One Ring and is slowly growing his influence over the region, attracting the attention of the White Council. \n\nFarther South Gondor sees threats on all sides with very little in the way of friends, the Witch King rules Mordor, preparing to destroy the Faithful once and for all, while the Corsairs of Umbar assemble a grand fleet."
+ 
+ start_year_6974_01_01_desc: "It’s been 170 years since the Sack of Erebor, and things are once again moving in the north. The dragon Smaug has lain dormant for decades, and the Exiles of Erebor are preparing to challenge the dragon once more.\n\nIn Mirkwood, the Necromancer is continuing his search for the One Ring and is slowly growing his influence over the region, attracting the attention of the White Council. \n\nFarther South Gondor sees threats on all sides with very little in the way of friends, the Witch King rules Mordor, preparing to destroy the Faithful once and for all, while the Corsairs of Umbar assemble a grand fleet."
+ 
+ bm_group_2941TA: "The Quest for Erebor"
+ 
+ bookmark_qfe_thranduil:  "King Thranduil"
+ bookmark_qfe_thranduil_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_thranduil_desc:  "Thranduil, the Elvenking, Lord of the woodland realm, is a fairly passive player in Middle-earth. From his halls in northwestern [mirkwood|e] he rules justly but rarely involves himself in the greater events of the day. \n\nBut things are changing in the Dalelands, the [dragon|e] [smaug|e] is stirring and the [dwarves|e] are plotting. will he leave his halls or will he at last make his mark on Middle-earth?"
+ 
+ bookmark_qfe_thorin: "Thorin Oakenshield"
+ bookmark_qfe_thorin_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_thorin_desc: "Thorin has had a rough life. Raised in [ereborrealm|e] at the height of its power, he watched [smauggolden|E] destroy his home and shatter his people. watched his father and grandfather fall to the challenges that faced them, already has experienced failure in retaking [moria|e] and has spent the last decades biding his time in the [bluemountains|e]. \n\nBut word from [gandalfcharacter|e] has ignited a fire in the dwarf king, [erebor|e] must be reclaimed! [smaug|e] must fall! And Thorin intends to be the one to bring the dragon down."
+ 
+ bookmark_qfe_bilbo: "Bilbo Baggins"
+ bookmark_qfe_bilbo_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_bilbo_desc: "Bilbo Baggins is an unremarkable [hobbit|e], around 3 foot 3, he loves nothing more than sitting in his home with a good book and warm meal. But the wizard [gandalfcharacter|e] has spied something more in the young hobbit, Bilbo is about to be offered the chance of a lifetime, and the time may come for hobbits to decide the fate of men."
+ 
+ bookmark_qfe_dain: "Dain Ironfoot"
+ bookmark_qfe_dain_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_dain_desc: "Dain Ironfoot, Lord of the Iron Hills, leads the largest [longbeard|e] colony left in Middle-earth. Since the destruction of [ereborrealm|e], they have had the majority of their population. He's built his realm into a true bastion, the only realm of the north truly able to counter the shadow rising in Mordor. But things are about to change in the north, Dain's cousin Thorin prepares to retake [erebor|e] and Dain stands ready to aid him and restore the realm of their ancestors."
+ 
+ bookmark_qfe_master: "Master Stevron"
+ bookmark_qfe_master_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_master_desc: "Master Stevron of Laketown is in a delicate position. Laketown is the northernmost settlement that survived [smauggolden|E]'s ire. But that doesn't mean it flourished. Since the [sackoferebor|e] Laketown has stagnated; each year, the Dalelands produce less as the Desolation of Smaug drains the land. even as word comes of the return of the King Under the Mountain, Laketown stands between Thorin and [smaug|e] and that could be disastrous. \n\nTo play as Bard the Bowman, start as Master Stevron and play through the event chain."
+ 
+ bookmark_qfe_bolg: "Overlord Bolg"
+ bookmark_qfe_bolg_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_bolg_desc: "The True heir to Azog the Defiler, Bolg rules over Gundabad with an iron fist. biding his time since the orcs' defeat in the [warofdwarvesandorcs|e], he's secretly been in communication with the [necromancer_sauron|e], plotting for a new wave of orcish dominion across the north, starting with [erebor|e]"
+
+ bm_2941_shadow_over_mirkwood: "Shadow Over Mirkwood"
+ bm_2941_shadow_over_mirkwood_desc: "For too long has the Necromancer lain in Greenwood, his presence in Dol Guldur has warped the once strong forest into Mirkwood, foul things grow in the Dark, Forces that should have stayed dead have returned, and rumors swirl of the return of the Dark Lord \n\nThe White Council has seen the warning signs and is finally about to act to once and for all drive the Necromancer from the forest"
+ 
+
+ bookmark_qfe_gandalf: "Gandalf The Grey"
+ bookmark_qfe_gandalf_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_gandalf_desc: "Gandalf The Grey has had a busy time in Middle-earth, a [maiagod|e] from [valinor|e], he has been sent by the [valargods|e] to aid the peoples of Middle-earth against the Shadow, since then he has spent his time hunting for [sauroncharacter|e] and the other remnants of [morgothcharacter|e]s works. He has recently grown suspicious of the [necromancer_sauron|e] in [dolguldur|e] and the dragon [smauggolden|E] and is in the early stages of executing his plans to counter them" 
+
+ bookmark_qfe_saruman: "Saruman the White"
+ bookmark_qfe_saruman_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_saruman_desc: "Saruman the White is the leader of the [whitecouncil|e] of the wise, a group of [elves|e] and [wizards|e] aiming to counter [sauroncharacter|e] and all his works. Saruman has set himself up in [orthanc|e] to both guards over [rohan|e] and very quietly search the [anduin|e] for the missing [onering|e]. he has been a continuous voice of caution against moving on the [necromancer_sauron|e] and instead prefers to watch his actions from afar"
+ 
+ bookmark_qfe_sauron: "Necromancer Sauron"
+ bookmark_qfe_sauron_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_sauron_desc: "The [necromancer_sauron|e] is in truth but another guise for the [darklord|e] [sauroncharacter|e]. Hiding in the ancient [greenwood|e], his presence has slowly warped the forest into [mirkwood|e]. he has had to balance the [suspicion|e] of the [whitecouncil|e] against his own plans for world domination, quietly supporting various dark forces across the world while quietly searching for the lost [onering|e]"
+ 
+ bookmark_qfe_elrond: "Elrond of Rivendell"
+ bookmark_qfe_elrond_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_elrond_desc: "Elrond has had a fairly tame millennia, since the fall of the [witchking|e] of [angmar|e] his realm has been safe and secure nestled a valley in the [mistymountians|e], but times are changing, the [whitecouncil|e] is almost ready to move on the [necromancer_sauron|e] and Thorin Oakenshield is preparing his quest to retake [erebor|e]. How Elrond responds could very easily shift the course of history..."
+ 
+ bookmark_qfe_galadriel: "Lady Galadriel"
+ bookmark_qfe_galadriel_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
+ bookmark_qfe_galadriel_desc: "The Lady of Lorien is arguably the [whitecouncil|e]s most respected member, trained by [meliancharacter|e] in [doriath|e] in the [elderdays|e] her knowledge of lore is unparallelled in Middle-earth and she has been watching the [necromancer_sauron|e] closely, she senses a shadow in [mirkwood|e], and she has to suspect that [sauroncharacter|e] has returned. should her suspicions prove true, the golden wood might once more be roused to war."
+ 
+ 
+ 
+ ### CB
+ 
+ battle_five_armies_war: "Invasion of [erebor|E]"
+ destroy_goblin_town_war: "Purge of Goblin Town"
+ rhovanion_invasion_war: "Liberation of Rhovanion"
+ 
+ ### Modifiers
+ 
+ qfe_scripted_journey_modifier: "Scripted Journey"
+ qfe_scripted_journey_modifier_desc: "Scripted Journey"
+ dark_favor_modifier: "Dark Favor"
+ dark_favor_modifier_desc: "the [necromancer_sauron|e] has bestowed dark favor upon this ruler"
+ 
+ ### Titles
+ 
+ d_laamp_southern_faithful: "Southern Faithful"
+ d_laamp_southern_faithful_adj: "Southern Faithful"
+ 
+ h_atyamar: "Atyamar"
+ h_atyamar_desc: "Atyamarin"
+ 
+ ### Culture
+ 
+ otsonorian: "Otsonorian"
+ otsonorian_collective_noun: "Otsonorians"
+ otsonorian_prefix: "Otsonorian"
+ 
+ ### Artifacts
+ 
+ lisgmaica_name: "Lisgmaica"
+ lisgmaica_description: "The Blade of Grass, Lisgmaica was forged by [celebrimbor|E] for king [GetScriptedCharacterByHistoryID('lineofamdir1').GetFirstName] of [lorien|e] in the early [secondage|e]. The weapon was lost when Amdir fell in the [battleofdagorlad|e] during the [lastalliance|e]."
+ 
+ ### Trait
+ 
+ trait_white_council: "Member of the White Council"
+ trait_white_council_desc: "This character is a member of the [whitecouncil|e] of the wise, working to protect the free peoples of Middle-earth"
+ 
+ ### characters
+ 
+ lineofinzilloniee1_name: "Imrazîr"
+ lineofinzilloniee1_name2: "Anorion"
+ southern_faithful_adventurer_name: "Nimloth"
+ lineofpercival1_name: "Percival"
+ aragorn_estel: "Estel"
+ aragorn_full_name: "Aragorn"
+ lineofliuva1_name: "Liuval"
+ 
+ ### Regions
+ 
+ custom_atyamar: "Atyamar"
+ 
+ ### Character Interactions
+ 
+ interaction_category_dark_lord: "Dark Lord Interactions"
+ dark_lord_ask_for_conversion_interaction: "Seduce to Shadow"
+ dark_lord_start_murder_interaction: "Murder"
+ 
+ dark_lord_frontier_influence_war_interaction: "Start War"
+ recipient_secondary_dark_lord_frontier_influence_war_interaction: "Target"
+ dark_lord_frontier_influence_war_interaction_confirm: "Order to War"
+ 
+ dark_lord_bestow_favor_interaction: "Bestow Dark Favor"
+ dark_lord_bestow_favor_interaction_desc: "Bestow Dark Favor upon a ruler"
+ 
+ ### Flavorization
+ 
+ king_under_mountian: "King Under The Mountain"
+ queen_under_mountian: "Queen Under the Mountain"
+ 
+ ### Biuldings
+ 
+ building_type_wonder_thorins_hall_01: "Thorin's Hall"
+ building_type_wonder_thorins_hall_01_desc: "Dronûn-Dûm, or Thorin's Hall, the [dwarven|E] hold in the Southern [bluemountains|E] built by Thorin Oakenshield."
+ building_wonder_thorins_hall_01: "The Hall of Thorin Oakenshield"
+ building_wonder_thorins_hall_01_desc: "Following Smaug's conquest of [erebor|E] and the devastating [warofdwarvesandorcs|E], Thorin Oakenshield, rightful King Under the Mountain, established a [dwarven|E] hold in the Southern [bluemountains|E] where he and the exiled [longbeards|E] dwelt for nearly a century. Following the Reclamation of Erebor and the [battle_of_the_five_armies|E], many of the Longbeards returned to their ancestral home, leaving Thorin's halls a relic of more desperate days."
+ building_wonder_thorins_hall_02: "Dronûn-Dûm"
+ building_wonder_thorins_hall_02_desc: "The Halls of Thorin Oakenshield have been delved deeper and expanded with a great gate in the style of [ereborrealm|e], transforming the once hard scrabble realm into a true [dwarven|E] city"
+ building_wonder_thorins_hall_03: "Dronûn-Dûm Resplendent"
+ building_wonder_thorins_hall_03_desc: "The Once small realm of Thorin Oakenshield has been transformed into a thriving [dwarven|E] hold rivaling the great holds of old. the original quickly built structures have been replaced with more sturdy and magnificent designs, and mines dig deep into the ancient mountains, harvesting the rich minerals left over from the [warofwrath|e]"
+
+ building_type_wonder_erebor_broken: "Erebor"
+ building_wonder_erebor_broken: "Erebor Broken"
+ building_wonder_erebor_broken_desc: "Erebor has been smashed by the dragon [smaug|E], visters can barely go ten paces without encountering the bones of the kingdoms defenders or reaching a collapsed tunnel or bridge that the dragon destoryed and the great gate lies in ruin, preventing the realm from being adaquatly defended"
+ building_wonder_erebor_t2: "Erebor Repaired"
+ building_wonder_erebor_t2_desc: "The bodies have been cleaned up, a new gate has been made, and the vast horde of the [dragon|E] has been properly stowed away, the [lonelymountain|E] is once more liveable, if not quite at the level it was before the [sackoferebor|e]"
+ building_wonder_erebor_rebuilt: "Erebor Restored"
+ building_wonder_erebor_rebuilt_desc: "Erebor has been restored to its former glory, gold once again flows from the [lonelymountain|E] and the clang of hammers once more rings out from the depths. Erebor once more takes its rightful place as the capital of the [longbeards|e] and by extension all of dwarf kind"
+ building_wonder_erebor_t4: "Erebor Resplendent"
+ building_wonder_erebor_t4_desc: "Erebor is reaching heights not seen since the days of [nogrod|e], [belegost|e] and [khazaddum|e] the halls are light bright as day with carefully designed mirrors and sun roofs, Statues made of solid Gold flank the throughfares and visitors from across the north flock to the center of dwarvenkind"
+ building_wonder_erebor_reborn: "Erebor Workshop of the Maker" 
+ building_wonder_erebor_reborn_desc: "Erebor has surpassed all the dwarven holds of the [elderdays|e], its great gate visible for miles. at night the mountian top is lit with a great lamp, reminicient of the works of [aulecharacter|e], as bright as a star as far away as [minastirith|e] and unrivaled in Middle Earth. Erebor has become grander than even the great [khazaddum|e] and only the halls of the [valargods|e] surpass it" 

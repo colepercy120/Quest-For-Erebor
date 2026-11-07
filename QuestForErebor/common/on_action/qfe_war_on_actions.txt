@@ -1,0 +1,76 @@
+﻿#LotR - adding in tributary mechanic call events
+
+# On actions for war events, triggered automatically by the game
+
+# called for wars after being transferred to a new defender
+# root is the primary attacker
+# scope:war is the war
+# scope:defender is the new defender
+
+
+
+# called for people joining as a secondary attacker or defender
+# root is the joiner
+# scope:war is the war
+
+
+
+# called when a war is started.
+# same scopes are available in these events as in the CBs' on_declaration, this just fires for all CBs instead of a specific CB.
+
+on_war_started = {
+	on_actions = { qfe_on_war_started } #LotR
+	
+}
+
+qfe_on_war_started = {
+	effect = {
+		if = {
+			limit = {
+				scope:defender = {
+					this = character:lineofsauron
+					has_character_flag = unknown_sauron_flag
+				}
+			}
+			scope:attacker = {
+				trigger_event ={
+					id = qfe_situation.006
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:attacker = {
+					this = character:lineofsauron
+					has_character_flag = unknown_sauron_flag
+				}
+			}
+			raise_suspicion_minor = yes
+		}
+	}
+	
+}
+
+on_raid_action_completion = {
+	on_actions = { qfe_on_raid_action_completion } #LotR
+}
+
+qfe_on_raid_action_completion = {
+	effect = {
+		if = {
+			limit = {
+				scope:raider = {
+					this = character:lineofsauron
+					has_character_flag = unknown_sauron_flag
+				}
+			}
+			change_global_variable = { 
+				name = qfe_sauron_sus 
+				add = 10 
+			}
+		}
+		
+	}
+}
+
+

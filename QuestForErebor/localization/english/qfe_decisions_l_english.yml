@@ -1,0 +1,105 @@
+﻿# LotR: This file needs to be kept in sync with the release version.
+#   Edited the dates
+#	Edited the loading screen text
+
+l_english:
+
+### Southern Faithful
+ 
+ decision_southern_faithful_invasion: "Invade Thani-Hazad"
+ decision_southern_faithful_invasion_desc: "It’s time for the [adunai|e] to learn of our peaceful ways… By Force! If we are ever to break the Adunai from their heathen ways, we need to break the structure of their society and cast down the old elites!"
+ decision_southern_faithful_invasion_tooltip: "Invade Thani-Hazad."
+ decision_southern_faithful_invasion_confirm: "Invade Thani-Hazad."
+ 
+ decision_southern_faithful_culture: "Redeem the Anduai"
+ decision_southern_faithful_culture_desc: "We have liberated the lands of [thanihazad|e] and restored worship of the [valargods|e] to the region. It's time for us to cast down the heresy of [sauroncharacter|e] and redeem the [adunai|e] once and for all!"
+ decision_southern_faithful_culture_tooltip: "Redeem the Anduai."
+ decision_southern_faithful_culture_confirm: "Restore the South to Glory!"
+ 
+ ### Mirkwood
+ 
+ sus_target: "[suspicion|e] is at least 1000 #weak (Currently [GetGlobalVariable('qfe_sauron_sus').GetValue|0])#!"
+ white_council_attack: "The [whitecouncil|e] Attacks [dolguldur|e]"
+ 
+ 
+ decision_investigate_necromancer: "Investigate The Necromancer"
+ decision_investigate_necromancer_desc: "A Shadow Stirs in [mirkwood|e], a [necromancer_sauron|E] dwells in the ancient tower of [dolguldur|e], his identity remains a mystery and it would be prudent of us to investigate him and his activities"
+ decision_investigate_necromancer_tooltip: "Investigate The Necromancer"
+ decision_investigate_necromancer_confirm: "Launch Investigation"
+ white_council_investigate: "[travel|e] to [GetTitleByKey('c_amon_lanc').GetNameNoTier] to Investigate"
+ 
+ decision_recall_khorahil: "Recall Khorahil"
+ decision_recall_khorahil_desc: "The 5th of the [nazgul|e], [GetScriptedCharacterByHistoryID('nazgul5').GetFirstName] the [stormking|e], is currently on assignment in [thanihazad|e] rebuilding the [GetTitleByKey('e_thon_an_kharlokh').GetName] to prepare it against [GetTitleByKey('e_bellakar').GetNameNoTier] in the coming war, however he may soon be needed closer to home..."
+ decision_recall_khorahil_tooltip: "Recall Khorahil"
+ decision_recall_khorahil_confirm: "Recall Khorahil"
+ 
+ decision_recall_ard: "Recall Ard"
+ decision_recall_ard_desc: "[GetScriptedCharacterByHistoryID('nazgul7').GetFirstName], the 7th of the [nazgul|e], is currently on assignment in [GetTitleByKey('k_abrakhan').GetNameNoTier], trying to distract the [GetTitleByKey('e_khy').GetName] from coming to the aid of the north, but he soon may be needed closer to home..."
+ decision_recall_ard_tooltip: "Recall Ard"
+ decision_recall_ard_confirm: "Recall Ard"
+ 
+ decision_sauron_go_home: "Return to Mordor"
+ decision_sauron_go_home_desc: "The [nazgul|e] have been preparing [mordor|e] for my return for centuries now, it’s time that I finally return to reclaim the dark tower myself and once more rule over my realm directly"
+ decision_sauron_go_home_tooltip: "Return to Mordor"
+ decision_sauron_go_home_confirm: "Return to Mordor"
+ sauron_sent_mordor_willing: "You Return to [GetTitleByKey('e_mordor').GetNameNoTier]"
+ 
+ decision_dispatch_witch_king: "Dispatch Er-Murazor"
+ decision_dispatch_witch_king_desc: "It has been many long years since [angmar|E] struck terror in the realms of the north. yet times are changing, Should conditions allow it, or circumstances force it, I can dispatch [GetScriptedCharacterByHistoryID('nazgul1').GetFirstName], the [witchking|e] to once more reign over the north"
+ decision_dispatch_witch_king_tooltip: "Dispatch Er-Murazor"
+ decision_dispatch_witch_king_confirm: "Dispatch Er-Murazor"
+ decision_dispatch_witch_king_effect: "[GetScriptedCharacterByHistoryID('nazgul1').GetFirstName] returns to restore [GetTitleByKey('k_angmar').GetNameNoTier]"
+ decision_dispatch_witch_king_trigger: "[GetTitleByKey('k_angmar').GetNameNoTier] is unsettled"
+ decision_dispatch_witch_king_trigger2: "[GetTitleByKey('e_arnor').GetNameNoTier] has been restored"
+ decision_dispatch_witch_king_trigger3: "[GetTitleByKey('k_erebor').GetNameNoTier] is in Evil hands"
+ decision_dispatch_witch_king_trigger4: "[GetTitleByKey('k_gundabad').GetNameNoTier] is in Evil hands"
+ decision_dispatch_witch_king_trigger5: "[GetTitleByKey('k_khazad_dum').GetNameNoTier] is in Evil hands"
+ 
+ decision_recall_witch_king: "Recall Er-Murazor"
+ decision_recall_witch_king_desc: "[GetScriptedCharacterByHistoryID('nazgul1').GetFirstName], [witchking|e] is Currently on assignment in [GetTitleByKey('e_angmar').GetName] plaguing the north and enforcing my will. although the day may come where he is needed closer to home. if I ever need to I can recall him back to my court to enforce my will"
+ decision_recall_witch_king_tooltip: "Recall Er-Murazor"
+ decision_recall_witch_king_confirm: "Recall Er-Murazor"
+ 
+ decision_dispatch_indur: "Dispatch Ji-Indur"
+ decision_dispatch_indur_desc: "[GetScriptedCharacterByHistoryID('nazgul4').GetFirstName], the 4th of the [nazgul|e] was the only one who managed to create a realm that could endure without his continuous oversight. [GetTitleByKey('e_mumakan').GetName] is thus one of the realms i must focus on protecting. and while it can operate independently it does do better when [GetScriptedCharacterByHistoryID('nazgul4').GetFirstName] commands personally. if the need arises i can dispatch him back to his realm and have him tackle any threat from the south"
+ decision_dispatch_indur_tooltip: "Dispatch Ji-Indur"
+ decision_dispatch_indur_confirm: "Dispatch Ji-Indur"
+ decision_dispatch_indur_trigger1: "[GetTitleByKey('e_mumakan').GetNameNoTier] is in Evil hands"
+ decision_dispatch_indur_trigger2: "Any [ruler|e] in [GetGeographicalRegion('middleearth_uttersouth').GetName] is Good and is powerful enough to threaten us"
+ decision_dispatch_indur_trigger3: "Any [ruler|e] in [GetGeographicalRegion('middleearth_uttersouth').GetName] is Evil"
+ decision_dispatch_indur_effect: "[GetScriptedCharacterByHistoryID('nazgul4').GetFirstName] Returns to [GetTitleByKey('e_mumakan').GetNameNoTier]"
+ 
+ decision_recall_indur: "Recall Ji-Indur"
+ decision_recall_indur_desc: "[GetScriptedCharacterByHistoryID('nazgul4').GetFirstName], the 4th of the [nazgul|e] is Currently on assignment in [GetTitleByKey('e_mumakan').GetName], yet he may soon be needed closer to home. if needed i can recall him from his realm to serve at my beck and call" 
+ decision_recall_indur_tooltip: "Recall Ji-Indur"
+ decision_recall_indur_confirm: "Recall Ji-Indur"
+ 
+ decision_dispatch_ovatha: "Dispatch Ovatha"
+ decision_dispatch_ovatha_desc: "[GetScriptedCharacterByHistoryID('nazgul9').GetFirstName], the 9th of the [nazgul|e], ruled the realm of [GetTitleByKey('e_khand').GetNameNoTier] and was a great ally of [mordor|e]. Should the need arise i can once more dispatch the black rider to the steepe to assert control"
+ decision_dispatch_ovatha_tooltip: "Dispatch Ovatha"
+ decision_dispatch_ovatha_confirm: "Dispatch Ovatha"
+ decision_dispatch_ovatha_trigger1: "[GetTitleByKey('e_khand').GetName] is in Evil hands"
+ decision_dispatch_ovatha_trigger3: "Any [ruler|e] in [GetGeographicalRegion('middleearth_rhun').GetName] is Good and is powerful enough to threaten us"
+ decision_dispatch_ovatha_trigger2: "Any [ruler|e] in [GetGeographicalRegion('middleearth_rhun').GetName] is Evil"
+ decision_dispatch_ovatha_trigger4: "Any [ruler|e] in [GetGeographicalRegion('middleearth_harad_near').GetName] is Good and is powerful enough to threaten us"
+ decision_dispatch_ovatha_trigger5: "Any [ruler|e] in [GetGeographicalRegion('middleearth_west_rhovanion').GetName] is Good and is powerful enough to threaten us"
+ decision_dispatch_ovatha_effect: "[GetScriptedCharacterByHistoryID('nazgul9').GetFirstName] returns to [GetTitleByKey('e_khand').GetNameNoTier]"
+ 
+ decision_recall_ovatha: "Recall Ovatha"
+ decision_recall_ovatha_desc: "[GetScriptedCharacterByHistoryID('nazgul9').GetFirstName], the 9th of the [nazgul|e], is currently on assignment in [GetTitleByKey('e_khand').GetName], yet he may soon be needed closer to home. if needed i can recall him from his realm to serve at my beck and call"
+ decision_recall_ovatha_tooltip: "Recall Ovatha"
+ decision_recall_ovatha_confirm: "Recall Ovatha"
+ 
+ ### Misc
+ 
+ decision_restore_atyamar: "Restore Atyamar"
+ decision_restore_atyamar_desc: "During the [greatjourney|E] many [elves|e], esspecially those of [telerielves|e] origin opted to stay around the Vales of Anduin, these [silvanelves|e] would later form the great realms of [lothlorien|e] and the [greenwood|e]. if these lands and peoples could be brought under one crown, Atyamar, the second home, could be restored and the [silvanelves|e] could be reunited"
+ decision_restore_atyamar_tooltip: " Restore Atyamar"
+ decision_restore_atyamar_confirm: "Welcome Home"
+ decision_atyamar_effect: "Every county in [GetGeographicalRegion('custom_atyamar').GetName] will gain [GetModifier('elven_homeland_county_modifier').GetNameWithTooltip]."
+ decision_atyamar_effect_2: "[GetTitleByKey('h_atyamar').GetName] will become de jure leige of every [empire|e] in [GetGeographicalRegion('custom_atyamar').GetName]"
+ 
+ decision_import_gondorian_tech: "Invite Gondorian Settlers"
+ decision_import_gondorian_tech_desc: "The [anduin|e] is the River of [gondor|e]. and thus anyone who lives in the Vales must be on good terms with the [southkingdom|e] if they wish to prosper. Our ways are rustic and outdated compared to those of Gondor. but our lands are rich in milk and honey, We could easily entice Gondorians to settle in the vales and learn their ways first hand"
+ decision_import_gondorian_tech_confirm: "Invite Gondorian Settlers"
+ decision_import_gondorian_tech_tooltip: "Invite Gondorian Settlers"

@@ -1,0 +1,269 @@
+﻿desolation_of_smaug = { # Earthquake (Land)
+	situation_group_type = major
+	is_unique = yes
+	
+	illustration = "gfx/interface/illustrations/event_scenes/smaug_destruction.dds"
+
+	##################################################
+	# Regions
+	##################################################
+	sub_regions = {
+		disaster_area = {
+			icon = "gfx/interface/icons/situation_types/natural_disaster_earthquake.dds"
+			map_color = { 1 0.2 0.2 }
+			geographical_regions = { desolation_of_smaug }
+		}
+	}
+
+	##################################################
+	# On Actions
+	##################################################
+
+	on_start = {
+	}
+
+	on_end = {
+		
+	}
+
+	on_monthly = {
+		if = {
+			limit = {
+				any_situation_participant = {
+					gold >= 1000
+				}
+				situation_current_phase = desolation
+			}
+			random_list = {
+				99 = { }
+				1 = {
+					every_situation_participant = {
+						limit = {
+							any_situation_participant = {
+								gold >= 1000
+							}
+						}
+						trigger_event = {
+							id = qfe_situation.005
+							days = { 0 30 }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_leave = {
+		
+	}
+
+	##################################################
+	# Groups
+	##################################################
+	participant_groups = {
+		# read order is first valid
+		affected_ruler = {
+			icon = "gfx/interface/icons/flat_icons/prestige.dds"
+			require_realm_in_sub_region = yes
+			auto_add_rulers = yes
+			map_color = rgb{ 250 100 0 }
+			is_character_valid = {
+				is_landed = yes # ensures landless adventurers don't get duplicate projects
+				is_independent_ruler = yes
+				NOT = { is_wastelands = yes }
+			}
+			on_join = {
+				
+			}
+		}
+		
+	}
+
+	##################################################
+	# Phases
+	##################################################
+	start_phase = desolation
+
+	phases = {
+		desolation = {
+			max_duration = { years = 500 }
+			icon = "gfx/interface/icons/situation_types/natural_disaster_earthquake.dds"
+			illustration = "gfx/interface/illustrations/event_scenes/smaug_destruction.dds"
+			map_province_effect = drought
+			map_province_effect_intensity = 1.0
+			on_start = {
+				
+			}
+			modifier_sets = {
+				desolation_effects = {
+					icon = "gfx/interface/icons/modifiers/beast_negative.dds"
+					affected_ruler = {
+						character_modifier = {
+							monthly_legitimacy_add = -0.25
+							monthly_income_mult = -0.1
+							
+						}
+						county_modifier = {
+							development_growth_factor = -0.25
+						}
+					}
+				
+				}
+				
+			}
+			future_phases = {
+				
+			}
+		}
+		scramble = {
+			max_duration = { months = 12 }
+			icon = "gfx\interface\icons\situation_types\dale_pikes.dds"
+			illustration = "gfx/interface/illustrations/situation_phase/impact.dds"
+			map_province_effect = drought
+			map_province_effect_intensity = 0.4
+			on_start = {
+				every_independent_ruler = {
+					limit = {
+						any_sub_realm_county = {
+							title_province = { 
+								geographical_region = desolation_of_smaug_blast_radius
+							}
+						}
+					}
+					trigger_event = { 
+						id = qfe_quest.030
+					}
+				}
+				if = {
+					limit = { global_var:qfe_thranduil_aid = 1 }
+					character:lineoforopher3 = {
+						trigger_event = {
+							id = qfe_quest.035
+							days = 5
+						}
+					}
+				}
+				character:lineofsauron = {
+						trigger_event = {
+							id = qfe_quest.040
+							days = 10
+						}
+					}
+				
+			}
+			modifier_sets = {
+				scramble_effects = {
+					icon = "gfx/interface/icons/modifiers/imperial_treasury_mixed.dds"
+					affected_ruler = {
+						character_modifier = {
+							siege_phase_time = -0.9
+							character_travel_speed_mult = 1
+							movement_speed = 1
+							
+						}
+						county_modifier = {
+							additional_fort_level = -10
+						}
+					}
+				}
+			}
+			future_phases = {
+				rebiuld = {
+					takeover_type = duration
+					takeover_duration = { months = 18 }
+				}
+			}
+		}
+		rebiuld = {
+			icon = "gfx/interface/icons/icon_great_project.dds"
+			illustration = "gfx/interface/illustrations/event_scenes/tgp_ruined_holding.dds"
+			map_province_effect = drought
+			map_province_effect_intensity = 0.2
+			max_duration = { years = 50 }
+			on_start = {
+				title:k_erebor.holder = {
+					trigger_event = {
+							id = qfe_quest.045
+							days = 1
+						}
+				}
+				if = {
+					limit = {
+						title:k_erebor.holder = {
+							is_dwarf = yes
+							NOT = {
+								this = title:k_iron_hills.holder
+							}
+						}
+					}
+					title:k_iron_hills.holder = {
+						trigger_event = {
+							id = qfe_quest.081
+							days = 10
+						}
+					}
+				}
+				if = {
+					limit = {
+						title:k_erebor.holder = {
+							is_dwarf = yes
+						}
+					}
+					every_independent_ruler = {
+						limit = {
+							any_sub_realm_county = {
+								title_province = { 
+									geographical_region = desolation_of_smaug_blast_radius
+								}
+							}
+						}
+						trigger_event = { 
+							id = qfe_situation.001
+						}
+					}
+				}
+				if = {
+					limit = {
+						title:k_erebor.holder = {
+							is_orc = yes
+						}
+					}
+					every_independent_ruler = {
+						limit = {
+							any_sub_realm_county = {
+								title_province = { 
+									geographical_region = desolation_of_smaug_blast_radius
+								}
+							}
+						}
+						trigger_event = { 
+							id = qfe_situation.002
+						}
+					}
+				}
+			}
+			modifier_sets = {
+				rebiuld_effects = {
+					icon = "gfx/interface/icons/modifiers/county_modifier_development_positive.dds"
+
+					affected_ruler = {
+						character_modifier = {
+							monthly_legitimacy_add = 0.25
+							monthly_income_mult = 0.1
+						}
+						county_modifier = {
+							development_growth_factor = 0.5
+						}
+					}
+					
+				}
+			}
+		}
+	}
+
+	##################################################
+	# GUI
+	##################################################
+	gui_window_name = window_desolation_of_smaug
+}
+

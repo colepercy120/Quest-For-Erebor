@@ -1,0 +1,38 @@
+﻿
+
+otsonorian = {
+	color = { 0 0 40 } #gondor_blue 
+	created = 4035.1.1
+	parents = { kharadunaim gondorian }
+	
+	
+	
+	ethos = ethos_bureaucratic # Changes to ethos_stoic after Great Plague
+	heritage = heritage_dunedain
+	language = language_westron
+	martial_custom = martial_custom_male_only
+	head_determination = head_determination_domain
+	traditions = {
+		tradition_mende_anduya
+		tradition_gondorian_legacy
+		tradition_warriors_by_merit
+		tradition_intricate_plotters
+		tradition_maritime_mercantilism
+		tradition_seafaring
+	}
+	
+	name_list = name_list_dunedain
+	
+	coa_gfx = { numenorean_coa_gfx dunedain_group_coa_gfx }
+	building_gfx = { dunedain_building_gfx numenorean_building_gfx western_building_gfx }
+	clothing_gfx = { gondorian_clothing_gfx thani_hazad_clothing_gfx }
+	unit_gfx = { dunedain_unit_gfx }
+	house_coa_frame = house_frame_04
+	dynasty_coa_frame = house_frame_04
+	
+	ethnicities = {
+		1 = numenorean_ethnicity
+		2 = gondorian_ethnicity
+		3 = southern_adunai_ethnicity
+	}
+}

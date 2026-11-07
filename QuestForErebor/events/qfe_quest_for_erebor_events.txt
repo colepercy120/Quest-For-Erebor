@@ -1,0 +1,8129 @@
+namespace = qfe_quest
+
+
+### Management
+
+qfe_quest.100 = { # company fix
+	hidden = yes
+ 	content_source = realms_dlc
+	type = character_event
+
+	immediate = {
+		thorin_company_entorage = yes
+		character:lineofdurin83.current_travel_plan = {
+			add_travel_plan_modifier = qfe_scripted_journey_modifier
+		}
+	}
+}
+
+### Quest
+## Main Route
+
+qfe_quest.001 = { # Start thorin
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.001.t
+	desc = qfe_quest.001.desc
+	theme = dwarven
+	
+	left_portrait = {
+		character = root
+		animation = personality_vengeful
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+	#	thorin_company_member_set_up = yes
+		set_global_variable = { name = qfe_quest_points value = 1 }
+	}
+
+	option = {
+		name = qfe_quest.001.a
+		
+		start_travel_plan = {
+			destination = title:c_thorins_hall.title_province
+			destination = title:c_hobbiton.title_province
+			on_arrival_event = qfe_quest.002
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		thorin_company_entorage = yes
+	}
+}
+
+qfe_quest.002 = { # Gimli Option
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.002.t
+	desc = qfe_quest.002.desc
+	theme = dwarven
+	
+	left_portrait = {
+		character = root
+		animation = accepting
+	}
+	right_portrait = {
+		character = character:lineofdurin100
+		animation = beg
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.002.a
+		
+		add_to_global_variable_list = {
+			name = thorin_company
+			target = character:lineofdurin100 # Gimli
+		}
+		custom_tooltip = gimli_join
+		increase_quest_points = yes
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.002.b
+		custom_tooltip = gimli_reject
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	after = {
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			destination = title:c_hobbiton.title_province
+			destination = title:c_imladris.title_province
+			on_arrival_event = qfe_quest.003
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = hobbiton_journey
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		
+	}
+}
+
+qfe_quest.003 = { # Bilbo Recruit
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.003.t
+	desc = qfe_quest.003.desc
+	theme = dwarven
+	override_background = {
+		reference = kitchen_hobbit
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = character:lineofgandalf
+		animation = personality_honorable
+	}
+	right_portrait = {
+		character = character:lineofbaggins12
+		animation = disapproval
+	}
+
+	option = {
+		name = qfe_quest.003.a
+		trigger = {
+			character:lineofbaggins12 = {
+				is_ai = yes
+			}
+		}
+		show_as_tooltip = {
+		duel = {
+			skill = diplomacy
+			target = character:lineofbaggins12
+			75 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 5
+				}
+				send_interface_toast = {	
+					title = qfe_quest.003.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.003.a.sucess
+				}
+				
+				add_to_global_variable_list = {
+					name = thorin_company
+					target = character:lineofbaggins12 # Bilbo
+				}
+				increase_quest_points = yes
+				hidden_effect = {
+					character:lineofbaggins12 = {
+						add_intrigue_skill = 5
+					}
+				}
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_quest.003.a.failure
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.003.a.failure
+				}
+				
+			}
+		}
+		}
+		hidden_effect = {
+			send_interface_toast = {	
+					title = qfe_quest.003.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.003.a.sucess
+				}
+				
+				add_to_global_variable_list = {
+					name = thorin_company
+					target = character:lineofbaggins12 # Bilbo
+				}
+				increase_quest_points = yes
+				hidden_effect = {
+					character:lineofbaggins12 = {
+						add_intrigue_skill = 5
+					}
+				}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+		
+		
+	}
+	option = {
+		name = qfe_quest.003.b
+		trigger = {
+			character:lineofbaggins12 = {
+				is_ai = yes
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.003.c
+		trigger = {
+			character:lineofbaggins12 = {
+				is_ai = no
+			}
+		}
+		
+		character:lineofbaggins12 = {
+			trigger_event = {
+				id = qfe_quest.050
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	after = {
+		add_to_global_variable_list = {
+					name = thorin_company
+					target = character:lineofgandalf # gandalf
+				}
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		increase_quest_points = yes
+		custom_tooltip = gandalf_join
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		trigger_event = {
+			id = qfe_quest.004
+			
+		}
+		custom_tooltip = choose_route
+	}
+}
+
+qfe_quest.050 = { # Bilbo Recruit - Bilbo POV
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.050.t
+	desc = qfe_quest.050.desc
+	theme = dwarven
+	override_background = {
+		reference = kitchen_hobbit
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = character:lineofgandalf
+		animation = personality_honorable
+	}
+	right_portrait = {
+		character = character:lineofbaggins12
+		animation = disapproval
+	}
+
+	option = {
+		name = qfe_quest.050.a
+		
+			character:lineofdurin83 = {
+				send_interface_toast = {	
+					title = qfe_quest.003.a.sucess
+					
+				}
+			}
+			custom_tooltip = {
+				text = qfe_quest.003.a.sucess
+			}
+			
+			add_to_global_variable_list = {
+				name = thorin_company
+				target = character:lineofbaggins12 # Bilbo
+			}
+			increase_quest_points = yes
+			hidden_effect = {
+				character:lineofbaggins12 = {
+					add_intrigue_skill = 5
+				}
+			}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+		set_player_character = character:lineofdurin83
+		custom_tooltip = returntochar
+		
+	}
+	option = {
+		name = qfe_quest.050.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	after = {
+		
+	}
+}
+
+qfe_quest.004 = { # Shire Routing
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.004.t
+	desc = qfe_quest.004.desc
+	theme = dwarven
+	override_background = {
+		reference = kitchen_hobbit
+	}
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.004.a
+		start_travel_plan = {
+			
+			destination = title:c_trowlair.title_province
+			destination = title:c_imladris.title_province
+			on_arrival_event = qfe_quest.005
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = imladris_journey
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.004.b
+		start_travel_plan = {
+			
+			destination = title:c_tyrn_gorthad.title_province
+			destination = title:c_tharbad.title_province
+			destination = title:c_isengard.title_province
+			on_arrival_event = qfe_quest.064
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = isengard_journey
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		
+	}
+}
+
+qfe_quest.005 = { # troll encounter
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.005.t
+	desc = qfe_quest.005.desc
+	theme = dwarven
+	override_background = {
+		reference = barrow
+	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	right_portrait = {
+		character = scope:troll
+		animation = threatening
+	}
+	
+	lower_left_portrait = {
+		character = scope:dwarfperil1
+		animation = war_over_loss
+	}
+	lower_center_portrait = {
+		character = scope:dwarfperil2
+		animation = war_over_loss
+	}
+	lower_right_portrait = {
+		character = scope:dwarfperil3
+		animation = war_over_loss
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		create_character = { # Create a new troll
+			culture = culture:hill_troll
+			faith = faith:way_of_strength
+			gender_female_chance = 0
+			location = root.location
+			save_scope_as = troll
+		}
+		current_travel_plan = {
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil2
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil1
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil2
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil2
+					}
+				}
+				save_scope_as = dwarfperil3
+			}
+		}
+	}
+
+	option = {
+		name = qfe_quest.005.a
+		
+		duel = {
+			skill = martial
+			value = 10
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.005.a.sucess
+					
+				}
+				custom_tooltip = qfe_quest.005.a.sucess
+				increase_quest_points = yes
+				custom_tooltip = troll_cave_loot
+				
+				trigger_event = {
+					id = qfe_quest.006
+					delayed = yes
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.005.a.failure
+					
+				}
+				custom_tooltip = qfe_quest.005.a.failure
+				decrease_quest_points = yes
+				
+				scope:dwarfperil1 = {
+					death = { death_reason = death_mysterious }
+				}
+				scope:dwarfperil2 = {
+					death = { death_reason = death_mysterious }
+				}
+				scope:dwarfperil3 = {
+					death = { death_reason = death_mysterious }
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.005.b
+		trigger = {
+			is_target_in_global_variable_list = {
+				name = thorin_company
+				target = character:lineofbaggins12
+			}
+		}
+		character:lineofbaggins12 = {
+		
+		duel = {
+			skill = intrigue
+			value = 10
+			75 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.005.a.sucess
+					
+				}
+				custom_tooltip = qfe_quest.005.a.sucess
+				increase_quest_points = yes
+				custom_tooltip = troll_cave_loot
+				
+				root = {
+					trigger_event = {
+						id = qfe_quest.006
+						delayed = yes
+					}
+				}
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.005.a.failure
+					
+				}
+				custom_tooltip = qfe_quest.005.a.failure
+				decrease_quest_points = yes
+				
+				scope:dwarfperil1 = {
+					death = { death_reason = death_mysterious }
+				}
+				scope:dwarfperil2 = {
+					death = { death_reason = death_mysterious }
+				}
+				scope:dwarfperil3 = {
+					death = { death_reason = death_mysterious }
+				}
+			}
+		}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			
+			destination = title:c_imladris.title_province
+			destination = title:c_front_porch.title_province
+			on_arrival_event = qfe_quest.007
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		scope:troll = {
+			silent_disappearance_effect = yes
+		}
+		
+	}
+}
+
+qfe_quest.006 = { # troll reward
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.006.t
+	desc = qfe_quest.006.desc
+	theme = dwarven
+	override_background = {
+		reference = barrow
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = celebrate_sword
+	}
+	right_portrait = {
+		character = character:lineofgandalf
+		animation = celebrate_sword
+	}
+	lower_left_portrait = {
+		character = character:lineofbaggins12
+		animation = thinking
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact2
+		position = lower_left_portrait
+	}
+
+	option = {
+		name = qfe_quest.006.a
+		
+		create_artifact_orcrist_effect = { OWNER = this }
+		scope:newly_created_artifact = {
+			save_scope_as = artifact1
+		}
+		character:lineofgandalf ?= { # Gandalf receives Glamdring
+			create_artifact_glamdring_effect = { OWNER = this }
+			scope:newly_created_artifact = {
+				save_scope_as = artifact2
+			}
+		}
+		if = {
+			limit = {
+				is_target_in_global_variable_list = {
+					name = thorin_company
+					target = character:lineofbaggins12
+				}
+			}
+			character:lineofbaggins12 = {
+				create_artifact_sting_effect = { OWNER = this }
+			}
+		}
+		add_gold = 300
+		increase_quest_points_2 = yes
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.007 = { # Imladris Map
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.007.t
+	desc = qfe_quest.007.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_rivendell
+	}
+	
+	left_portrait = {
+		character = root
+		animation = admiration
+	}
+	right_portrait = {
+		character = character:lineofelrond1
+		animation = chaplain
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.007.a
+		trigger = {
+			character:lineofelrond1 = {
+				is_ai = yes
+			}
+		}
+		duel = {
+			skill = diplomacy
+			target = character:lineofelrond1
+			999 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.007.a.sucess
+					
+				}
+				custom_tooltip = qfe_quest.007.a.sucess
+				increase_quest_points_2 = yes
+			}
+			1 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.007.a.failure
+					
+				}
+				custom_tooltip = qfe_quest.007.a.failure
+				decrease_quest_points = yes
+				
+				
+			}
+		}
+		
+		custom_tooltip = choose_route
+		
+	}
+	option = {
+		name = qfe_quest.007.b
+		trigger = {
+			character:lineofelrond1 = {
+				is_ai = no
+			}
+		}
+		character:lineofelrond1 = {
+			trigger_event = {
+				id = qfe_quest.051
+			
+			}
+		}
+		
+	}
+	
+	after = {
+		trigger_event = {
+			id = qfe_quest.008
+			
+		}
+		
+	}
+}
+
+qfe_quest.051 = { # Imladris Map - Elrond Pov
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.051.t
+	desc = qfe_quest.051.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_rivendell
+	}
+	
+	left_portrait = {
+		character = character:lineofdurin83
+		animation = admiration
+	}
+	right_portrait = {
+		character = character:lineofelrond1
+		animation = chaplain
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.051.a
+		
+		increase_quest_points_2 = yes
+		
+		
+	}
+	option = {
+		name = qfe_quest.051.b
+		decrease_quest_points = yes
+		
+	}
+	
+	after = {
+		
+		
+	}
+}
+
+qfe_quest.008 = { # Rivendell Routing
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.008.t
+	desc = qfe_quest.008.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_rivendell
+	}
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+
+	option = {
+		name = qfe_quest.008.a
+		start_travel_plan = {
+			
+			destination = title:c_front_porch.title_province
+			destination = title:c_beornsele.title_province
+			
+			on_arrival_event = qfe_quest.009
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = beorn_journey
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.008.b
+		start_travel_plan = {
+			
+			destination = title:c_west_hall.title_province
+			destination = title:c_durins_hall.title_province
+			
+			on_arrival_event = qfe_quest.076
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = moria_journey
+		custom_tooltip = moria_journey_warning
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	
+	after = {
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		
+	}
+}
+
+qfe_quest.009 = { # Goblin Town
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.009.t
+	desc = qfe_quest.009.desc
+	theme = dwarven
+	override_background = {
+		reference = market_goblin
+	}
+	
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	right_portrait = {
+		character = title:d_goblin_town.holder
+		animation = aggressive_sword
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.009.a
+		duel = {
+			skill = martial
+			value = 10
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.009.a.sucess
+				}
+				custom_tooltip = qfe_quest.009.a.sucess
+				start_travel_plan = {
+					destination = title:c_goblin_gate.title_province
+					destination = title:c_beornsele.title_province
+			
+					on_arrival_event = qfe_quest.012
+			
+					return_trip = no
+					players_use_planner = no
+					on_arrival_destinations = all_but_last
+				}
+				increase_quest_points = yes
+			}
+			75 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.009.a.failure
+					
+				}
+				custom_tooltip = qfe_quest.009.a.failure
+				decrease_quest_points_2 = yes
+				start_travel_plan = {
+					destination = title:c_goblin_gate.title_province
+					destination = title:c_beornsele.title_province
+			
+					on_arrival_event = qfe_quest.011
+			
+					return_trip = no
+					players_use_planner = no
+					on_arrival_destinations = all_but_last
+				}
+				trigger_event = {
+					id = qfe_quest.017
+					days = 1
+				}
+				if = {
+					limit = {
+						is_target_in_global_variable_list = {
+							name = thorin_company
+							target = character:lineofbaggins12
+						}
+					}
+					trigger_event = {
+						id = qfe_quest.010
+						days = 2
+					}
+				}
+			}
+		}
+		
+		
+		
+	}
+	
+	after = {
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		
+	}
+}
+
+qfe_quest.017 = { # Insert 1, gandalf kills the great goblin
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.017.t
+	desc = qfe_quest.017.desc
+	theme = dwarven
+	override_background = {
+		reference = market_goblin
+	}
+	
+	left_portrait = {
+		character = character:lineofgandalf
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = title:d_goblin_town.holder
+		animation = threatening
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.017.a
+		show_as_tooltip = {
+			character:lineofgandalf = {
+			duel = {
+				skill = prowess
+				target = title:d_goblin_town.holder
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					root = {
+						send_interface_toast = {	
+							title = qfe_quest.017.a.sucess
+						}
+						custom_tooltip = qfe_quest.017.a.sucess
+					}
+					title:d_goblin_town.holder = {
+						death = { 
+							killer = character:lineofgandalf 
+							death_reason = death_duel 
+						}
+					}
+					increase_quest_points = yes
+				}
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					root = {
+						send_interface_toast = {	
+							title = qfe_quest.017.a.failure
+						}
+						custom_tooltip = qfe_quest.017.a.failure
+						death = { 
+								killer = title:d_goblin_town.holder
+								death_reason = death_duel
+							}
+					}
+					root.current_travel_plan = {
+						every_entourage_character = {
+							death = { 
+								killer = title:d_goblin_town.holder
+								death_reason = death_duel
+							}
+						}
+					}
+					
+				}
+			}
+		}
+			
+		}
+		hidden_effect = {
+			increase_quest_points = yes
+			kill_great_goblin = yes
+			send_interface_toast = {	
+				title = qfe_quest.017.a.sucess
+			}
+		}
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.010 = { # riddles in the dark
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.010.t
+	desc = qfe_quest.010.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_underground
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	
+	left_portrait = {
+		character = character:lineofbaggins12
+		animation = fear
+	}
+	right_portrait = {
+		character = character:lineofgollum3
+		animation = rage
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	immediate = {
+		random_artifact = {
+			limit = {
+				has_variable = one_ring
+			}
+			save_scope_as = artifact1
+		}
+		scope:artifact1 = {
+			set_owner = character:lineofbaggins12
+		}
+	}
+
+	option = {
+		name = qfe_quest.010.a
+		skill = learning
+		character:lineofbaggins12 = {
+			duel = {
+				skill = learning
+				target = character:lineofgollum3
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.010.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.010.a.sucess
+					}
+					increase_quest_points_3 = yes
+					
+					
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.010.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.010.a.failure
+					}
+					death = { 
+						killer = character:lineofgollum3 
+						death_reason = death_duel 
+					}
+					decrease_quest_points_2 = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.010.b
+		skill = intrigue
+		character:lineofbaggins12 = {
+			duel = {
+				skill = intrigue
+				target = character:lineofgollum3
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.010.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.010.a.sucess
+					}
+					increase_quest_points_3 = yes
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.010.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.010.a.failure
+					}
+					death = { 
+						killer = character:lineofgollum3 
+						death_reason = death_duel 
+					}
+					decrease_quest_points_2 = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.010.c
+		skill = prowess
+		character:lineofbaggins12 = {
+			duel = {
+				skill = prowess
+				target = character:lineofgollum3
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.010.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.010.a.sucess
+					}
+					character:lineofgollum3 = {
+						death = { 
+							killer = character:lineofbaggins12 
+							death_reason = death_duel 
+						}
+					}
+					increase_quest_points_3 = yes
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.010.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.010.a.failure
+					}
+					death = { 
+						killer = character:lineofgollum3 
+						death_reason = death_duel 
+					}
+					decrease_quest_points_2 = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.011 = { # Escape Goblin Town
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.011.t
+	desc = qfe_quest.011.desc
+	theme = dwarven
+	override_background = {
+		reference = eagles
+	}
+	
+	
+	widgets = {
+		widget = {
+			gui = "event_window_widget_vfx_heavy_smoke"
+			container = "foreground_shader_vfx_container"
+		}
+		widget = {
+			gui = "qfe_quest_for_erebor"
+			container = "custom_widgets_container"
+		}
+	}
+	
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	right_portrait = {
+		character = title:d_goblin_town.holder
+		animation = aggressive_sword
+	}
+	
+	
+
+	option = {
+		name = qfe_quest.011.a
+		decrease_quest_points = yes
+		
+	}
+	
+	after = {
+		set_location = province:4102
+		start_travel_plan = {
+			
+			
+			destination = title:c_beornsele.title_province
+			destination = title:c_aradhrynd.title_province
+			
+			on_arrival_event = qfe_quest.012
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		custom_tooltip = eagles_are_coming
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.012 = { # Beorn Routing
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.012.t
+	desc = qfe_quest.012.desc
+	theme = dwarven
+	override_background = {
+		reference = daen_tavern
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+	right_portrait = {
+		character = character:lineofbeorn1
+		animation = personality_honorable
+	}
+	
+	immediate = {
+		increase_quest_points = yes
+	}
+	
+	
+
+	option = {
+		name = qfe_quest.012.a
+		custom_tooltip = elvenroad_journey
+		start_travel_plan = {
+			
+			
+			destination = title:c_amarthrynd.title_province
+			destination = title:c_aradhrynd.title_province
+			
+			on_arrival_event = qfe_quest.013
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.012.b
+		custom_tooltip = forest_road_journey
+		start_travel_plan = {
+			
+			
+			destination = title:c_enedhmen_i_naugrim.title_province
+			destination = title:c_esgaroth.title_province
+			
+			on_arrival_event = qfe_quest.060
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.012.c
+		custom_tooltip = grey_mountain_journey
+		start_travel_plan = {
+			
+			
+			destination = title:c_nordinbad.title_province
+			destination = title:c_throne_of_erebor.title_province
+			
+			on_arrival_event = qfe_quest.061
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		trigger_event = {
+			id = qfe_quest.19
+			days = 1
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.019 = { # insert 3 Gandalf leaving
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.019.t
+	desc = qfe_quest.019.desc
+	theme = dwarven
+	override_background = {
+		reference = plains
+	}
+	
+	
+	left_portrait = {
+		character = character:lineofgandalf
+		animation = holding_staff
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.019.a
+		
+		
+	}
+	option = {
+		name = qfe_quest.019.b
+		set_player_character = character:lineofgandalf
+		
+	}
+	
+	after = {
+		character:lineofgandalf = {
+			set_location = province:3158
+			remove_list_global_variable = {
+				name = thorin_company
+				target = character:lineofgandalf
+			}
+			domicile = { move_domicile = province:3158 }
+			trigger_event = {
+				id = qfe_quest.090
+				days = 1
+			}
+		}
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.013 = { # Mirkwood Spiders
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.013.t
+	desc = qfe_quest.013.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_forest_deep
+	}
+	
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = character:lineofbaggins12
+		animation = aggressive_sword
+	}
+	
+	
+	lower_left_portrait = {
+		character = scope:dwarfperil1
+		animation = war_over_loss
+	}
+	lower_center_portrait = {
+		character = scope:dwarfperil2
+		animation = war_over_loss
+	}
+	lower_right_portrait = {
+		character = scope:dwarfperil3
+		animation = war_over_loss
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		current_travel_plan = {
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil2
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil1
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil2
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil2
+					}
+				}
+				save_scope_as = dwarfperil3
+			}
+			decrease_quest_points = yes
+		}
+	}
+
+	option = {
+		trigger = {
+			is_target_in_global_variable_list = {
+				name = thorin_company
+				target = character:lineofbaggins12
+			}
+		}
+		name = qfe_quest.013.a
+		character:lineofbaggins12 = {
+			duel = {
+				skill = intrigue
+				value = 10
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.sucess
+					}
+					
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.failure
+					}
+					root = {
+						death = { 
+							death_reason = death_mysterious 
+						}
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { 
+									death_reason = death_mysterious 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.013.b
+		root = {
+			duel = {
+				skill = prowess
+				value = 40
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.sucess
+					}
+					
+					decrease_quest_points = yes
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.failure
+					}
+					root = {
+						death = { 
+							death_reason = death_mysterious 
+						}
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { 
+									death_reason = death_mysterious 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			
+			
+			destination = title:c_aradhrynd.title_province
+			destination = title:c_esgaroth.title_province
+			on_arrival_event = qfe_quest.014
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.014 = { # Thranduls halls 
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.014.t
+	desc = qfe_quest.014.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_thranduils_halls
+	}
+	
+	left_portrait = {
+		character = root
+		animation = beg
+	}
+	right_portrait = {
+		character = character:lineoforopher3
+		animation = personality_callous
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.014.a
+		trigger = {
+			character:lineoforopher3 = {
+				is_ai = yes
+			}
+		}
+		increase_quest_points = yes
+		set_global_variable = { name = qfe_thranduil_aid value = 1 }
+		custom_tooltip = thranduil_aid
+		
+		custom_tooltip = laketown_journey
+		start_travel_plan = {
+			destination = title:c_esgaroth.title_province
+			destination = title:c_throne_of_erebor.title_province
+			on_arrival_event = qfe_quest.015
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.014.b
+		trigger = {
+			character:lineoforopher3 = {
+				is_ai = yes
+			}
+		}
+		decrease_quest_points_2 = yes
+		save_scope_as = dwarfperil
+				character:lineoforopher3 = {
+					imprison = {
+						target = scope:dwarfperil
+						type = dungeon
+					}
+				}
+		current_travel_plan = {
+			every_entourage_character = {
+				limit = {
+					NOT = { This = character:lineofbaggins12 } 
+				}
+				save_scope_as = dwarfperil
+				character:lineoforopher3 = {
+					imprison = {
+						target = scope:dwarfperil
+						type = dungeon
+					}
+				}
+			}
+		}
+		trigger_event = {
+			id = qfe_quest.018
+			days = 1
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.014.c
+		trigger = {
+			character:lineoforopher3 = {
+				is_ai = no
+			}
+		}
+		character:lineoforopher3 = {
+			trigger_event = {
+				id = qfe_quest.052
+				
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.052 = { # Thranduls halls - Thranduil POV
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.052.t
+	desc = qfe_quest.052.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_thranduils_halls
+	}
+	
+	left_portrait = {
+		character = character:lineofdurin83
+		animation = beg
+	}
+	right_portrait = {
+		character = character:lineoforopher3
+		animation = personality_callous
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.052.a
+		duel = {
+			skill = diplomacy
+			target = character:lineofdurin83
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.052.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.052.a.sucess
+				}
+				increase_quest_points = yes
+				set_global_variable = { name = qfe_thranduil_aid value = 1 }
+				
+				character:lineofdurin83 = {
+					start_travel_plan = {
+						destination = title:c_esgaroth.title_province
+						destination = title:c_throne_of_erebor.title_province
+						on_arrival_event = qfe_quest.015
+						
+						return_trip = no
+						players_use_planner = no
+						on_arrival_destinations = all_but_last
+					}
+				}
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				decrease_quest_points_2 = yes
+				character:lineofdurin83 = {
+					save_scope_as = dwarfperil
+							character:lineoforopher3 = {
+								imprison = {
+									target = scope:dwarfperil
+									type = dungeon
+								}
+							}
+					current_travel_plan = {
+						every_entourage_character = {
+							limit = {
+								NOT = { This = character:lineofbaggins12 } 
+							}
+							save_scope_as = dwarfperil
+							character:lineoforopher3 = {
+								imprison = {
+									target = scope:dwarfperil
+									type = dungeon
+								}
+							}
+						}
+					}
+				
+					trigger_event = {
+						id = qfe_quest.018
+						days = 1
+					}
+				}
+				send_interface_toast = {	
+					title = qfe_quest.052.a.failure
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.052.a.failure
+				}
+				
+			}
+		}
+		
+		
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.052.b
+		decrease_quest_points_2 = yes
+		character:lineofdurin83 = {
+			save_scope_as = dwarfperil
+					character:lineoforopher3 = {
+						imprison = {
+							target = scope:dwarfperil
+							type = dungeon
+						}
+					}
+			current_travel_plan = {
+				every_entourage_character = {
+					limit = {
+						NOT = { This = character:lineofbaggins12 } 
+					}
+					save_scope_as = dwarfperil
+					character:lineoforopher3 = {
+						imprison = {
+							target = scope:dwarfperil
+							type = dungeon
+						}
+					}
+				}
+			}
+		
+			trigger_event = {
+				id = qfe_quest.018
+				days = 1
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.018 = { # Insert 2 Barrel Riding
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.018.t
+	desc = qfe_quest.018.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_thranduils_halls
+	}
+	
+	left_portrait = {
+		character = character:lineoforopher3
+		animation = drink_goblet
+	}
+	right_portrait = {
+		character = character:lineofbaggins12
+		animation = spymaster
+	}
+	lower_center_portrait = {
+		character = root
+		animation = shock
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.018.a
+		trigger = {
+			is_target_in_global_variable_list = {
+				name = thorin_company
+				target = character:lineofbaggins12
+			}
+		}
+		character:lineofbaggins12 = {
+			duel = {
+				skill = intrigue
+				target = character:lineoforopher3
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.018.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.018.a.sucess
+					}
+					
+					root = {
+						release_from_prison = yes
+						every_in_global_list = {
+							variable = thorin_company
+							limit = {
+								is_imprisoned = yes
+							}
+							release_from_prison = yes
+						}
+						custom_tooltip = laketown_journey
+						increase_quest_points = yes
+						set_location = province:3397
+						start_travel_plan = {
+							destination = title:c_esgaroth.title_province
+							destination = title:c_throne_of_erebor.title_province
+							on_arrival_event = qfe_quest.015
+							
+							return_trip = no
+							players_use_planner = no
+							on_arrival_destinations = all_but_last
+						}
+					}
+					character:lineoforopher3 = {
+						trigger_event = {
+							id = qfe_quest.053
+						}
+					}
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.018.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.018.a.failure
+					}
+					
+				}
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.018.b
+		
+		
+			duel = {
+				skill = intrigue
+				target = character:lineoforopher3
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.018.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.018.a.sucess
+					}
+					root = {
+						release_from_prison = yes
+						every_in_global_list = {
+							variable = thorin_company
+							limit = {
+								is_imprisoned = yes
+							}
+							release_from_prison = yes
+						}
+						custom_tooltip = laketown_journey
+						increase_quest_points = yes
+						start_travel_plan = {
+							destination = title:c_esgaroth.title_province
+							destination = title:c_throne_of_erebor.title_province
+							on_arrival_event = qfe_quest.015
+							
+							return_trip = no
+							players_use_planner = no
+							on_arrival_destinations = all_but_last
+						}
+					}
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.018.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.018.a.failure
+					}
+					
+				}
+			}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.053 = { # Barrel riding thranduil pov
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.053.t
+	desc = qfe_quest.053.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_thranduils_halls
+	}
+	
+	left_portrait = {
+		character = character:lineoforopher3
+		animation = shock
+	}
+	right_portrait = {
+		character = character:lineofdurin83
+		animation = chess_cocky
+	}
+	lower_left_portrait = {
+		character = character:lineoforopher6
+		animation = marshal
+	}
+	lower_right_portrait = {
+		character = character:lineofbaggins12
+		animation = assassin
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.053.a
+		
+		
+		
+		
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.015 = { # Lake Town
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.015.t
+	desc = qfe_quest.015.desc
+	theme = dwarven
+	override_background = {
+		reference = laketown
+	}
+	
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+	right_portrait = {
+		character = title:c_esgaroth.holder
+		animation = drink
+	}
+	lower_center_portrait = {
+		character = character:lineofdale46
+		animation = drink
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.015.a
+		increase_quest_points = yes
+		
+	}
+	
+	after = {
+		
+		title:c_esgaroth.holder = {
+			trigger_event = {
+				id = qfe_quest.054
+				
+			}
+		}
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			destination = title:c_throne_of_erebor.title_province
+			destination = title:c_arkenhalls.title_province
+			on_arrival_event = qfe_quest.016
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = erebor_journey
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.054 = { # esgoroth warning
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.054.t
+	desc = qfe_quest.054.desc
+	theme = dwarven
+	override_background = {
+		reference = laketown
+	}
+	
+	left_portrait = {
+		character = title:c_esgaroth.holder
+		animation = worry
+	}
+	right_portrait = {
+		character = character:lineofdurin83
+		animation = acknowledging
+	}
+	lower_center_portrait = {
+		character = character:lineofdale46
+		animation = toast_goblet
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.054.a
+		
+		
+		
+		
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.016 = { # Erebor
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.016.t
+	desc = qfe_quest.016.desc
+	theme = dwarven
+	
+	
+	left_portrait = {
+		character = root
+		animation = personality_vengeful
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.016.a
+		save_scope_as = smaugattacker
+		custom_tooltip = root_attacker
+		
+		#reclaim_erebor = yes
+	}
+	option = {
+		name = qfe_quest.016.b
+		trigger = {
+			is_target_in_global_variable_list = {
+				name = thorin_company
+				target = character:lineofbaggins12
+			}
+		}
+		character:lineofbaggins12 = {
+			save_scope_as = smaugattacker
+		}
+		custom_tooltip = bilbo_attacker
+		
+		#reclaim_erebor = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		trigger_event = {
+			id = qfe_quest.20
+			
+		}
+		hidden_effect = {
+				current_travel_plan = {
+					delay_travel_plan = { days = 60 }
+				}
+			}
+	}
+}
+
+
+### Final Fight
+
+qfe_quest.020 = { # Sleeping Dragons
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.020.t
+	desc = qfe_quest.020.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = scope:smaugattacker
+		animation = scheme
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		set_global_variable = { 
+			name = qfe_quest_diff 
+			value = {
+				add = 30
+				subtract = global_var:qfe_quest_points
+			}
+		}
+		
+	}
+
+	option = {
+		name = qfe_quest.020.a
+		
+		scope:smaugattacker = {
+			duel = {
+				skill = intrigue
+				value = global_var:qfe_quest_diff
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.020.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.020.a.sucess
+					}
+					root = {
+						trigger_event = { 
+							id = qfe_quest.027
+						}
+					}
+				}
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.020.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.020.a.failure
+					}
+					root = {
+						trigger_event = { 
+							id = qfe_quest.021
+						}
+					}
+				}
+			}
+		}
+	
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.021 = { # Flatter him
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.021.t
+	desc = qfe_quest.021.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = scope:smaugattacker
+		animation = debating
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		name = qfe_quest.021.a
+		
+		root = {			
+			trigger_event = { 
+				id = qfe_quest.022
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.021.b
+		
+		root = {			
+			trigger_event = { 
+				id = qfe_quest.024
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.022 = { # Run Away
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.022.t
+	desc = qfe_quest.022.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = scope:smaugattacker
+		animation = fear
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		name = qfe_quest.022.a
+		
+		scope:smaugattacker = {
+			duel = {
+				skill = intrigue
+				value = global_var:qfe_quest_diff
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.022.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.022.a.sucess
+					}
+					
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.022.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.022.a.failure
+					}
+					death = { 
+						death_reason = death_burned 
+					}
+					if = {
+						limit = {
+							root = {
+								has_character_flag = final_battle
+							}
+						}
+						root = {
+							death = { 
+								death_reason = death_burned 
+							}
+							current_travel_plan = {
+								every_entourage_character = {
+									limit = {
+										Not = { this = scope:smaugattacker }
+									}
+									death = { 
+										death_reason = death_burned 
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	
+	}
+	
+	after = {
+		title:k_durins_folk.holder = {			
+			trigger_event = { 
+				id = qfe_quest.023
+			}
+		}
+		custom_tooltip = attack_laketown
+	}
+}
+
+qfe_quest.023 = { # What have we done
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.023.t
+	desc = qfe_quest.023.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_arrive
+	}
+	
+	
+	left_portrait = {
+		character = scope:smaugattacker
+		animation = shock
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		name = qfe_quest.023.a
+		custom_tooltip = attack_laketown
+		
+		title:c_esgaroth.holder = {
+			trigger_event = { 
+				id = qfe_quest.028
+			}
+		}
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.024 = { # Full Party Fight
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.024.t
+	desc = qfe_quest.024.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		add_character_flag = final_battle
+		
+	}
+
+	option = {
+		name = qfe_quest.024.a
+		
+		
+			duel = {
+				skills = { prowess martial }
+				value = global_var:qfe_quest_diff
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.024.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.024.a.sucess
+					}
+					
+					current_travel_plan = {
+						random_entourage_character = {
+							save_scope_as = dragonslayer
+						}
+						while = {
+							count = 3
+							random_entourage_character = {
+								limit = {
+									not = { this = scope:dragonslayer }
+								}
+								increase_wounds_effect = { REASON = wild_animal }
+							}
+						}
+						
+					}
+					root = {			
+						trigger_event = { 
+							id = qfe_quest.025
+						}
+					}
+					
+				}
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.024.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.024.a.failure
+					}
+					root = {			
+						trigger_event = { 
+							id = qfe_quest.022
+						}
+						current_travel_plan = {
+							while = {
+								count = 3
+								random_entourage_character = {
+									death = { 
+										death_reason = death_burned 
+									}
+								}
+							}
+							every_entourage_character = {
+								increase_wounds_effect = { REASON = wild_animal }
+							}
+						}
+					}
+				}
+			}
+		
+	
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.025 = { # Smaugs dead
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.025.t
+	desc = qfe_quest.025.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = scope:dragonslayer
+		animation = celebrate_sword
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		scope:dragonslayer = {
+			give_nickname = nick_dragonlayer
+			add_prestige = 10000
+		}
+		
+	}
+
+	option = {
+		name = qfe_quest.025.a
+		add_prestige = 1000
+		
+		reclaim_erebor = yes
+		title:c_esgaroth.holder = {
+			trigger_event = { 
+				id = qfe_quest.028
+			}
+		}
+	
+	}
+	
+	after = {
+		current_travel_plan = {
+			abort_travel_plan = yes
+		}
+		set_location_to_default = yes
+	}
+}
+
+qfe_quest.026 = { # Sneak Attack
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.026.t
+	desc = qfe_quest.026.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = scope:smaugattacker
+		animation = assassin
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		name = qfe_quest.026.a
+		
+		
+			duel = {
+				skills = { prowess intrigue }
+				value = global_var:qfe_quest_diff
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.024.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.024.a.sucess
+					}
+					root = {			
+						trigger_event = { 
+							id = qfe_quest.025
+						}
+					}
+					scope:smaugattacker = {
+						save_scope_as = dragonslayer
+					}
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.024.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.024.a.failure
+					}
+					root = {			
+						trigger_event = { 
+							id = qfe_quest.022
+						}
+					}
+				}
+			}
+		
+	
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.027 = { # Weakpoint found
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.027.t
+	desc = qfe_quest.027.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = scope:smaugattacker
+		animation = personality_vengeful
+	}
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		name = qfe_quest.027.a
+		
+		root = {			
+			trigger_event = { 
+				id = qfe_quest.026
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.027.b
+		
+		root = {			
+			trigger_event = { 
+				id = qfe_quest.024
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.028 = { # Smaug Attacks Laketown
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.028.t
+	desc = qfe_quest.028.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	right_portrait = {
+		character = character:lineofdale46
+		animation = hunting_longbow_aim_arrow_default
+	}
+	
+	
+	
+	
+	immediate = {
+		title:c_esgaroth = {
+			change_development_level = -10
+			
+		}
+		add_gold = -500
+	}
+
+	option = {
+		name = qfe_quest.028.a
+		character:lineofdale46 = {
+			show_as_tooltip = {
+				duel = {
+					skills = { prowess martial }
+					value = 50
+					25 = {
+						compare_modifier = {
+							value = scope:duel_value
+							multiplier = 1
+						}
+						min = 5
+						send_interface_toast = {	
+							title = qfe_quest.028.a.sucess
+							
+						}
+						custom_tooltip = {
+							text = qfe_quest.028.a.sucess
+						}
+						
+						give_nickname = nick_dragonslayer
+						add_prestige = 10000 
+						
+					}
+					75 = {
+						compare_modifier = {
+							value = scope:duel_value
+							multiplier = -1
+						}
+						send_interface_toast = {	
+							title = qfe_quest.028.a.failure
+							
+						}
+						custom_tooltip = {
+							text = qfe_quest.028.a.failure
+						}
+						
+					}
+				}
+			}
+			hidden_effect = {
+				
+				character:lineofdurin83 = {
+					reclaim_erebor = yes
+				}
+				
+			}
+		}
+		
+	
+	}
+	
+	
+	after = {
+		trigger_event = { 
+			id = qfe_quest.029
+		}
+	}
+} 
+
+qfe_quest.029 = { # King Bard
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.029.t
+	desc = qfe_quest.029.desc
+	theme = crown
+	override_background = {
+		reference = laketown
+	}
+	
+	
+	
+	left_portrait = {
+		character = character:lineofdale46
+		animation = war_over_win
+	}
+	
+	
+	
+	
+	immediate = {
+		character:lineofdale46 = {
+			bard_set_up = yes
+		}
+	}
+
+	option = {
+		name = qfe_quest.029.a
+		
+		
+	
+	}
+	option = {
+		name = qfe_quest.029.b
+		set_player_character = character:lineofdale46
+		
+	
+	}
+	
+	
+	after = {
+		every_independent_ruler = { 
+			limit = { 
+				any_sub_realm_county = {
+					kingdom = title:k_dale
+				}
+				primary_title = {
+					tier < tier_kingdom
+				}
+			}
+			trigger_event = { 
+				id = qfe_quest.031
+				days = 1
+			}
+		}
+		character:lineofdale46 = {
+			trigger_event = { 
+				id = qfe_quest.032
+				days = 1
+			}
+		}
+	}
+}
+
+### News event about Smaugs Death
+
+qfe_quest.30 = { # 
+	content_source = realms_dlc
+	type = character_event
+	window = fullscreen_event
+	title = qfe_quest.30.t
+	desc = qfe_quest.30.desc
+	theme = dwarven 
+	override_background = { 
+		reference = smaug_death 
+	}
+	
+	
+	
+	immediate = { 
+		
+	}
+
+	option = { 
+		name = qfe_quest.30.a # This suckss
+		trigger = {
+			faith_is_good = yes
+		}
+	}
+	option = { 
+		name = qfe_quest.30.b # All hail the Dark Lord!
+		trigger = {
+			faith_is_evil = yes
+		}
+	}
+	option = { 
+		name = qfe_quest.30.c # Let's see what comes of this
+		trigger = {
+			faith_is_neutral = yes
+		}
+	}
+}
+
+### Bard Event Chain
+
+qfe_quest.031 = { # dale set up
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.031.t
+	desc = qfe_quest.031.desc
+	theme = crown
+	override_background = {
+		reference = laketown
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = war_over_win
+	}
+	
+	right_portrait = {
+		character = character:lineofdale46
+		animation = war_over_win
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.031.a
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = change
+		}
+		change_liege = {
+			liege = title:k_dale.holder
+			change = scope:change
+		 }
+		resolve_title_and_vassal_change = scope:change
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.031.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.032 = { # Bard Intro
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.032.t
+	desc = qfe_quest.032.desc
+	theme = realm
+	override_background = {
+		reference = dale
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.032.a
+		
+		start_travel_plan = {
+			destination = title:c_throne_of_erebor.title_province
+			
+			on_arrival_event = qfe_quest.033
+			
+			return_trip = yes
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = erebor_journey
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.032.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.033 = { # ask Thorin for money
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.033.t
+	desc = qfe_quest.033.desc
+	theme = realm
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = beg
+	}
+	right_portrait = {
+		character = title:k_erebor.holder
+		animation = thinking
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.033.a
+		trigger = {
+			title:k_erebor.holder = {
+				is_ai = yes
+			}
+		}
+		
+		duel = {
+			skills = { diplomacy }
+			target = title:k_erebor.holder
+			33 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 5
+				}
+				min = 5
+				send_interface_toast = {	
+					title = qfe_quest.033.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.033.a.sucess
+				}
+				
+				save_scope_value_as = {
+					name = gold_amount
+					value = {
+						add = global_var:qfe_erebor_horde
+						divide = 10
+					}
+				}
+				add_gold = scope:gold_amount
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					multiply = 0.9
+				}
+				custom_tooltip = bard_share_tooltip
+				
+			}
+			34 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 5
+				}
+				min = 5
+				send_interface_toast = {	
+					title = qfe_quest.033.a.sucess2
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.033.a.sucess2
+				}
+				
+				save_scope_value_as = {
+					name = gold_amount
+					value = {
+						add = global_var:qfe_erebor_horde
+						divide = 20
+					}
+				}
+				add_gold = scope:gold_amount
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					subtract = scope:gold_amount
+				}
+				custom_tooltip = bard_share_tooltip2
+				
+			}
+			33 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -5
+				}
+				send_interface_toast = {	
+					title = qfe_quest.033.a.failure
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.033.a.failure
+				}
+				
+			}
+		}
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.033.b
+		trigger = {
+			title:k_erebor.holder = {
+				is_ai = no
+			}
+		}
+		
+		title:k_erebor.holder = {
+			trigger_event = { 
+				id = qfe_quest.034
+				
+			}
+		}
+		
+		
+		ai_chance = {
+			base = 10000 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.034 = { # Thorin Decides on gold
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.034.t
+	desc = qfe_quest.034.desc
+	theme = realm
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = title:k_dale.holder
+		animation = beg
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.034.a
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.034.b
+		
+		title:k_dale.holder = {
+		
+			save_scope_value_as = {
+					name = gold_amount
+					value = {
+						add = global_var:qfe_erebor_horde
+						divide = 10
+					}
+				}
+				add_gold = scope:gold_amount
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					multiply = 0.9
+				}
+				custom_tooltip = bard_share_tooltip
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	option = {
+		name = qfe_quest.034.c
+		
+		title:k_dale.holder = {
+		save_scope_value_as = {
+					name = gold_amount
+					value = {
+						add = global_var:qfe_erebor_horde
+						divide = 20
+					}
+				}
+				add_gold = scope:gold_amount
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					subtract = scope:gold_amount
+				}
+				custom_tooltip = bard_share_tooltip2
+				}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.035 = { # Thranduil Intro
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.035.t
+	desc = qfe_quest.035.desc
+	theme = realm
+	
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = personality_greedy
+	}
+	
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.035.a
+		
+		start_travel_plan = {
+			destination = title:c_throne_of_erebor.title_province
+			
+			on_arrival_event = qfe_quest.036
+			
+			return_trip = yes
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = erebor_journey
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.035.b
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.036 = { # thranduil ask Thorin for money
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.036.t
+	desc = qfe_quest.036.desc
+	theme = realm
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = beg
+	}
+	right_portrait = {
+		character = title:k_erebor.holder
+		animation = thinking
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.036.a
+		trigger = {
+			title:k_erebor.holder = {
+				is_ai = yes
+			}
+		}
+		
+		duel = {
+			skills = { diplomacy }
+			target = title:k_erebor.holder
+			75 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				modifier = { # Game Rule
+					global_var:qfe_thranduil_aid = 1
+					add = 1000
+				}
+				
+				min = 5
+				send_interface_toast = {	
+					title = qfe_quest.036.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.036.a.sucess
+				}
+				
+				save_scope_value_as = {
+					name = gold_amount
+					value = {
+						add = 2000
+						
+					}
+				}
+				add_gold = scope:gold_amount
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					subtract = 2000
+				}
+				custom_tooltip = elf_share_tooltip
+				
+			}
+			
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -1
+				}
+				send_interface_toast = {	
+					title = qfe_quest.036.a.failure
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.036.a.failure
+				}
+				
+			}
+		}
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.036.b
+		trigger = {
+			title:k_erebor.holder = {
+				is_ai = no
+			}
+		}
+		
+		title:k_erebor.holder = {
+			trigger_event = { 
+				id = qfe_quest.037
+				
+			}
+		}
+		
+		
+		ai_chance = {
+			base = 10000 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.037 = { # Thorin Decides on gold
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.037.t
+	desc = qfe_quest.037.desc
+	theme = realm
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = character:lineoforopher3
+		animation = personality_greedy
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.037.a
+		trigger = {
+			NOT = { global_var:qfe_thranduil_aid = 1 }
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.037.b
+		
+		character:lineoforopher3 = {
+		
+			save_scope_value_as = {
+					name = gold_amount
+					value = {
+						add = 2000
+						
+					}
+				}
+				add_gold = scope:gold_amount
+				change_global_variable = { 
+					name = qfe_erebor_horde 
+					subtract = 2000
+				}
+				custom_tooltip = elf_share_tooltip
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			modifier = { # Game Rule
+				global_var:qfe_thranduil_aid = 1
+				add = 1000
+			}
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.038 = { # King Bard
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.038.t
+	desc = qfe_quest.038.desc
+	theme = crown
+	override_background = {
+		reference = dale
+	}
+	
+	
+	
+	left_portrait = {
+		character = character:lineofdale46
+		animation = war_over_win
+	}
+	
+	
+	
+	
+	immediate = {
+		character:lineofdale46 = {
+			bard_set_up_dragonless = yes
+		}
+	}
+
+	option = {
+		name = qfe_quest.038.a
+		
+		
+	
+	}
+	option = {
+		name = qfe_quest.038.b
+		set_player_character = character:lineofdale46
+		
+	
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+### Sauron/orc Events
+
+qfe_quest.040 = { # Sauron Ping on Smaug death
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.040.t
+	desc = qfe_quest.040.desc
+	theme = death
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	lower_right_portrait = {
+		character = title:k_gundabad.holder
+		animation = marshal
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.040.a
+		
+		title:k_gundabad.holder = {
+			trigger_event = { 
+				id = qfe_quest.041
+				days = 30
+			}
+		}
+		custom_tooltip = march_on_erebor
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.040.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.041 = { # Bolg Orders
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.041.t
+	desc = qfe_quest.041.desc
+	theme = war
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.041.a
+		
+		battle_five_armies_war_set_up = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.041.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.042 = { # Bolg Orders
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.042.t
+	desc = qfe_quest.042.desc
+	theme = war
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = title:k_gundabad.holder
+		animation = marshal
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.042.a
+		
+		title:k_gundabad.holder = {
+			every_character_war = {
+				
+				add_attacker = root
+			
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.042.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.043 = { # save erebor
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.043.t
+	desc = qfe_quest.043.desc
+	theme = war
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = title:k_erebor.holder
+		animation = marshal
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.043.a
+		
+		title:k_erebor.holder = {
+			every_character_war = {
+				
+				add_defender = root
+			
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.043.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.044 = { # notification for thorin
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.044.t
+	desc = qfe_quest.044.desc
+	theme = war
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = title:k_gundabad.holder
+		animation = aggressive_sword
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.044.a
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.045 = { # Dispurse the hoard
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.045.t
+	desc = qfe_quest.045.desc
+	theme = stewardship_wealth_focus
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = personality_greedy
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.045.a
+		if = {
+			limit = {
+				this = character:lineofdurin83
+			}
+			thorin_company_end_effect = yes 
+		}
+		else = {
+			dispurse_horde_effect = yes
+		}
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		if = {
+			limit = {
+				is_target_in_global_variable_list = {
+					name = thorin_company
+					target = character:lineofbaggins12
+				}
+			}
+			trigger_event = {
+				id = qfe_quest.046
+				days = 1
+			}
+		}
+	}
+}
+
+qfe_quest.046 = { # Dispurse the hoard
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.046.t
+	desc = qfe_quest.046.desc
+	theme = ring_quest
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = character:lineofbaggins12
+		animation = holding_staff
+	}
+	
+	
+	
+	
+	immediate = {
+		character:lineofbaggins12 = {
+			give_nickname = nick_luckwearer
+		}
+	}
+
+	option = {
+		name = qfe_quest.046.a
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.046.b
+		set_player_character = character:lineofbaggins12
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.047 = { # Necromancers Aid
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.047.t
+	desc = qfe_quest.047.desc
+	theme = war
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = marshal
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.047.a
+		
+		custom_tooltip = {
+			text = wormways
+			every_character_war = {
+				every_war_attacker = {
+					every_army = {
+						set_army_location = province:3616
+					}
+				}
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.047.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.048 = { # Arkenstone
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.048.t
+	desc = qfe_quest.048.desc
+	theme = dwarven
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = stunned
+	}
+	
+	
+	
+	
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	
+	
+	immediate = {
+		create_artifact_arkenstone_effect = { OWNER = this }
+		scope:newly_created_artifact = {
+			save_scope_as = artifact1
+		}
+		
+		
+	}
+	
+
+	option = {
+		name = qfe_quest.048.a
+		
+		
+		
+		
+		
+	}
+	
+	after = {
+		
+	}
+}
+
+### Alternate Routes
+
+qfe_quest.060 = { # Mirkwood Spiders
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.013.t
+	desc = qfe_quest.013.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_forest_deep
+	}
+	
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = character:lineofbaggins12
+		animation = aggressive_sword
+	}
+	
+	
+	lower_left_portrait = {
+		character = scope:dwarfperil1
+		animation = war_over_loss
+	}
+	lower_center_portrait = {
+		character = scope:dwarfperil2
+		animation = war_over_loss
+	}
+	lower_right_portrait = {
+		character = scope:dwarfperil3
+		animation = war_over_loss
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		current_travel_plan = {
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil2
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil1
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil2
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil2
+					}
+				}
+				save_scope_as = dwarfperil3
+			}
+			decrease_quest_points = yes
+		}
+	}
+
+	option = {
+		trigger = {
+			is_target_in_global_variable_list = {
+				name = thorin_company
+				target = character:lineofbaggins12
+			}
+		}
+		name = qfe_quest.013.a
+		character:lineofbaggins12 = {
+			duel = {
+				skill = intrigue
+				value = 10
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.sucess
+					}
+					
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.failure
+					}
+					root = {
+						death = { 
+							death_reason = death_mysterious 
+						}
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { 
+									death_reason = death_mysterious 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.013.b
+		root = {
+			duel = {
+				skill = prowess
+				value = 40
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.sucess
+					}
+					
+					decrease_quest_points = yes
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.013.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.013.a.failure
+					}
+					root = {
+						death = { 
+							death_reason = death_mysterious 
+						}
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { 
+									death_reason = death_mysterious 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			
+			
+			
+			destination = title:c_esgaroth.title_province
+			destination = title:c_dale.title_province
+			on_arrival_event = qfe_quest.015
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.061 = { # Norinbad
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.061.t
+	desc = qfe_quest.061.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_mountains
+	}
+	
+	left_portrait = {
+		character = root
+		animation = drink
+	}
+	right_portrait = {
+		character = title:c_nordinbad.holder
+		animation = drink
+	}
+	
+	
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		trigger = {
+			title:c_nordinbad.holder = {
+				is_ai = yes
+			}
+		}
+		name = qfe_quest.061.a
+		
+		title:c_nordinbad.holder = {		
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			change_liege = {
+				liege = title:k_durins_folk.holder
+				change = scope:change
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.061.b
+		trigger = {
+			title:c_nordinbad.holder = {
+				is_ai = yes
+			}
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.061.c
+		trigger = {
+			title:c_nordinbad.holder = {
+				is_ai = yes
+			}
+		}
+		title:c_nordinbad.holder = {
+				trigger_event = {
+					id = qfe_quest.062
+				}
+			}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		increase_quest_points = yes
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			destination = title:c_berafeld.title_province
+			destination = title:c_dale.title_province
+			on_arrival_event = qfe_quest.063
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = erebor_journey
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.062 = { # Norinbad POV
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.062.t
+	desc = qfe_quest.062.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_mountains
+	}
+	
+	left_portrait = {
+		character = character:lineofdurin83
+		animation = interested
+	}
+	right_portrait = {
+		character = title:c_nordinbad.holder
+		animation = admiration
+	}
+	
+	
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		
+		name = qfe_quest.062.a
+		title:c_nordinbad.holder = {		
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			change_liege = {
+				liege = title:k_durins_folk.holder
+				change = scope:change
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.062.b
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.063 = { # Grey Mountian Drakes
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.063.t
+	desc = qfe_quest.063.desc
+	theme = dwarven
+	override_background = {
+		reference = smaug_destruction
+	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	
+	
+	lower_left_portrait = {
+		character = scope:dwarfperil1
+		animation = war_over_loss
+	}
+	lower_center_portrait = {
+		character = scope:dwarfperil2
+		animation = war_over_loss
+	}
+	lower_right_portrait = {
+		character = scope:dwarfperil3
+		animation = war_over_loss
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		current_travel_plan = {
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil2
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil1
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil2
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil2
+					}
+				}
+				save_scope_as = dwarfperil3
+			}
+			decrease_quest_points = yes
+		}
+	}
+
+	
+	
+	option = {
+		name = qfe_quest.063.a
+		root = {
+			duel = {
+				skill = prowess
+				value = 35
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.063.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.063.a.sucess
+					}
+					
+					decrease_quest_points = yes
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.063.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.063.a.failure
+					}
+					root = {
+						death = { 
+							death_reason = death_burned 
+						}
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { 
+									death_reason = death_burned
+								}
+							}
+						} 
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			
+			
+			
+			destination = title:c_esgaroth.title_province
+			destination = title:c_throne_of_erebor.title_province
+			on_arrival_event = qfe_quest.016
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.064 = { # Barrow Wights
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.064.t
+	desc = qfe_quest.064.desc
+	theme = dwarven
+	override_background = {
+		reference = barrow
+	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	
+	
+	
+	lower_left_portrait = {
+		character = scope:dwarfperil1
+		animation = war_over_loss
+	}
+	lower_center_portrait = {
+		character = scope:dwarfperil2
+		animation = war_over_loss
+	}
+	lower_right_portrait = {
+		character = scope:dwarfperil3
+		animation = war_over_loss
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		current_travel_plan = {
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil2
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil1
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil2
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil2
+					}
+				}
+				save_scope_as = dwarfperil3
+			}
+			decrease_quest_points = yes
+		}
+	}
+
+	
+	
+	option = {
+		name = qfe_quest.064.a
+		root = {
+			duel = {
+				skill = prowess
+				value = 20
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.064.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.064.a.sucess
+					}
+					
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.064.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.064.a.failure
+					}
+					scope:dwarfperil1 = {
+						death = {
+							death_reason = death_mysterious
+						}
+					}
+					scope:dwarfperil2 = {
+						death = {
+							death_reason = death_mysterious
+						}
+					}
+					scope:dwarfperil3 = {
+						death = {
+							death_reason = death_mysterious
+						}
+					}
+					decrease_quest_points = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			
+			
+			
+			destination = title:c_tharbad.title_province
+			destination = title:c_isengard.title_province
+			on_arrival_event = qfe_quest.065
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.065 = { # Tharbad Toll
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.065.t
+	desc = qfe_quest.065.desc
+	theme = dwarven
+	override_background = {
+		reference = tharbad
+	}
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = title:c_tharbad.holder
+		animation = personality_greedy
+	}
+	
+	
+	
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		
+	}
+
+	option = {
+		name = qfe_quest.065.b
+		
+		add_gold = -200
+		title:c_tharbad.holder = {
+			add_gold = 200
+		}
+		increase_quest_points = yes
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.065.a
+		root = {
+			duel = {
+				skill = stewardship
+				value = 10
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.065.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.065.a.sucess
+					}
+					increase_quest_points = yes
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.065.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.065.a.failure
+					}
+					
+					decrease_quest_points = yes
+					add_gold = -300
+					title:c_tharbad.holder = {
+						add_gold = 300
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			
+			
+			
+			
+			destination = title:c_isengard.title_province
+			destination = title:c_dagorlad.title_province
+			on_arrival_event = qfe_quest.066
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.066 = { # Isengard Map
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.066.t
+	desc = qfe_quest.066.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_orthanc
+	}
+	
+	left_portrait = {
+		character = root
+		animation = admiration
+	}
+	right_portrait = {
+		character = character:lineofsaruman
+		animation = chaplain
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.066.a
+		trigger = {
+			character:lineofsaruman = {
+				is_ai = yes
+			}
+		}
+		duel = {
+			skill = diplomacy
+			target = character:lineofsaruman
+			999 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.066.a.sucess
+					
+				}
+				custom_tooltip = qfe_quest.066.a.sucess
+				increase_quest_points_2 = yes
+			}
+			1 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.066.a.failure
+					
+				}
+				custom_tooltip = qfe_quest.066.a.failure
+				decrease_quest_points = yes
+				
+				
+			}
+		}
+		
+		custom_tooltip = choose_route
+		
+	}
+	option = {
+		name = qfe_quest.066.b
+		trigger = {
+			character:lineofsaruman = {
+				is_ai = no
+			}
+		}
+		character:lineofsaruman = {
+			trigger_event = {
+				id = qfe_quest.067
+			
+			}
+		}
+		
+	}
+	
+	after = {
+		trigger_event = {
+			id = qfe_quest.068
+			
+		}
+		
+	}
+}
+
+qfe_quest.067 = { # Isengard Map - Saruman Pov
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.067.t
+	desc = qfe_quest.067.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_orthanc
+	}
+	
+	left_portrait = {
+		character = character:lineofdurin83
+		animation = admiration
+	}
+	right_portrait = {
+		character = character:lineofsaruman
+		animation = chaplain
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.067.a
+		
+		increase_quest_points_2 = yes
+		
+		
+	}
+	option = {
+		name = qfe_quest.067.b
+		decrease_quest_points = yes
+		
+	}
+	
+	after = {
+		
+		
+	}
+}
+
+qfe_quest.068 = { # Isengard Routing
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.068.t
+	desc = qfe_quest.068.desc
+	theme = dwarven
+	override_background = {
+		reference = throne_room_orthanc
+	}
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+
+	option = {
+		name = qfe_quest.068.a
+		start_travel_plan = {
+			
+			destination = title:c_wudcomb.title_province
+			destination = title:c_esgaroth.title_province
+			on_arrival_event = qfe_quest.069
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = south_mirkwood_journey
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.068.b
+		start_travel_plan = {
+			
+			
+			destination = title:c_dagorlad.title_province
+			destination = title:c_esgaroth.title_province
+			on_arrival_event = qfe_quest.074
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = south_rhovanion_journey
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		trigger_event = {
+			id = qfe_quest.19
+			days = 1
+		}
+	}
+	
+	after = {
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		
+	}
+}
+
+qfe_quest.069 = { # dol guldur
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.069.t
+	desc = qfe_quest.069.desc
+	theme = dwarven
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	left_portrait = {
+		character = character:lineofgandalf
+		animation = holding_staff
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	
+	
+	lower_left_portrait = {
+		character = scope:dwarfperil1
+		animation = war_over_loss
+	}
+	lower_center_portrait = {
+		character = scope:dwarfperil2
+		animation = war_over_loss
+	}
+	lower_right_portrait = {
+		character = scope:dwarfperil3
+		animation = war_over_loss
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		current_travel_plan = {
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil2
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil1
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil2
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil2
+					}
+				}
+				save_scope_as = dwarfperil3
+			}
+			decrease_quest_points = yes
+		}
+	}
+
+	
+	
+	option = {
+		name = qfe_quest.069.a
+		character:lineofgandalf = {
+			duel = {
+				skills = { learning prowess intrigue }
+				target = character:lineofsauron
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					min = 1
+					send_interface_toast = {	
+						title = qfe_quest.069.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.069.a.sucess
+					}
+					increase_quest_points = yes
+						every_entourage_character = {
+							character:lineofdurin83.current_travel_plan = {
+								remove_character = prev
+							}
+						}
+						start_travel_plan = {
+							
+							
+							
+							
+							destination = title:c_esgaroth.title_province
+							destination = title:c_throne_of_erebor.title_province
+							on_arrival_event = qfe_quest.015
+							
+							return_trip = no
+							players_use_planner = no
+							on_arrival_destinations = all_but_last
+						}
+						
+						trigger_event = {
+							id = qfe_quest.100
+							delayed = yes
+						}
+					}
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					min = 1 
+					send_interface_toast = {	
+						title = qfe_quest.069.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.069.a.failure
+					}
+					character:lineofdurin83 = {
+						save_scope_as = dwarfperil
+								character:lineofsauron = {
+									imprison = {
+										target = scope:dwarfperil
+										type = dungeon
+									}
+								}
+						current_travel_plan = {
+							every_entourage_character = {
+								limit = {
+									NOT = { This = character:lineofgandalf } 
+								}
+								save_scope_as = dwarfperil
+								character:lineofsauron = {
+									imprison = {
+										target = scope:dwarfperil
+										type = dungeon
+									}
+								}
+							}
+						}
+					
+						trigger_event = {
+							id = qfe_quest.070
+							days = 7
+						}
+						character:lineofsauron = {
+							trigger_event = {
+								id = qfe_quest.071
+								
+							}
+						}
+					}
+					decrease_quest_points_2 = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		
+	}
+}
+
+qfe_quest.070 = { # White Council Rescue
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.070.t
+	desc = qfe_quest.070.desc
+	theme = dwarven
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	left_portrait = {
+		character = character:lineofsaruman
+		animation = holding_staff
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	
+	
+	
+	lower_left_portrait = {
+		character = character:lineofelrond1
+		animation = holding_staff
+	}
+	lower_center_portrait = {
+		character = character:lineofradagast
+		animation = holding_staff
+	}
+	lower_right_portrait = {
+		character = character:lineoffinarfin5
+		animation = holding_staff
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+	}
+
+	
+	
+	option = {
+		name = qfe_quest.070.a
+		
+		root = {
+			release_from_prison = yes
+			every_in_global_list = {
+				variable = thorin_company
+				limit = {
+					is_imprisoned = yes
+				}
+				release_from_prison = yes
+			}
+			custom_tooltip = laketown_journey
+			increase_quest_points = yes
+			set_location = province:3338
+			start_travel_plan = {
+				destination = title:c_esgaroth.title_province
+				destination = title:c_throne_of_erebor.title_province
+				on_arrival_event = qfe_quest.015
+				
+				return_trip = no
+				players_use_planner = no
+				on_arrival_destinations = all_but_last
+			}
+		}
+		character:lineofsauron = {
+			trigger_event = {
+				id = qfe_quest.073
+			}
+		}
+				
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		
+		trigger_event = {
+			id = qfe_quest.19
+			days = 1
+		}
+	}
+}
+
+qfe_quest.071 = { # Thorin Captured
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.071.t
+	desc = qfe_quest.071.desc
+	theme = dwarven
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	left_portrait = {
+		character = character:lineofdurin83
+		animation = holding_staff
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		random_artifact = {
+			limit = {
+				has_variable = ring_of_longbeards
+			}
+			save_scope_as = artifact1
+		}
+	}
+
+	
+	
+	option = {
+		name = qfe_quest.071.a
+		
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.071.b
+		
+		
+		character:lineofdurin83 = {
+			trigger_event = qfe_quest.072
+		}
+		custom_tooltip = tempt_thorin
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		
+	}
+}
+
+qfe_quest.072 = { # Thrors Body
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.072.t
+	desc = qfe_quest.072.desc
+	theme = dwarven
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	left_portrait = {
+		character = character:lineofdurin83
+		animation = grief
+	}
+	right_portrait = {
+		character = character:lineofdurin82
+		animation = dead
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	
+	
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		random_artifact = {
+			limit = {
+				has_variable = ring_of_longbeards
+			}
+			save_scope_as = artifact1
+		}
+	}
+
+	
+	
+	option = {
+		name = qfe_quest.072.a
+		
+		scope:artifact1 = {
+			set_owner = character:lineofdurin83
+		}
+		increase_quest_points_2 = yes	
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	option = {
+		name = qfe_quest.072.b
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		
+	}
+}
+
+qfe_quest.073 = { # Sauron Battle White Council
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.073.t
+	desc = qfe_quest.073.desc
+	theme = death
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	left_portrait = {
+		character = character:lineofgandalf
+		animation = holding_staff
+	}
+	right_portrait = {
+		character = character:lineofsauron
+		animation = spymaster
+	}
+	lower_left_portrait = {
+		character = character:lineofelrond1
+		animation = holding_staff
+	}
+	lower_center_portrait = {
+		character = character:lineofsaruman
+		animation = holding_staff
+	}
+	lower_right_portrait = {
+		character = character:lineoffinarfin5
+		animation = holding_staff
+	}
+	
+	
+	
+	
+	
+	
+	
+	immediate = {
+		reveal_sauron = yes
+	}
+
+	
+	
+	option = {
+		name = qfe_quest.073.a
+		
+	#	return_sauron = yes
+		duel = {
+				skills = { learning prowess intrigue }
+				value = 70
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					min = 5
+					send_interface_toast = {	
+						title = qfe_quest.073.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.073.a.sucess
+					}
+					
+				}
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					min = 5
+					send_interface_toast = {	
+						title = qfe_quest.073.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.073.a.failure
+					}
+					return_sauron = yes
+				}
+			}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	
+	after = {
+		
+		
+		
+		
+	}
+}
+
+qfe_quest.074 = { # Dead Marshes
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.074.t
+	desc = qfe_quest.074.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_steppe
+	}
+	
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = character:lineofbaggins12
+		animation = worry
+	}
+	
+	
+	lower_left_portrait = {
+		character = scope:dwarfperil1
+		animation = war_over_loss
+	}
+	lower_center_portrait = {
+		character = scope:dwarfperil2
+		animation = war_over_loss
+	}
+	lower_right_portrait = {
+		character = scope:dwarfperil3
+		animation = war_over_loss
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	immediate = {
+		
+		current_travel_plan = {
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil2
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil1
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil3
+					}
+				}
+				save_scope_as = dwarfperil2
+			}
+			random_entourage_character = {
+				limit = { 
+					NOT = {
+						this = character:lineofbaggins12
+						this = character:lineofgandalf
+						this = character:lineofdurin83
+						this = scope:dwarfperil1
+						this = scope:dwarfperil2
+					}
+				}
+				save_scope_as = dwarfperil3
+			}
+			
+		}
+	}
+
+	option = {
+		trigger = {
+			is_target_in_global_variable_list = {
+				name = thorin_company
+				target = character:lineofbaggins12
+			}
+		}
+		name = qfe_quest.074.a
+		character:lineofbaggins12 = {
+			duel = {
+				skill = intrigue
+				value = 10
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.074.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.074.a.sucess
+					}
+					increase_quest_points = yes
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.074.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.074.a.failure
+					}
+					root = {
+						death = { 
+							death_reason = death_mysterious 
+						}
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { 
+									death_reason = death_mysterious 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.074.b
+		root = {
+			duel = {
+				skills = { learning prowess }
+				value = 15
+				75 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.074.a.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.074.a.sucess
+					}
+					
+					increase_quest_points = yes
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					send_interface_toast = {	
+						title = qfe_quest.074.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.074.a.failure
+					}
+					root = {
+						death = { 
+							death_reason = death_mysterious 
+						}
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { 
+									death_reason = death_mysterious 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		
+		
+		every_entourage_character = {
+			character:lineofdurin83.current_travel_plan = {
+				remove_character = prev
+			}
+		}
+		start_travel_plan = {
+			
+			
+			
+			
+			destination = title:c_esgaroth.title_province
+			destination = title:c_dale.title_province
+			on_arrival_event = qfe_quest.015
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+		trigger_event = {
+			id = qfe_quest.075
+			days = 1
+		}
+	}
+}
+
+qfe_quest.075 = { # aeglos spawn
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.075.t
+	desc = qfe_quest.075.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_steppe
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = celebrate_spear
+	}
+	
+	right_portrait = {
+		character = character:lineofamdir1
+		animation = dead
+	}
+	
+	
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	immediate = {
+		create_artifact_lisgmaica_effect = { OWNER = this }
+		scope:newly_created_artifact = {
+			save_scope_as = artifact1
+		}
+	}
+	
+
+	option = {
+		name = qfe_quest.006.a
+		
+		
+		
+		
+		add_gold = 300
+		increase_quest_points_2 = yes
+	}
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.076 = { # Doors of Durin
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.076.t
+	desc = qfe_quest.076.desc
+	theme = dwarven
+	override_background = {
+		reference = dwarven_gate
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	
+	right_portrait = {
+		character = character:lineofgandalf
+		animation = thinking
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+	
+
+	option = {
+		name = qfe_quest.076.a
+		
+		duel = {
+			skill = learning
+			value = 10
+			75 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.076.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.076.a.sucess
+				}
+				increase_quest_points = yes
+				
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				send_interface_toast = {	
+					title = qfe_quest.076.a.failure
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.076.a.failure
+				}
+				
+			}
+		}
+		
+		
+		
+	}
+	
+	after = {
+		start_travel_plan = {
+			
+			destination = title:c_durins_hall.title_province
+			destination = title:c_east_hall.title_province
+			on_arrival_event = qfe_quest.077
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.077 = { # Durins Relics
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.077.t
+	desc = qfe_quest.077.desc
+	theme = dwarven
+	override_background = {
+		reference = wilderness_underground
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = celebrate_axe
+	}
+	lower_left_portrait = {
+		character = character:lineofdurin95
+		animation = celebrate_axe
+	}
+	
+	
+	
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact2
+		position = lower_right_portrait
+	}
+	
+	immediate = {
+		create_artifact_axe_of_durin_effect = { OWNER = this }
+		scope:newly_created_artifact = {
+			save_scope_as = artifact1
+		}
+		
+		create_artifact_durins_helm_effect = { OWNER = this }
+		scope:newly_created_artifact = {
+			save_scope_as = artifact2
+		}
+	}
+	
+
+	option = {
+		name = qfe_quest.077.a
+		increase_quest_points_2 = yes
+		
+		
+		
+		
+	}
+	
+	after = {
+		start_travel_plan = {
+			
+			
+			destination = title:c_east_hall.title_province
+			destination = title:c_caras_galadhon.title_province
+			on_arrival_event = qfe_quest.078
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.078 = { # Durins Bane
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.078.t
+	desc = qfe_quest.078.desc
+	theme = dwarven
+	override_background = {
+		reference = durins_bane_qfe
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	
+	right_portrait = {
+		character = character:lineofgandalf
+		animation = aggressive_sword
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+	
+
+	option = {
+		name = qfe_quest.078.a
+		
+		duel = {
+			skill = prowess
+			value = 50
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				send_interface_toast = {	
+					title = qfe_quest.078.a.sucess
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.078.a.sucess
+				}
+				increase_quest_points_3 = yes
+				kill_balrog_decision_effect_qfe = yes
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2
+				}
+				min = 25
+				send_interface_toast = {	
+					title = qfe_quest.078.a.failure
+					
+				}
+				custom_tooltip = {
+					text = qfe_quest.078.a.failure
+				}
+				root = {
+					death = { death_reason = death_durins_bane }
+					current_travel_plan = {
+						every_entourage_character = {
+							death = { death_reason = death_durins_bane }
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+	}
+	
+	option = {
+		name = qfe_quest.078.b
+		character:lineofgandalf = {
+			duel = {
+				skills = { prowess learning }
+				value = 50
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 1
+					}
+					send_interface_toast = {	
+						title = qfe_quest.078.b.sucess
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.078.b.sucess
+					}
+					increase_quest_points = yes
+					
+				}
+				25 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -2
+					}
+					min = 25
+					send_interface_toast = {	
+						title = qfe_quest.078.a.failure
+						
+					}
+					custom_tooltip = {
+						text = qfe_quest.078.a.failure
+					}
+					root = {
+						death = { death_reason = death_durins_bane }
+						current_travel_plan = {
+							every_entourage_character = {
+								death = { death_reason = death_durins_bane }
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		
+	}
+	
+	after = {
+		start_travel_plan = {
+			
+			destination = title:c_caras_galadhon.title_province
+			destination = title:c_wudcomb.title_province
+			on_arrival_event = qfe_quest.079
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.079 = { # Lorien
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.079.t
+	desc = qfe_quest.079.desc
+	theme = dwarven
+	override_background = {
+		reference = lorien_night
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+	
+	right_portrait = {
+		character = title:k_lothlorien.holder
+		animation = personality_compassionate
+	}
+	lower_right_portrait = {
+		character = character:lineofelmo5
+		animation = personality_compassionate
+	}
+	
+	
+	
+	
+	immediate = {
+		increase_quest_points = yes
+	}
+	
+	option = {
+		name = qfe_quest.012.b
+		custom_tooltip = forest_road_journey
+		start_travel_plan = {
+			
+			
+			destination = title:c_enedhmen_i_naugrim.title_province
+			destination = title:c_esgaroth.title_province
+			
+			on_arrival_event = qfe_quest.060
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		trigger_event = {
+			id = qfe_quest.19
+			days = 1
+		}
+	}
+
+	option = {
+		name = qfe_quest.068.a
+		start_travel_plan = {
+			
+			destination = title:c_wudcomb.title_province
+			destination = title:c_esgaroth.title_province
+			on_arrival_event = qfe_quest.069
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = south_mirkwood_journey
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	after = {
+		
+		trigger_event = {
+			id = qfe_quest.100
+			delayed = yes
+		}
+	}
+}
+
+qfe_quest.080 = { # Balins Colony
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.080.t
+	desc = qfe_quest.080.desc
+	theme = dwarven
+	override_background = {
+		reference = dwarven_gate
+	}
+	
+	widget = {
+ 		gui = "qfe_quest_for_erebor"
+ 		container = "custom_widgets_container"
+ 	}
+	
+	left_portrait = {
+		character = root
+		animation = celebrate_sword
+	}
+	
+	right_portrait = {
+		character = character:lineofdurin95
+		animation = aggressive_sword
+	}
+	
+	
+	
+	
+	immediate = {
+		
+	}
+	
+
+	option = {
+		name = qfe_quest.080.a
+		
+		character:lineofdurin95 = {
+			moria_colony_effect = yes
+		}
+		
+		decrease_quest_points_2 = yes
+		
+	}
+	
+	option = {
+		name = qfe_quest.080.b
+		
+		character:lineofdurin95 = {
+			moria_colony_effect = yes
+		}
+		
+		decrease_quest_points_2 = yes
+		set_player_character = character:lineofdurin95
+		
+	}
+	
+	option = {
+		name = qfe_quest.080.c
+		
+		
+		
+		
+	}
+	
+	after = {
+		
+	}
+}
+
+### Dain Submit to Thorin
+
+qfe_quest.081 = { # Dain Submit to Thorin 1
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.081.t
+	desc = qfe_quest.081.desc
+	theme = realm
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = title:k_erebor.holder
+		animation = happiness
+	}
+	
+	
+	
+	immediate = {
+		
+	}
+
+	option = {
+		name = qfe_quest.081.a
+		
+		show_as_tooltip = {
+			title:k_durins_folk.holder = {
+				get_title = title:e_durins_folk
+			}
+			
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = change
+			}
+			
+			
+				change_liege = {
+					liege = title:e_durins_folk.holder
+					change = scope:change
+				}
+			
+			resolve_title_and_vassal_change = scope:change
+		}
+		set_global_variable = { name = qfe_dain_erebor value = 1 }
+		
+		title:k_durins_folk.holder = {
+			trigger_event = qfe_quest.082
+		}
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	option = {
+		name = qfe_quest.081.b
+		show_as_tooltip = {
+			start_tributary_interaction_effect = {
+				TRIBUTARY = root
+				SUZERAIN = title:k_erebor.holder
+			}
+		}
+		set_global_variable = { name = qfe_dain_erebor value = 2 }
+		
+		title:k_durins_folk.holder = {
+			trigger_event = qfe_quest.082
+		}
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	}
+	
+	option = {
+		name = qfe_quest.081.c
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 0
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 30
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+		
+	}
+	
+	
+	
+	after = {
+		
+	}
+}
+
+qfe_quest.082 = { # Dain Submit to Thorin 1
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.082.t
+	desc = qfe_quest.082.desc
+	theme = realm
+	override_background = {
+		reference = erebor
+	}
+	
+	
+	
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+	right_portrait = {
+		character = title:k_iron_hills.holder
+		animation = happiness
+	}
+	
+	
+	
+	immediate = {
+		if = {
+			limit = { global_var:qfe_dain_erebor = 1 }
+			title:k_durins_folk.holder = {
+				get_title = title:e_durins_folk
+			}
+			title:k_iron_hills.holder = {
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = change
+				}
+				change_liege = {
+					liege = title:e_durins_folk.holder
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+		}
+		if = {
+			limit = { global_var:qfe_dain_erebor = 2 }
+			
+			start_tributary_interaction_effect = {
+				TRIBUTARY = title:k_iron_hills.holder
+				SUZERAIN = title:k_erebor.holder
+			}
+		}
+	}
+
+	option = {
+		name = qfe_quest.082.a
+		
+		
+		
+		
+		
+		
+		
+		ai_chance = {
+			base = 0 # LotR: This should be tied to WotR mode.
+			modifier = { # Game Rule
+				has_game_rule = default_ai_behavior
+				add = 100
+			}
+			modifier = { # Game Rule
+				has_game_rule = weighted_ai_behavior
+				add = 70
+			}
+			modifier = { # Game Rule
+				has_game_rule = random_ai_behavior
+				add = 50
+			}
+		}
+	
+	}
+	
+	
+	
+	
+	after = {
+		
+	}
+}
+
+### Gandalf Quest
+
+qfe_quest.090 = { # insert 3 Gandalf leaving
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_quest.090.t
+	desc = qfe_quest.090.desc
+	theme = witchcraft
+	override_background = {
+		reference = plains
+	}
+	
+	
+	left_portrait = {
+		character = character:lineofgandalf
+		animation = holding_staff
+	}
+	
+	
+	
+
+	option = {
+		name = qfe_quest.090.a
+		
+		raise_suspicion_major = yes
+		
+		start_travel_plan = {
+			
+			destination = title:c_caras_galadhon.title_province
+			destination = title:c_cerin_amroth.title_province
+			on_arrival_event = qfe_situation.010
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		custom_tooltip = lorien_journey
+		
+		hidden_effect = {
+			current_travel_plan = {
+				add_travel_plan_modifier = qfe_scripted_journey_modifier
+			}
+		}
+	}
+	
+	
+	after = {
+		
+	}
+}
+
+

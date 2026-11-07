@@ -1,0 +1,103 @@
+﻿
+
+desolation_of_smaug = {
+	regions = {
+		middleearth_west_rhovanion_dalelands
+		middleearth_mountains_iron_erebor 
+		
+		
+		
+	}
+	duchies = {
+		d_drakkenvast
+		d_grey_mountain_narrows
+		d_thakalgund
+		d_withered_heath
+		
+		d_gazar_barak
+		d_iron_gap
+		d_azanulinbar_dum
+		d_enad_agmal
+		
+		d_aradhrynd
+		d_taurduin
+		d_taur_nu_fuin
+		d_men_i_naugrim
+	}
+	kingdoms = {
+		
+	}
+}
+
+desolation_of_smaug_blast_radius = {
+	regions = {
+		middleearth_west_rhovanion
+		middleearth_mountains_iron
+		middleearth_west
+		middleearth_mountains_misty
+		middleearth_mountains_blue
+		middleearth_mountains_white
+		middleearth_rhun
+		middleearth_mordor
+	}
+	duchies = {
+		
+	}
+}
+
+battle_of_five_armies_orcs = {
+	regions = {
+		
+		middleearth_mountains_iron
+		
+		middleearth_mountains_misty
+		middleearth_west_rhovanion
+		
+	}
+	kingdoms = {
+		k_angmar
+	}
+}
+
+shadow_over_mirkwood_inner = {
+	regions = {
+		
+		middleearth_west_rhovanion_mirkwood
+		
+	}
+	kingdoms = {
+		
+	}
+}
+shadow_over_mirkwood_outer = {
+	regions = {
+		
+		
+		middleearth_west_rhovanion_anduin
+		middleearth_west_rhovanion_lothlorien
+		middleearth_west_rhovanion_dalelands
+	}
+	kingdoms = {
+		k_brownlands
+	}
+	duchies = {
+		d_east_bight
+		d_heahand
+		d_anthardor
+		d_grey_mountain_narrows
+		d_drakkenvast
+	}
+}
+
+custom_atyamar = {
+	regions = {
+		
+		
+		middleearth_west_rhovanion_anduin
+		middleearth_west_rhovanion_lothlorien
+		middleearth_west_rhovanion_mirkwood
+	}
+	kingdoms = {
+		k_brownlands
+	}
+}

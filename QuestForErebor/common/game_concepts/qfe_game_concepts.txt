@@ -1,0 +1,21 @@
+﻿
+smaug = {
+	parent = conceptmajorcharacter
+	alias = { smauggolden smaugcalamity }
+}
+
+smaughorde = {
+	parent = smaug
+}
+
+sackoferebor = {
+	parent = concepthistoricevent
+}
+
+quest = {
+	alias = { quest_points }
+}
+
+suspicion = {
+	parent = situation
+}

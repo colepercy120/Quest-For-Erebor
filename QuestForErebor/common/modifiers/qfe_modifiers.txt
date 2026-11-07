@@ -1,0 +1,71 @@
+﻿#ratdotl_modifier = {
+#	icon = magic_positive
+#	
+#	domain_limit = 3
+#	
+#	diplomacy = 1
+#	martial = 1
+#	stewardship = 1
+#	intrigue = 1
+#	learning = 1
+#	prowess = 1
+#}
+
+
+qfe_scripted_journey_modifier = {
+	icon = magic_positive
+	travel_safety = 1000
+	travel_speed_mult = 3
+}
+
+one_ring_men_modifier = {
+	monthly_dynasty_prestige = 0.1
+    monthly_prestige = 0.1
+    prowess_no_portrait = 10
+    intrigue_mult = 1
+    health = 100
+	life_expectancy = 4000
+    stress_gain_mult = 0.5
+    stress_loss_mult = -0.5
+}
+
+one_ring_sauron_modifier = {
+	monthly_dynasty_prestige = 10
+    monthly_prestige = 10
+    prowess_no_portrait = 50
+    
+	diplomacy_mult = 2
+    martial_mult = 2
+    stewardship_mult = 2
+    intrigue_mult = 2
+    learning_mult = 2
+    prowess_mult = 2
+	
+    
+}
+
+one_ring_elves_modifier = {
+	monthly_dynasty_prestige = 5
+    monthly_prestige = 5
+    prowess_no_portrait = 25
+
+`	diplomacy_mult = 1
+    martial_mult = 1
+    stewardship_mult = 1
+    intrigue_mult = 1
+    learning_mult = 1
+    prowess_mult = 1
+}
+
+dark_favor_modifier = {
+	icon = magic_positive
+	
+	monthly_income_mult = 0.5
+	monthly_prestige_gain_mult = 0.5
+	monthly_piety_gain_mult = 0.5
+	monthly_influence_mult = 0.5
+	
+	stress_gain_mult = -0.25
+	stress_loss_mult = 0.25
+	life_expectancy = 5
+}

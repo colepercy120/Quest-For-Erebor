@@ -1,0 +1,574 @@
+namespace = qfe_intro
+
+qfe_intro.001 = { # Start gandalf
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.001.t
+	desc = qfe_intro.001.desc
+	theme = dwarven
+	
+	left_portrait = {
+		character = root
+		animation = holding_staff
+	}
+	right_portrait = {
+		character = character:lineofdurin83
+		animation = personality_vengeful
+	}
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.001.a
+		
+		set_player_character = character:lineofdurin83
+		custom_tooltip = returntochar
+		
+		start_travel_plan = {
+			
+			destination = title:c_hobbiton.title_province
+			
+			
+			return_trip = no
+			players_use_planner = no
+			on_arrival_destinations = all_but_last
+		}
+		
+	}
+}
+
+qfe_intro.002 = { # Start bilbo
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.002.t
+	desc = qfe_intro.002.desc
+	theme = dwarven
+	override_background = {
+		reference = kitchen_hobbit
+	}
+	
+	left_portrait = {
+		character = root
+		animation = personality_content
+	}
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.002.a
+		
+		
+		
+	}
+}
+
+qfe_intro.003 = { # Start bolg
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.003.t
+	desc = qfe_intro.003.desc
+	theme = war
+	override_background = {
+		reference = wilderness_underground
+	}
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = root.father
+		animation = dead
+	}
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.003.a
+		
+		
+		
+	}
+}
+
+qfe_intro.004 = { # Start thranduil
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.004.t
+	desc = qfe_intro.004.desc
+	theme = elven
+	override_background = {
+		reference = throne_room_thranduils_halls
+	}
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	
+	
+	
+	immediate = {
+		hidden_effect = {
+			add_elven_hope_effect = { VALUE = 200 HOPE_EFFECT = effect_elven_hope_inspiring_speech }
+			situation:elven_hope_situation = {
+				update_greenwood_phase_effect = yes
+			}
+		}
+	}
+
+	option = {
+		name = qfe_intro.004.a
+		
+		
+		
+	}
+}
+
+qfe_intro.005 = { # Start laketown
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.005.t
+	desc = qfe_intro.005.desc
+	theme = stewardship_wealth_focus
+	override_background = {
+		reference = laketown
+	}
+	
+	left_portrait = {
+		character = root
+		animation = personality_greedy
+	}
+	lower_right_portrait = {
+		character = character:lineofdale46
+		animation = worried
+	}
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.005.a
+		
+		
+		
+	}
+}
+
+qfe_intro.006 = { # Start dain
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.006.t
+	desc = qfe_intro.006.desc
+	theme = dwarven
+	override_background = {
+		reference = erebor
+	}
+	
+	left_portrait = {
+		character = root
+		animation = personality_vengeful
+	}
+	right_portrait = {
+		character = character:lineofdurin83
+		animation = personality_vengeful
+	}
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.006.a
+		
+		
+		
+	}
+}
+
+qfe_intro.007 = { # Start Saruman
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.007.t
+	desc = qfe_intro.007.desc
+	theme = realm
+	override_background = {
+		reference = throne_room_orthanc
+	}
+	
+	left_portrait = {
+		character = root
+		animation = personality_cynical
+	}
+	
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.007.a
+		
+		
+		
+	}
+}
+
+qfe_intro.008 = { # Start Elrond
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.008.t
+	desc = qfe_intro.008.desc
+	theme = elven
+	override_background = {
+		reference = throne_room_rivendell
+	}
+	
+	left_portrait = {
+		character = root
+		animation = happy_teacher
+	}
+	right_portrait = {
+		character = character:lineisildur42
+		animation = clutching_doll
+	}
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.008.a
+		
+		
+		
+	}
+}
+
+qfe_intro.009 = { # Start Galadriel
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.009.t
+	desc = qfe_intro.009.desc
+	theme = elven
+	override_background = {
+		reference = lorien_day
+	}
+	
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = root.primary_spouse
+		animation = thinking
+	}
+	
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.009.a
+		
+		
+		
+	}
+}
+
+
+
+
+qfe_intro.010 = { # southern faithful intro event
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.010.t
+	desc = qfe_intro.010.desc
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = root.primary_spouse
+		animation = aggressive_sword
+	}
+	
+	
+	immediate = {
+		add_gold = 10000
+		domicile = { 
+			add_domicile_building = camp_main_02
+			add_domicile_building = camp_main_03 
+			
+			add_domicile_building = proving_grounds_01
+			add_domicile_building = proving_grounds_02
+			add_domicile_building = proving_grounds_03
+			add_domicile_building = proving_grounds_04
+			
+			add_domicile_building = camp_fire_01
+			add_domicile_building = camp_fire_02
+			add_domicile_building = camp_fire_03
+			add_domicile_building = camp_fire_04
+			
+			add_domicile_building = supply_tent_01
+			add_domicile_building = supply_tent_02
+			add_domicile_building = supply_tent_03
+			add_domicile_building = supply_tent_04
+		}
+		spawn_army = {
+			levies = 1000
+			men_at_arms = { # optional, multiple can be specified. Need either levies or MAA
+				type = gondorian_footmen
+				stacks = 6
+			}
+			men_at_arms = { # optional, multiple can be specified. Need either levies or MAA
+				type = gondorian_bowmen
+				stacks = 6
+			}
+			men_at_arms = { # optional, multiple can be specified. Need either levies or MAA
+				type = trebuchet
+				stacks = 5
+			}
+			name = gondorian_host
+			inheritable = yes
+			location = root.location
+		}
+		add_character_flag = southern_faithful 
+		add_pressed_claim = title:e_thani_hazad
+		add_pressed_claim = title:d_inzilloni
+		break_alliance = character:lineofinzilloni36
+		set_relation_soulmate = primary_spouse
+		
+		primary_spouse = {
+			
+			give_nickname = nick_faithful
+		}
+	}
+	
+	
+	option = { # Fund them with a large sum
+		name = qfe_intro.010.a 
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+}
+
+qfe_intro.011 = { # Start Sauron
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.011.t
+	desc = qfe_intro.011.desc
+	theme = ring_quest
+	override_background = {
+		reference = dol_guldur
+	}
+	
+	left_portrait = {
+		character = root
+		animation = personality_cynical
+	}
+	
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.011.a
+		
+		
+		
+	}
+}
+
+qfe_intro.012 = { # Introduction to Aragorn
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.012.t
+	desc = qfe_intro.012.desc
+	theme = stewardship_duty_focus
+
+	override_background = {
+		reference = throne_room_rivendell
+	}
+	
+	right_portrait = {
+		character = character:lineofelrond1
+		animation = happy_teacher
+	}
+	left_portrait = {
+		character = character:lineisildur42
+		animation = clutching_doll
+	}
+	
+	immediate = {
+		play_music_cue = mx_mood_call_24
+		hidden_effect = {
+			random_artifact = {
+				limit = {
+					has_variable = shards_of_narsil
+				}
+				set_owner = character:lineofelrond1
+			}	
+			random_artifact = {
+				limit = {
+					has_variable = ring_barahir
+				}
+				set_owner = character:lineofelrond1
+			}	
+		}
+	}
+	
+	option = { # From the ashes a fire shall be woken
+		name = qfe_intro.012.a
+		#custom_tooltip = qfe_intro.012.a.tt
+		title:e_arnor = { # Every landed Dunedain Ranger in Arnor gets the chance to swear fealty.
+			every_de_jure_county_holder = {
+				limit = {
+					is_independent_ruler = yes
+					culture = culture:dunedain_ranger
+					location.empire = title:e_arnor
+					NOT = { has_title = title:d_northern_dunedain }
+				}
+				trigger_event = {
+					id = rangers.0101
+					days = 1
+				}
+			}
+		}
+		trigger_event = {
+			id = qfe_intro.013
+			years = 12
+		}
+	}
+}
+
+qfe_intro.013 = { # Introduction to Aragorn
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.013.t
+	desc = qfe_intro.013.desc
+	theme = stewardship_duty_focus
+
+	override_background = {
+		reference = throne_room_rivendell
+	}
+	
+	right_portrait = {
+		character = character:lineofelrond1
+		animation = happy_teacher
+	}
+	left_portrait = {
+		character = character:lineisildur42
+		animation = interested
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact1
+		position = lower_center_portrait
+	}
+	artifact = { # To display the artifact in the event-window
+		target = scope:artifact2
+		position = lower_left_portrait
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_artifact = {
+				limit = {
+					has_variable = shards_of_narsil
+				}
+				save_scope_as = artifact1
+			}	
+			random_artifact = {
+				limit = {
+					has_variable = ring_barahir
+				}
+				save_scope_as = artifact2
+			}	
+		}
+	}
+	
+	option = { # From the ashes a fire shall be woken
+		name = qfe_intro.013.a
+		change_first_name = aragorn_full_name
+		scope:artifact1 = {
+			set_owner = root
+		}
+		scope:artifact2 = {
+			set_owner = root
+		}
+	}
+}
+
+qfe_intro.014 = { # Start Beorn
+	content_source = realms_dlc
+	type = character_event
+	title = qfe_intro.014.t
+	desc = qfe_intro.014.desc
+	theme = stewardship_duty_focus
+	override_background = {
+		reference = carrock
+	}
+	
+	left_portrait = {
+		character = root
+		animation = personality_honorable
+	}
+	
+	
+	
+	
+	immediate = {
+	
+		
+	}
+
+	option = {
+		name = qfe_intro.014.a
+		
+		
+		
+	}
+}

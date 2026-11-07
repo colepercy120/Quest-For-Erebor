@@ -1,0 +1,21 @@
+﻿
+
+white_council = {
+	# This elf participated in the Battle of Palisor in the First Age
+	icon = white_council.dds
+
+	
+	same_culture_opinion = 20
+	
+	same_opinion = 100
+
+	random_creation = 0
+
+
+
+	diplomacy_per_prestige_level = 1
+	learning_per_piety_level = 1
+
+	
+	shown_in_ruler_designer = no
+}
