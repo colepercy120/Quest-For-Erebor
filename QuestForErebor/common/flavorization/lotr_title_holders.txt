@@ -48,7 +48,7 @@ queen_under_mountian = {
 }
 
 # Fallen Maiar / Evil Istari / Orcs / Ringwraths / etc.
-sauron_hidden_as_necromancer = {
+qfe_sauron_hidden_as_necromancer_duchy = {
 	type = character
 	gender = male
 	special = holder

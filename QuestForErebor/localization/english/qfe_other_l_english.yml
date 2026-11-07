@@ -283,3 +283,4 @@ l_english:
  building_wonder_erebor_t4_desc: "Erebor is reaching heights not seen since the days of [nogrod|e], [belegost|e] and [khazaddum|e] the halls are light bright as day with carefully designed mirrors and sun roofs, Statues made of solid Gold flank the throughfares and visitors from across the north flock to the center of dwarvenkind"
  building_wonder_erebor_reborn: "Erebor Workshop of the Maker" 
  building_wonder_erebor_reborn_desc: "Erebor has surpassed all the dwarven holds of the [elderdays|e], its great gate visible for miles. at night the mountian top is lit with a great lamp, reminicient of the works of [aulecharacter|e], as bright as a star as far away as [minastirith|e] and unrivaled in Middle Earth. Erebor has become grander than even the great [khazaddum|e] and only the halls of the [valargods|e] surpass it" 
+ qfe_sauron_hidden_as_necromancer_duchy: "$sauron_hidden_as_necromancer$"

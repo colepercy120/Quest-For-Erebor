@@ -645,8 +645,8 @@ l_english:
  qfe_misc.07.b: "Send [settler2.GetFirstName]"
  qfe_misc.07.c: "Send [settler3.GetFirstName]"
  qfe_misc.07.a.tt: "[settler1.GetFirstName] Establishes a colony in [GetTitleByKey('d_goblin_town').GetNameNoTier]"
- qfe_misc.07.b.tt: "[settler2.GetFirstName] Establishes a colony in [GetTitleByKey('d_goblin_town').GetNameNoTier]
- qfe_misc.07.c.tt: "[settler3.GetFirstName] Establishes a colony in [GetTitleByKey('d_goblin_town').GetNameNoTier]
+ qfe_misc.07.b.tt: "[settler2.GetFirstName] Establishes a colony in [GetTitleByKey('d_goblin_town').GetNameNoTier]"
+ qfe_misc.07.c.tt: "[settler3.GetFirstName] Establishes a colony in [GetTitleByKey('d_goblin_town').GetNameNoTier]"
  qfe_misc.07.d: "Send No One"
  
  qfe_misc.08.t: "Hold of Khazad Itnin"

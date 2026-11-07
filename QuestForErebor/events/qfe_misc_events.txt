@@ -527,6 +527,7 @@ qfe_misc.07 = { # Thorin Resettle Goblin Town
 			variable = thorin_company
 			limit = {
 				is_dwarf = yes
+				this != scope:settler1
 			}
 			save_scope_as = settler2
 		}
@@ -534,6 +535,8 @@ qfe_misc.07 = { # Thorin Resettle Goblin Town
 			variable = thorin_company
 			limit = {
 				is_dwarf = yes
+				this != scope:settler1
+				this != scope:settler2
 			}
 			save_scope_as = settler3
 		}
@@ -541,6 +544,7 @@ qfe_misc.07 = { # Thorin Resettle Goblin Town
 
 	option = {
 		name = qfe_misc.07.a
+		trigger = { exists = scope:settler1 }
 		custom_tooltip = qfe_misc.07.a.tt
 		scope:settler1 = {
 			goblin_town_colony_effect = yes
@@ -565,6 +569,7 @@ qfe_misc.07 = { # Thorin Resettle Goblin Town
 	}
 	option = {
 		name = qfe_misc.07.b
+		trigger = { exists = scope:settler2 }
 		custom_tooltip = qfe_misc.07.b.tt
 		scope:settler2 = {
 			goblin_town_colony_effect = yes
@@ -589,6 +594,7 @@ qfe_misc.07 = { # Thorin Resettle Goblin Town
 	}
 	option = {
 		name = qfe_misc.07.c
+		trigger = { exists = scope:settler3 }
 		custom_tooltip = qfe_misc.07.c.tt
 		scope:settler3 = {
 			goblin_town_colony_effect = yes

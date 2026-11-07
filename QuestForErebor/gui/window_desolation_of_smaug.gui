@@ -323,7 +323,7 @@ window = {
 							layoutpolicy_vertical = expanding
 
 							# use a different background for each phase
-							vbox_current_phase_desc = {
+							qfe_smaug_vbox_current_phase_desc = {
 								visible = "[EqualTo_string( 'desolation' , Situation.GetTopCurrentPhase.GetType.GetKey )]"
 								blockoverride "tint_color"
 								{
@@ -331,11 +331,11 @@ window = {
 								}
 							}
 
-							vbox_current_phase_desc = {
+							qfe_smaug_vbox_current_phase_desc = {
 								visible = "[EqualTo_string( 'scramble' , Situation.GetTopCurrentPhase.GetType.GetKey )]"
 							}
 
-							vbox_current_phase_desc = {
+							qfe_smaug_vbox_current_phase_desc = {
 								visible = "[EqualTo_string( 'rebiuld' , Situation.GetTopCurrentPhase.GetType.GetKey )]"
 								blockoverride "tint_color"
 								{
@@ -440,7 +440,7 @@ window = {
 								}
 							}
 
-							vbox_participant_group_summary = { }
+							qfe_smaug_vbox_participant_group_summary = { }
 
 							expand = {}
 
@@ -454,14 +454,14 @@ window = {
 					}
 					expand = {}
 				}
-				vbox_actionable_section = {
+				qfe_smaug_vbox_actionable_section = {
 					margin = { 0 12 }
 				}
 			}
 		}
 	}
 
-	window_natural_disaster_participant_groups = {
+	qfe_smaug_participant_groups = {
 		datacontext = "[SituationWindow.AccessParticipantCharacterList]"
 		datacontext = "[SituationParticipantCharacterList.AccessCharacterList]"
 		visible = "[SituationParticipantCharacterList.IsVisible]"
@@ -548,7 +548,7 @@ types NaturalDisaster
 		}
 	}
 
-	type vbox_actionable_section = vbox
+	type qfe_smaug_vbox_actionable_section = vbox
 	{
 		layoutpolicy_horizontal = expanding
 
@@ -625,8 +625,8 @@ types NaturalDisaster
 
 	}
 
-	type window_natural_disaster_participant_groups = window  {
-		name = "window_natural_disaster_participant_groups"
+	type qfe_smaug_participant_groups = window  {
+		name = "qfe_smaug_participant_groups"
 		widgetanchor = right
 		position = { 30 100 }
 		size = { 740 82% }
@@ -747,7 +747,7 @@ types NaturalDisaster
 					}
 				}
 
-				vbox_participant_group_summary = {
+				qfe_smaug_vbox_participant_group_summary = {
 					layoutpolicy_vertical = expanding
 					layoutpolicy_horizontal = expanding
 					layoutstretchfactor_horizontal = 50
@@ -805,7 +805,7 @@ types NaturalDisaster
 		}
 	}
 
-	type vbox_participant_group_summary = vbox
+	type qfe_smaug_vbox_participant_group_summary = vbox
 	{
 		margin_left = 10
 		ignoreinvisible = yes
@@ -840,7 +840,7 @@ types NaturalDisaster
 		}
 	}
 
-	type vbox_current_phase_desc = vbox
+	type qfe_smaug_vbox_current_phase_desc = vbox
 	{
 		name = "phase_desc"
 		layoutpolicy_horizontal = expanding
