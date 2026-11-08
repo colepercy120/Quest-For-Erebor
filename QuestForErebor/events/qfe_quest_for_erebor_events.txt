@@ -1325,7 +1325,10 @@ qfe_quest.010 = { # riddles in the dark
 		}
 		scope:artifact1 = {
 			set_owner = character:lineofbaggins12
+			add_personal_artifact_claim = character:lineofgollum3
+			add_personal_artifact_claim = character:lineofsauron
 		}
+		
 	}
 
 	option = {
