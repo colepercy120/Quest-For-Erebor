@@ -14,7 +14,7 @@ l_english:
  game_concept_smaug_desc: "Smaug the Golden, also known as Smaug the Chiefest and Greatest of Calamities, was the strongest [dragon|e] of the [thirdage|e]. He famously destroyed the kingdom of [erebor|e] in the [sackoferebor|e] and ruled under the mountain for 170 years before being slain by Bard the bowman in [ageTA|e] 2941. His body would lie in the Long Lake for centuries, the dragon's memory preventing all but the bravest looters."
  
  game_concept_sackoferebor: "Sack of Erebor"
- game_concept_sackoferebor_desc: "#emphasis The pines were roaring on the height,\nThe winds were moaning in the night.\nThe fire was red, it flaming spread;\nThe trees like torches blazed with light.#! \n\nBy the late [thirdage|e] the Dwarves of [erebor|e] were considered among the greatest artisans and smiths in all Middle-earth, perhaps the single greatest group left. Their gold was plenty, their warriors strong, and they were friends with both the [elves|e] of [mirkwood|e] and the men of Dale. however, that wealth drew the ire of the [dragon|e] [smaug|e] \n\nIn late 2770 [smaug|e] descended on the [lonelymountian|E] and sacked it. killing most of the [longbeards|e] living within the mountain and leveling the city of Dale built at its base. holding the mountain as his own for the next century."
+ game_concept_sackoferebor_desc: "#emphasis The pines were roaring on the height,\nThe winds were moaning in the night.\nThe fire was red, it flaming spread;\nThe trees like torches blazed with light.#! \n\nBy the late [thirdage|e] the Dwarves of [erebor|e] were considered among the greatest artisans and smiths in all Middle-earth, perhaps the single greatest group left. Their gold was plenty, their warriors strong, and they were friends with both the [elves|e] of [mirkwood|e] and the men of Dale. however, that wealth drew the ire of the [dragon|e] [smaug|e] \n\nIn late 2770 [smaug|e] descended on the [lonelymountain|e] and sacked it. killing most of the [longbeards|e] living within the mountain and leveling the city of Dale built at its base. holding the mountain as his own for the next century."
  
  game_concept_quest: "Quest"
  game_concept_quest_points: "Quest Points"
@@ -53,7 +53,7 @@ l_english:
  
  desolation_of_smaug_desolation_situation_phase: "Desolation"
  desolation: "Desolation"
- desolation_desc: "[smaug|e] remains in the [lonelymountain|E] occasionally coming forth to harvest people and gold from the local region."
+ desolation_desc: "[smaug|e] remains in the [lonelymountain|e] occasionally coming forth to harvest people and gold from the local region."
  desolation_of_smaug_scramble_situation_phase: "Scramble"
  scramble: "Scramble"
  scramble_desc: "The Dragon's death, has left the vast [smaughorde|e] undefended! Rulers from across the world are rushing to the mountain to take their cut before it's gone!"
@@ -65,13 +65,13 @@ l_english:
  
  desolation_of_smaug_affected_ruler: "Situation Phase Effects"
  
- SITUATION_WINDOW_CURRENT_GOLD: "#credits_header @gold_icon![smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue|0]@gold_icon!#!"
+ SITUATION_WINDOW_CURRENT_GOLD: "#credits_header @gold_icon![smaughorde|e] of [smauggolden|e]: [GetGlobalVariable('qfe_erebor_horde').GetValue|0]@gold_icon!#!"
  
- situation_disaster_desolation_description: "[smauggolden|E] is lying in [erebor|e], occasionally venturing out to attack the surrounding lands, stealing gold and eating flocks."
+ situation_disaster_desolation_description: "[smauggolden|e] is lying in [erebor|e], occasionally venturing out to attack the surrounding lands, stealing gold and eating flocks."
  situation_disaster_scramble_description: "The Dragon's dead! [smaug|e] has fallen and his treasure [smaughorde|e] is up for grabs, [rulers|e] from across the region are venturing in to take a cut before it's too late."
  situation_disaster_rebiuld_description: "Things have settled down at the mountain and nature has begun to heal, the cities are building and [ereborrealm|e] rises again!"
  
- situation_disaster_desolation_recommendations: "- Avoid having to much [gold|E], else the dragon will emerge and take it from you\n- venture into the mountain to attempt to slay the beast or steal his treasure\n - prepare your realm for the aftermath of the dragon's fall."
+ situation_disaster_desolation_recommendations: "- Avoid having to much [gold|e], else the dragon will emerge and take it from you\n- venture into the mountain to attempt to slay the beast or steal his treasure\n - prepare your realm for the aftermath of the dragon's fall."
  situation_disaster_scramble_recommendations: "- Travel to the mountain to secure your cut of the [smaughorde|e] \n-battle the dragonslayer to secure the mountain for yourself!"
  
  desolation_effects: "Desolation Effects"
@@ -119,7 +119,7 @@ l_english:
  ### Nicknames
  
  nick_dragonslayer: "The Dragonslayer"
- nick_dragonslayer_desc: "This character slew [smauggolden|E] in battle, saving his people from the dread wyrm."
+ nick_dragonslayer_desc: "This character slew [smauggolden|e] in battle, saving his people from the dread wyrm."
  
  nick_faithful: "The Faithful"
  nick_faithful_desc: "[CHARACTER.GetShortUINameNoTooltipNoFormat|U] is a [adunai|e] convert to the ways of the [dunedain|e]"
@@ -148,7 +148,7 @@ l_english:
  
  bookmark_qfe_thorin: "Thorin Oakenshield"
  bookmark_qfe_thorin_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_thorin_desc: "Thorin has had a rough life. Raised in [ereborrealm|e] at the height of its power, he watched [smauggolden|E] destroy his home and shatter his people. watched his father and grandfather fall to the challenges that faced them, already has experienced failure in retaking [moria|e] and has spent the last decades biding his time in the [bluemountains|e]. \n\nBut word from [gandalfcharacter|e] has ignited a fire in the dwarf king, [erebor|e] must be reclaimed! [smaug|e] must fall! And Thorin intends to be the one to bring the dragon down."
+ bookmark_qfe_thorin_desc: "Thorin has had a rough life. Raised in [ereborrealm|e] at the height of its power, he watched [smauggolden|e] destroy his home and shatter his people. watched his father and grandfather fall to the challenges that faced them, already has experienced failure in retaking [moria|e] and has spent the last decades biding his time in the [bluemountains|e]. \n\nBut word from [gandalfcharacter|e] has ignited a fire in the dwarf king, [erebor|e] must be reclaimed! [smaug|e] must fall! And Thorin intends to be the one to bring the dragon down."
  
  bookmark_qfe_bilbo: "Bilbo Baggins"
  bookmark_qfe_bilbo_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
@@ -160,7 +160,7 @@ l_english:
  
  bookmark_qfe_master: "Master Stevron"
  bookmark_qfe_master_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_master_desc: "Master Stevron of Laketown is in a delicate position. Laketown is the northernmost settlement that survived [smauggolden|E]'s ire. But that doesn't mean it flourished. Since the [sackoferebor|e] Laketown has stagnated; each year, the Dalelands produce less as the Desolation of Smaug drains the land. even as word comes of the return of the King Under the Mountain, Laketown stands between Thorin and [smaug|e] and that could be disastrous. \n\nTo play as Bard the Bowman, start as Master Stevron and play through the event chain."
+ bookmark_qfe_master_desc: "Master Stevron of Laketown is in a delicate position. Laketown is the northernmost settlement that survived [smauggolden|e]'s ire. But that doesn't mean it flourished. Since the [sackoferebor|e] Laketown has stagnated; each year, the Dalelands produce less as the Desolation of Smaug drains the land. even as word comes of the return of the King Under the Mountain, Laketown stands between Thorin and [smaug|e] and that could be disastrous. \n\nTo play as Bard the Bowman, start as Master Stevron and play through the event chain."
  
  bookmark_qfe_bolg: "Overlord Bolg"
  bookmark_qfe_bolg_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
@@ -172,7 +172,7 @@ l_english:
 
  bookmark_qfe_gandalf: "Gandalf The Grey"
  bookmark_qfe_gandalf_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_gandalf_desc: "Gandalf The Grey has had a busy time in Middle-earth, a [maiagod|e] from [valinor|e], he has been sent by the [valargods|e] to aid the peoples of Middle-earth against the Shadow, since then he has spent his time hunting for [sauroncharacter|e] and the other remnants of [morgothcharacter|e]s works. He has recently grown suspicious of the [necromancer_sauron|e] in [dolguldur|e] and the dragon [smauggolden|E] and is in the early stages of executing his plans to counter them" 
+ bookmark_qfe_gandalf_desc: "Gandalf The Grey has had a busy time in Middle-earth, a [maiagod|e] from [valinor|e], he has been sent by the [valargods|e] to aid the peoples of Middle-earth against the Shadow, since then he has spent his time hunting for [sauroncharacter|e] and the other remnants of [morgothcharacter|e]s works. He has recently grown suspicious of the [necromancer_sauron|e] in [dolguldur|e] and the dragon [smauggolden|e] and is in the early stages of executing his plans to counter them"
 
  bookmark_qfe_saruman: "Saruman the White"
  bookmark_qfe_saruman_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
@@ -184,17 +184,17 @@ l_english:
  
  bookmark_qfe_elrond: "Elrond of Rivendell"
  bookmark_qfe_elrond_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_elrond_desc: "Elrond has had a fairly tame millennia, since the fall of the [witchking|e] of [angmar|e] his realm has been safe and secure nestled a valley in the [mistymountians|e], but times are changing, the [whitecouncil|e] is almost ready to move on the [necromancer_sauron|e] and Thorin Oakenshield is preparing his quest to retake [erebor|e]. How Elrond responds could very easily shift the course of history..."
+ bookmark_qfe_elrond_desc: "Elrond has had a fairly tame millennia, since the fall of the [witchking|e] of [angmar|e] his realm has been safe and secure nestled a valley in the [mistymountains|e], but times are changing, the [whitecouncil|e] is almost ready to move on the [necromancer_sauron|e] and Thorin Oakenshield is preparing his quest to retake [erebor|e]. How Elrond responds could very easily shift the course of history..."
  
  bookmark_qfe_galadriel: "Lady Galadriel"
  bookmark_qfe_galadriel_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_galadriel_desc: "The Lady of Lorien is arguably the [whitecouncil|e]s most respected member, trained by [meliancharacter|e] in [doriath|e] in the [elderdays|e] her knowledge of lore is unparallelled in Middle-earth and she has been watching the [necromancer_sauron|e] closely, she senses a shadow in [mirkwood|e], and she has to suspect that [sauroncharacter|e] has returned. should her suspicions prove true, the golden wood might once more be roused to war."
+ bookmark_qfe_galadriel_desc: "The Lady of Lorien is arguably the [whitecouncil|e]s most respected member, trained by [meliancharacter|e] in Doriath in the [elderdays|e] her knowledge of lore is unparallelled in Middle-earth and she has been watching the [necromancer_sauron|e] closely, she senses a shadow in [mirkwood|e], and she has to suspect that [sauroncharacter|e] has returned. should her suspicions prove true, the golden wood might once more be roused to war."
  
  
  
  ### CB
  
- battle_five_armies_war: "Invasion of [erebor|E]"
+ battle_five_armies_war: "Invasion of [erebor|e]"
  destroy_goblin_town_war: "Purge of Goblin Town"
  rhovanion_invasion_war: "Liberation of Rhovanion"
  
@@ -222,7 +222,7 @@ l_english:
  ### Artifacts
  
  lisgmaica_name: "Lisgmaica"
- lisgmaica_description: "The Blade of Grass, Lisgmaica was forged by [celebrimbor|E] for king [GetScriptedCharacterByHistoryID('lineofamdir1').GetFirstName] of [lorien|e] in the early [secondage|e]. The weapon was lost when Amdir fell in the [battleofdagorlad|e] during the [lastalliance|e]."
+ lisgmaica_description: "The Blade of Grass, Lisgmaica was forged by [celebrimbor|e] for king [GetScriptedCharacterByHistoryID('lineofamdir1').GetFirstName] of [lorien|e] in the early [secondage|e]. The weapon was lost when Amdir fell in the [battleofdagorlad|e] during the [lastalliance|e]."
  
  ### Trait
  
@@ -264,21 +264,21 @@ l_english:
  ### Biuldings
  
  building_type_wonder_thorins_hall_01: "Thorin's Hall"
- building_type_wonder_thorins_hall_01_desc: "Dronûn-Dûm, or Thorin's Hall, the [dwarven|E] hold in the Southern [bluemountains|E] built by Thorin Oakenshield."
+ building_type_wonder_thorins_hall_01_desc: "Dronûn-Dûm, or Thorin's Hall, the [dwarven|e] hold in the Southern [bluemountains|e] built by Thorin Oakenshield."
  building_wonder_thorins_hall_01: "The Hall of Thorin Oakenshield"
- building_wonder_thorins_hall_01_desc: "Following Smaug's conquest of [erebor|E] and the devastating [warofdwarvesandorcs|E], Thorin Oakenshield, rightful King Under the Mountain, established a [dwarven|E] hold in the Southern [bluemountains|E] where he and the exiled [longbeards|E] dwelt for nearly a century. Following the Reclamation of Erebor and the [battle_of_the_five_armies|E], many of the Longbeards returned to their ancestral home, leaving Thorin's halls a relic of more desperate days."
+ building_wonder_thorins_hall_01_desc: "Following Smaug's conquest of [erebor|e] and the devastating [warofdwarvesandorcs|e], Thorin Oakenshield, rightful King Under the Mountain, established a [dwarven|e] hold in the Southern [bluemountains|e] where he and the exiled [longbeards|e] dwelt for nearly a century. Following the Reclamation of Erebor and the [battle_of_the_five_armies|e], many of the Longbeards returned to their ancestral home, leaving Thorin's halls a relic of more desperate days."
  building_wonder_thorins_hall_02: "Dronûn-Dûm"
- building_wonder_thorins_hall_02_desc: "The Halls of Thorin Oakenshield have been delved deeper and expanded with a great gate in the style of [ereborrealm|e], transforming the once hard scrabble realm into a true [dwarven|E] city"
+ building_wonder_thorins_hall_02_desc: "The Halls of Thorin Oakenshield have been delved deeper and expanded with a great gate in the style of [ereborrealm|e], transforming the once hard scrabble realm into a true [dwarven|e] city"
  building_wonder_thorins_hall_03: "Dronûn-Dûm Resplendent"
- building_wonder_thorins_hall_03_desc: "The Once small realm of Thorin Oakenshield has been transformed into a thriving [dwarven|E] hold rivaling the great holds of old. the original quickly built structures have been replaced with more sturdy and magnificent designs, and mines dig deep into the ancient mountains, harvesting the rich minerals left over from the [warofwrath|e]"
+ building_wonder_thorins_hall_03_desc: "The Once small realm of Thorin Oakenshield has been transformed into a thriving [dwarven|e] hold rivaling the great holds of old. the original quickly built structures have been replaced with more sturdy and magnificent designs, and mines dig deep into the ancient mountains, harvesting the rich minerals left over from the [warofwrath|e]"
 
  building_type_wonder_erebor_broken: "Erebor"
  building_wonder_erebor_broken: "Erebor Broken"
- building_wonder_erebor_broken_desc: "Erebor has been smashed by the dragon [smaug|E], visters can barely go ten paces without encountering the bones of the kingdoms defenders or reaching a collapsed tunnel or bridge that the dragon destoryed and the great gate lies in ruin, preventing the realm from being adaquatly defended"
+ building_wonder_erebor_broken_desc: "Erebor has been smashed by the dragon [smaug|e], visters can barely go ten paces without encountering the bones of the kingdoms defenders or reaching a collapsed tunnel or bridge that the dragon destoryed and the great gate lies in ruin, preventing the realm from being adaquatly defended"
  building_wonder_erebor_t2: "Erebor Repaired"
- building_wonder_erebor_t2_desc: "The bodies have been cleaned up, a new gate has been made, and the vast horde of the [dragon|E] has been properly stowed away, the [lonelymountain|E] is once more liveable, if not quite at the level it was before the [sackoferebor|e]"
+ building_wonder_erebor_t2_desc: "The bodies have been cleaned up, a new gate has been made, and the vast horde of the [dragon|e] has been properly stowed away, the [lonelymountain|e] is once more liveable, if not quite at the level it was before the [sackoferebor|e]"
  building_wonder_erebor_rebuilt: "Erebor Restored"
- building_wonder_erebor_rebuilt_desc: "Erebor has been restored to its former glory, gold once again flows from the [lonelymountain|E] and the clang of hammers once more rings out from the depths. Erebor once more takes its rightful place as the capital of the [longbeards|e] and by extension all of dwarf kind"
+ building_wonder_erebor_rebuilt_desc: "Erebor has been restored to its former glory, gold once again flows from the [lonelymountain|e] and the clang of hammers once more rings out from the depths. Erebor once more takes its rightful place as the capital of the [longbeards|e] and by extension all of dwarf kind"
  building_wonder_erebor_t4: "Erebor Resplendent"
  building_wonder_erebor_t4_desc: "Erebor is reaching heights not seen since the days of [nogrod|e], [belegost|e] and [khazaddum|e] the halls are light bright as day with carefully designed mirrors and sun roofs, Statues made of solid Gold flank the throughfares and visitors from across the north flock to the center of dwarvenkind"
  building_wonder_erebor_reborn: "Erebor Workshop of the Maker" 

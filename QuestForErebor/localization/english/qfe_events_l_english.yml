@@ -11,7 +11,7 @@ l_english:
  qfe_intro.001.a: "Play as [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName]"
  
  qfe_intro.002.t: "An Unremarkable Hobbit"
- qfe_intro.002.desc: "[GetScriptedCharacterByHistoryID('lineofbaggins12').GetFirstName] has lived an unremarkable life. The child of two well-known and respected hobbit families, Bilbo has contented himself with the wonders of the [shire|e] and staying in the social graces of his peers, in all ways the paragon of hobbit virtue, solid, sensible, and above all respectable. \n\nBut the [wizard|E] [gandalfcharacter|e] has seen something in Bilbo that no one, not even himself, has, and soon Bilbo Baggins will be offered the adventure of a lifetime..." 
+ qfe_intro.002.desc: "[GetScriptedCharacterByHistoryID('lineofbaggins12').GetFirstName] has lived an unremarkable life. The child of two well-known and respected hobbit families, Bilbo has contented himself with the wonders of the [shire|e] and staying in the social graces of his peers, in all ways the paragon of hobbit virtue, solid, sensible, and above all respectable. \n\nBut the [wizard|e] [gandalfcharacter|e] has seen something in Bilbo that no one, not even himself, has, and soon Bilbo Baggins will be offered the adventure of a lifetime..."
  qfe_intro.002.a: "The time may come for Hobbits to shape the fates of all."
  
  qfe_intro.003.t: "The Heir of Azog"
@@ -23,11 +23,11 @@ l_english:
  qfe_intro.004.a: "We Will Survive as we always do."
  
  qfe_intro.005.t: "The Shadow of Erebor"
- qfe_intro.005.desc: "Laketown has long lived under sentence of death. The dragon|e] [smauggolden|E] long ago took the [lonelymountain|e] as his lair and slew the ancient kingdom of [dwarves|e] who dwelt there. \n\n [GetTitleByKey('c_esgaroth').GetNameNoTier] was the northernmost settlement to survive the [sackoferebor|e] and its people have survived by eaking out whatever trade remains with the [ironhills|e], but rumor comes of the return of the King under the Mountain, and the heir of Girion, Lord of [GetTitleByKey('c_dale').GetNameNoTier], waits in the waterborne city. Things are about to change, and not all for the better...\n\n #warning To play as [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstName], wait for the quest to play out, you will be given an opportunity to switch over once Smaug dies #!"
+ qfe_intro.005.desc: "Laketown has long lived under sentence of death. The [dragon|e] [smauggolden|e] long ago took the [lonelymountain|e] as his lair and slew the ancient kingdom of [dwarves|e] who dwelt there. \n\n [GetTitleByKey('c_esgaroth').GetNameNoTier] was the northernmost settlement to survive the [sackoferebor|e] and its people have survived by eaking out whatever trade remains with the [ironhills|e], but rumor comes of the return of the King under the Mountain, and the heir of Girion, Lord of [GetTitleByKey('c_dale').GetNameNoTier], waits in the waterborne city. Things are about to change, and not all for the better...\n\n #warning To play as [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstName], wait for the quest to play out, you will be given an opportunity to switch over once Smaug dies #!"
  qfe_intro.005.a: "We'll find a way."
  
  qfe_intro.006.t: "The Lord of the Iron Hills."
- qfe_intro.006.desc: "[GetScriptedCharacterByHistoryID('lineofdurin90').GetFirstName] rules the [ironhills|e], the largest collection of [longbeards|E] left in Middle-earth. A close friend and ally of his cousin [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName], Dain patiently awaits the day of the [dragons|E] death, the time has come for the [dwarves|e] to regain their home, and almost as important, keep it from the foes bound to arise once [smaug|e] falls."
+ qfe_intro.006.desc: "[GetScriptedCharacterByHistoryID('lineofdurin90').GetFirstName] rules the [ironhills|e], the largest collection of [longbeards|e] left in Middle-earth. A close friend and ally of his cousin [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName], Dain patiently awaits the day of the [dragons|e] death, the time has come for the [dwarves|e] to regain their home, and almost as important, keep it from the foes bound to arise once [smaug|e] falls."
  qfe_intro.006.a: "Hail the King Under the Mountain."
  
  qfe_intro.007.t: "The White Wizard"
@@ -48,7 +48,7 @@ l_english:
  gondorian_host: "Gondorian Host"
  
  qfe_intro.011.t: "The Necromancer of Dol Guldur"
- qfe_intro.011.desc: "The [necromancer_sauron|e] is in truth but a guise for the [darklord|e] [sauroncharacter|E]. Having taken refuge in [greenwood|e] after slowly rebuilding his power over most of the [thirdage|e] his presence has slowly warped the forest into [mirkwood|e] and has started to attract the [suspicion|e] of the [whitecouncil|e]. If he isn't ready for the war to come soon, the Council might just force him into one he isn't prepared for... #warning Gandalf will attack Dol Guldur during his story content#!"
+ qfe_intro.011.desc: "The [necromancer_sauron|e] is in truth but a guise for the [darklord|e] [sauroncharacter|e]. Having taken refuge in [greenwood|e] after slowly rebuilding his power over most of the [thirdage|e] his presence has slowly warped the forest into [mirkwood|e] and has started to attract the [suspicion|e] of the [whitecouncil|e]. If he isn't ready for the war to come soon, the Council might just force him into one he isn't prepared for... #warning Gandalf will attack Dol Guldur during his story content#!"
  qfe_intro.011.a: "I will rise again!"
  
  qfe_intro.012.t: "Estel of The Dunedain"
@@ -60,13 +60,13 @@ l_english:
  qfe_intro.013.a: "From the ashes a fire shall be woken" 
  
  qfe_intro.014.t: "Beorn the Skinchanger"
- qfe_intro.014.desc: "Beorn was one of the last of an ancient race of Skinchangers, Men who could assume bear shape using magic of their own. His people had once dwelt in the [mistymountains|e] but the [orcs|E] drove him and his folk from the region. today he lives a simple life at his home in the Vales of [anduin|e]. but the day may come for him to get his revenge..."
+ qfe_intro.014.desc: "Beorn was one of the last of an ancient race of Skinchangers, Men who could assume bear shape using magic of their own. His people had once dwelt in the [mistymountains|e] but the [orcs|e] drove him and his folk from the region. today he lives a simple life at his home in the Vales of [anduin|e]. but the day may come for him to get his revenge..."
  qfe_intro.014.a: "Soon..."
  
 ### Quest
  
  qfe_quest.001.t: "The Quest for Erebor."
- qfe_quest.001.desc: "It has been 171 years since [smaugcalamity|e] attacked our home in the [sackoferebor|e]. The [dragon|e] slew our people, took our gold, and drove us from our home. Since then, we have been forced to wander the wastes from one misadventure to another. \n\n Our king [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] is but the latest in a seemingly cursed line. His father vanished into the dread fortress of [dolguldur|e], and his father [GetScriptedCharacterByHistoryID('lineofdurin81').GetFirstName] was slain by [GetScriptedCharacterByHistoryID('lineofazog1').GetFirstName] starting off the [warofdwarvesandorcs|e]. now [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] leads a defeated people exiled to the southern [bluemountains|e]. But that time is coming to an end...\n\n[smaug|e] hasn't been seen in 60 years, and The Wizard [gandalfcharacter|e] has convinced Thorin that the time is right to retake [erebor|E] and finally destroy the dread wyrm."
+ qfe_quest.001.desc: "It has been 171 years since [smaugcalamity|e] attacked our home in the [sackoferebor|e]. The [dragon|e] slew our people, took our gold, and drove us from our home. Since then, we have been forced to wander the wastes from one misadventure to another. \n\n Our king [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] is but the latest in a seemingly cursed line. His father vanished into the dread fortress of [dolguldur|e], and his father [GetScriptedCharacterByHistoryID('lineofdurin81').GetFirstName] was slain by [GetScriptedCharacterByHistoryID('lineofazog1').GetFirstName] starting off the [warofdwarvesandorcs|e]. now [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] leads a defeated people exiled to the southern [bluemountains|e]. But that time is coming to an end...\n\n[smaug|e] hasn't been seen in 60 years, and The Wizard [gandalfcharacter|e] has convinced Thorin that the time is right to retake [erebor|e] and finally destroy the dread wyrm."
  qfe_quest.001.a: "We will be avenged!"
  
  qfe_quest.002.t: "An Unusual Request."
@@ -88,7 +88,7 @@ l_english:
  choose_route: "We will choose our next destination."
  
  qfe_quest.050.t: "An Unexpected Journey"
- qfe_quest.050.desc: "The most unexpected thing has happened! For some strange reason, a group of dwarves, led by [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] arrived at my hole for a meeting with the Wizard [GetScriptedCharacterByHistoryID('lineofgandalf').GetFirstName]. Being the excellent host, I am, I quickly prepared a meal for them, and though I didn't understand everything they were talking about it was clear that it was a matter of grave importance \n\nThen the most unexpected thing of all! [gandalfcharacter|e] and Thorin offered me a place in the party, and 1 equal share of the [smaughorde|e] of the [dragon|E] [smaug|e] if I join the quest as their burglar."
+ qfe_quest.050.desc: "The most unexpected thing has happened! For some strange reason, a group of dwarves, led by [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] arrived at my hole for a meeting with the Wizard [GetScriptedCharacterByHistoryID('lineofgandalf').GetFirstName]. Being the excellent host, I am, I quickly prepared a meal for them, and though I didn't understand everything they were talking about it was clear that it was a matter of grave importance \n\nThen the most unexpected thing of all! [gandalfcharacter|e] and Thorin offered me a place in the party, and 1 equal share of the [smaughorde|e] of the [dragon|e] [smaug|e] if I join the quest as their burglar."
  qfe_quest.050.a: "Join the [quest|e]"
  qfe_quest.050.b: "Stay home"
  returntochar: "#warning The Quest for Erebor can only be played through as [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName], you will be able to swap back after the quest is over#!"
@@ -139,7 +139,7 @@ l_english:
  qfe_quest.009.a.failure: "You are taken Captive by the Goblins"
  
  qfe_quest.017.t: "A Wizard is never late."
- qfe_quest.017.desc: "as we were taken before [GetScriptedCharacterByHistoryID('lineofgreatgoblin1').GetName], I noticed that [GetScriptedCharacterByHistoryID('lineofgandalf').GetFirstName] was missing. He hadn't been captured! As we were led deeper into the cavern, I kept waiting for the [wizard|E] to reappear, waiting for the perfect moment to strike. Then in a flash of light, he appears."
+ qfe_quest.017.desc: "as we were taken before [GetScriptedCharacterByHistoryID('lineofgreatgoblin1').GetName], I noticed that [GetScriptedCharacterByHistoryID('lineofgandalf').GetFirstName] was missing. He hadn't been captured! As we were led deeper into the cavern, I kept waiting for the [wizard|e] to reappear, waiting for the perfect moment to strike. Then in a flash of light, he appears."
  qfe_quest.017.a: "A Timely Rescue"
  qfe_quest.017.a.sucess: "The Goblin King Falls"
  qfe_quest.017.a.failure: "The Quest Ends"
@@ -179,14 +179,14 @@ l_english:
  qfe_quest.013.a.failure: "The Quest Ends"
  
  qfe_quest.014.t: "The Halls of the Elvenking"
- qfe_quest.014.desc: "After trying to get the attention of a group of [elves|e] in the forest, we were captured by the [woodelves|e] and taken to the halls of the Elvenking. While the rest of the party was taken to the dungeons, I was selected to meet with [GetScriptedCharacterByHistoryID('lineoforopher3').GetFirstName]. After Plesentries were exchanged, the elvenking offered safe passage through his woods in exchange for a selection of Diamonds from the Treasure [smaughorde|e] of [smaug|E]"
+ qfe_quest.014.desc: "After trying to get the attention of a group of [elves|e] in the forest, we were captured by the [woodelves|e] and taken to the halls of the Elvenking. While the rest of the party was taken to the dungeons, I was selected to meet with [GetScriptedCharacterByHistoryID('lineoforopher3').GetFirstName]. After Plesentries were exchanged, the elvenking offered safe passage through his woods in exchange for a selection of Diamonds from the Treasure [smaughorde|e] of [smaug|e]"
  qfe_quest.014.a: "Agree to his terms"
  qfe_quest.014.b: "I will not bargain with an Elf!"
  thranduil_aid: "[GetScriptedCharacterByHistoryID('lineoforopher3').GetFirstName] Will Remember this"
  laketown_journey: "We will [travel|e] to [GetTitleByKey('c_esgaroth').GetNameNoTier]"
  
  qfe_quest.052.t: "The King under the Mountain..."
- qfe_quest.052.desc: "King [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed] stands before me, after being captured by my guards outside the halls of [GetTitleByKey('c_aradhyrnd').GetNameNoTier]. The [dwarf|E] stands proudly despite his circumstances, and though he refuses to disclose why he and his party were in [mirkwood|e], I am soon able to deduce the reason. \n\nThorin is attempting to retake the [lonelymountain|e] and slay [smauggolden|E]. Now I could either attempt to convince him to accept aid, or just imprison him and be done with it."
+ qfe_quest.052.desc: "King [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed] stands before me, after being captured by my guards outside the halls of [GetTitleByKey('c_aradhyrnd').GetNameNoTier]. The [dwarf|e] stands proudly despite his circumstances, and though he refuses to disclose why he and his party were in [mirkwood|e], I am soon able to deduce the reason. \n\nThorin is attempting to retake the [lonelymountain|e] and slay [smauggolden|e]. Now I could either attempt to convince him to accept aid, or just imprison him and be done with it."
  qfe_quest.052.a: "Offer Aid for Gems"
  qfe_quest.052.b: "Throw him in the Dungeon!"
  qfe_quest.052.a.sucess: "Thorin Accepts the offer."
@@ -216,19 +216,19 @@ l_english:
  qfe_quest.053.a: "How could they have done this?"
  
  qfe_quest.054.t: "The Return of The King Under the Mountain"
- qfe_quest.054.desc: "[GetScriptedCharacterByHistoryID('lineofdurin83').GetName] has arrived in Laketown along with a party of dwarves! he is promising to restore the [GetTitleByKey('k_erebor').GetName] and renew the trade along the long lake. \n\nMost of our people are out celebrating, but [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] has counseled us that [smauggolden|E] isn't dead and only a fool would try to invade the mountain..." 
+ qfe_quest.054.desc: "[GetScriptedCharacterByHistoryID('lineofdurin83').GetName] has arrived in Laketown along with a party of dwarves! he is promising to restore the [GetTitleByKey('k_erebor').GetName] and renew the trade along the long lake. \n\nMost of our people are out celebrating, but [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] has counseled us that [smauggolden|e] isn't dead and only a fool would try to invade the mountain..."
  qfe_quest.054.a: "We Await Developments..."
  
  ### Final Fight
  
  qfe_quest.020.t: "Let Sleeping Dragons Lie"
- qfe_quest.020.desc: "Upon entering the mountain it didn't take long before I arrived at the treasure [smaughorde|e] of [smauggolden|E]. he had piled up all the gold he had stolen in the central hall of [erebor|e], then, like some gargantuan cat, nested atop it. Every moment or so, a couple of coins skitter down the sides of the heap as the sleeping [dragons|e] breathing dislodges them."
+ qfe_quest.020.desc: "Upon entering the mountain it didn't take long before I arrived at the treasure [smaughorde|e] of [smauggolden|e]. he had piled up all the gold he had stolen in the central hall of [erebor|e], then, like some gargantuan cat, nested atop it. Every moment or so, a couple of coins skitter down the sides of the heap as the sleeping [dragons|e] breathing dislodges them."
  qfe_quest.020.a: "Very Quiet Now"
  qfe_quest.020.a.sucess: "Smaug Sleeps"
  qfe_quest.020.a.failure: "Smaug Wakes"
  
  qfe_quest.021.t: "High Stakes Banter"
- qfe_quest.021.desc: "As the dragon wakes, I first attempt to evade him around the [smaughorde|e] , but it's clear that [smaug|e] knows his way around and it won't be long until I’m caught. \n\nSmaug doesn't just search, he taunts. As I scramble through his lair, he toys with me, taunting about the untrustworthiness of [dwarves|e], how he's going to kill me and then the whole party, then burn [GetTitleByKey('c_esgaroth').GetNameNoTier]. something about the dragon compels me to answer, to reveal the [quest|E] and it takes all my willpower not to step out and reveal myself, but I have to make a decision."
+ qfe_quest.021.desc: "As the dragon wakes, I first attempt to evade him around the [smaughorde|e] , but it's clear that [smaug|e] knows his way around and it won't be long until I’m caught. \n\nSmaug doesn't just search, he taunts. As I scramble through his lair, he toys with me, taunting about the untrustworthiness of [dwarves|e], how he's going to kill me and then the whole party, then burn [GetTitleByKey('c_esgaroth').GetNameNoTier]. something about the dragon compels me to answer, to reveal the [quest|e] and it takes all my willpower not to step out and reveal myself, but I have to make a decision."
  qfe_quest.021.a: "Bolt"
  qfe_quest.021.b: "The rest of the party bursts in to rescue [smaugattacker.GetFirstName]!"
  
@@ -258,12 +258,12 @@ l_english:
  qfe_quest.026.a: "It’s Now or Never"
  
  qfe_quest.027.t: "A chink in the armor."
- qfe_quest.027.desc: "As the Dragon turns in his sleep, I notice something shocking, a missing scale! Girion must have managed to hit [smaug|E] during the [sackoferebor|e]! That missing scale might be the key to victory, and now I have a choice to make: do I call on the rest of the party or do I attempt to make the final strike myself?"
+ qfe_quest.027.desc: "As the Dragon turns in his sleep, I notice something shocking, a missing scale! Girion must have managed to hit [smaug|e] during the [sackoferebor|e]! That missing scale might be the key to victory, and now I have a choice to make: do I call on the rest of the party or do I attempt to make the final strike myself?"
  qfe_quest.027.a: "Attempt to Slay the Dragon"
  qfe_quest.027.b: "go back and get the party"
  
  qfe_quest.028.t: "The Sack of Esgoroth"
- qfe_quest.028.desc: "It's as we all feared, [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] has failed,\n\n #difficulty_hard [smaugcalamity] is here!#! \n\nWhile [ROOT.Char.GetFirstName] was busy trying to save the town's gold, even forcing fleeing citizens into the water to speed his escape. But [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] did not panic. No, Bard rushed to the tallest tower in the city. Armed with nothing but his bow he took aim at the dragon. One arrow flew, then another, then another...\n\nDown to his last arrow, Bard takes aim, the last hope of [GetTitleByKey('c_esgaroth').GetNameNoTier] \n\n#flavor 'Arrow!' said the bowman. 'Black arrow! I have saved you to the last. You have never failed me and always I have recovered you. I had you from my father and he from of old. If ever you came from the forges of the true king under the Mountain, go now and speed well!'#!"
+ qfe_quest.028.desc: "It's as we all feared, [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] has failed,\n\n #difficulty_hard [smaugcalamity|e] is here!#! \n\nWhile [ROOT.Char.GetFirstName] was busy trying to save the town's gold, even forcing fleeing citizens into the water to speed his escape. But [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] did not panic. No, Bard rushed to the tallest tower in the city. Armed with nothing but his bow he took aim at the dragon. One arrow flew, then another, then another...\n\nDown to his last arrow, Bard takes aim, the last hope of [GetTitleByKey('c_esgaroth').GetNameNoTier] \n\n#flavor 'Arrow!' said the bowman. 'Black arrow! I have saved you to the last. You have never failed me and always I have recovered you. I had you from my father and he from of old. If ever you came from the forges of the true king under the Mountain, go now and speed well!'#!"
  qfe_quest.028.a: "The Last Arrow Flies"
  qfe_quest.028.a.sucess: "The Arrow flies true"
  qfe_quest.028.a.failure: "The Arrow goes wide"
@@ -278,7 +278,7 @@ l_english:
  ### News Events
  
  qfe_quest.30.t: "Smaug is Dead!"
- qfe_quest.30.desc: "The great [dragon|e] [smaug|E] is dead! The news coming out of the north is garbled; some say he was killed by a party of dwarves inside [erebor|e]. Others declare that he was slain by [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] at Laketown. The only thing all agree on is that the [smauggolden|E] is dead!"
+ qfe_quest.30.desc: "The great [dragon|e] [smaug|e] is dead! The news coming out of the north is garbled; some say he was killed by a party of dwarves inside [erebor|e]. Others declare that he was slain by [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] at Laketown. The only thing all agree on is that the [smauggolden|e] is dead!"
  qfe_quest.30.a: "The Nightmare is Over"
  qfe_quest.30.b: "One less ally to count on"
  qfe_quest.30.c: "What about the gold?"
@@ -288,7 +288,7 @@ l_english:
  qfe_situation.003.a: "Let the Conquest Begin!"
  
  qfe_situation.004.t: "Sauron Reclaims the Ring!" 
- qfe_situation.004.desc: "The Dark Lord [sauroncharacter|E] has reclaimed the [onering|e] and with it has regained all of his power, not since the end of the [secondage|e] has the world faced a threat on this scale! \n\n#strong_glow Three Rings for the Elven-kings under the sky,\nSeven for the Dwarf-lords in their halls of stone,\nNine for Mortal Men doomed to die,\nOne for the Dark Lord on his dark throne\nIn the Land of Mordor where the Shadows lie.\nOne Ring to rule them all, \nOne Ring to find them,\nOne Ring to bring them all, and in the darkness bind them\nIn the Land of Mordor where the Shadows lie.#!"
+ qfe_situation.004.desc: "The Dark Lord [sauroncharacter|e] has reclaimed the [onering|e] and with it has regained all of his power, not since the end of the [secondage|e] has the world faced a threat on this scale! \n\n#strong_glow Three Rings for the Elven-kings under the sky,\nSeven for the Dwarf-lords in their halls of stone,\nNine for Mortal Men doomed to die,\nOne for the Dark Lord on his dark throne\nIn the Land of Mordor where the Shadows lie.\nOne Ring to rule them all, \nOne Ring to find them,\nOne Ring to bring them all, and in the darkness bind them\nIn the Land of Mordor where the Shadows lie.#!"
  qfe_situation.004.a: "May the [valargods|e] help us"
  qfe_situation.004.b: "Hail the Dark Lord!"
  qfe_situation.004.c: "We won't bow to Sauron!"
@@ -301,12 +301,12 @@ l_english:
  qfe_quest.031.b: "Watch but don't interfere"
  
  qfe_quest.032.t: "No News from Erebor"
- qfe_quest.032.desc: "Since we arrived in the ruins of Dale and started our rebuilding project, we haven't heard anything from [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed], or the rest of his party. Since Smaug escaped the mountain to attack [GetTitleByKey('c_esgaroth').GetNameNoTier] we can assume that the [dwarves|E] plan didn't work. but that leaves the matter of Smaug’s [smaughorde|e] ... \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
+ qfe_quest.032.desc: "Since we arrived in the ruins of Dale and started our rebuilding project, we haven't heard anything from [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed], or the rest of his party. Since Smaug escaped the mountain to attack [GetTitleByKey('c_esgaroth').GetNameNoTier] we can assume that the [dwarves|e] plan didn't work. but that leaves the matter of Smaug’s [smaughorde|e] ... \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|e]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
  qfe_quest.032.a: "Travel to [erebor|e] to Investigate"
  qfe_quest.032.b: "I’m sure its fine"
  
  qfe_quest.033.t: "The King Under the Mountian"
- qfe_quest.033.desc: "As I stand before the ruined gate of [erebor|e], I am surprised to see [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed] come out to meet me. It seems the dwarves survived after all. \n\nUpon meeting with him, I explained how I slew [smaug|E] above [GetTitleByKey('c_esgaroth').GetNameNoTier], and how the dragon destroyed our homes. Thorin seemed apprehensive to fulfill my request for rebuilding funds, but he seemed more open to it than I expected."
+ qfe_quest.033.desc: "As I stand before the ruined gate of [erebor|e], I am surprised to see [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed] come out to meet me. It seems the dwarves survived after all. \n\nUpon meeting with him, I explained how I slew [smaug|e] above [GetTitleByKey('c_esgaroth').GetNameNoTier], and how the dragon destroyed our homes. Thorin seemed apprehensive to fulfill my request for rebuilding funds, but he seemed more open to it than I expected."
  qfe_quest.033.a: "Ask for Rebuilding Funds"
  qfe_quest.033.b: "Ask Thorin"
  qfe_quest.033.a.sucess: "Thorin hands over a tenth of the [smaughorde|e] "
@@ -316,7 +316,7 @@ l_english:
  qfe_quest.033.a.failure: "Thorin refused to help rebuild"
  
  qfe_quest.034.t: "Dale Requests Aid"
- qfe_quest.034.desc: "King [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] stands before the great gate of [erebor|E], he is requesting a share of the dragon's [smaughorde|e] to rebuild the lands around the mountain. arguing that since he actually slew the dragon, he was entitled to a share of the profit\n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
+ qfe_quest.034.desc: "King [GetScriptedCharacterByHistoryID('lineofdale46').GetFirstNameNicknamed] stands before the great gate of [erebor|e], he is requesting a share of the dragon's [smaughorde|e] to rebuild the lands around the mountain. arguing that since he actually slew the dragon, he was entitled to a share of the profit\n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|e]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
  qfe_quest.034.a: "It’s my gold!"
  qfe_quest.034.b: "Give them 1/10th"
  qfe_quest.034.c: "Give them 1/20th"
@@ -328,32 +328,32 @@ l_english:
  
  ### Thranduil Chain
  qfe_quest.035.t: "An Unguarded [smaughorde|e] "
- qfe_quest.035.desc: "[smauggolden|E] is dead! And good riddance. All [dragons|e] are dangerous, left over from [morgothcharacter|e]s wars in the [elderdays|e], but Smaug was particularly threatening due to his hatred of trees.\n\nBut his death has left an opening, the dragon's [smaughorde|e] is either unguarded, or held by the meager party of [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed]. That much gold shouldn't just be left to [men|e] and [dwarves|e], the [eldar|e] deserve a share too!"
+ qfe_quest.035.desc: "[smauggolden|e] is dead! And good riddance. All [dragons|e] are dangerous, left over from [morgothcharacter|e]s wars in the [elderdays|e], but Smaug was particularly threatening due to his hatred of trees.\n\nBut his death has left an opening, the dragon's [smaughorde|e] is either unguarded, or held by the meager party of [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed]. That much gold shouldn't just be left to [men|e] and [dwarves|e], the [eldar|e] deserve a share too!"
  qfe_quest.035.a: "To [erebor|e]!"
  qfe_quest.035.b: "Leave the mountain to rot"
  
  qfe_quest.036.t: "The King Under the Mountain"
- qfe_quest.036.desc: "As I stand before the gate of Erebor, I am shocked to see [GetScriptedCharacterByHistoryID('lineofdurin81').GetFirstNameNicknamed] come out to meet me. It seems the Dwarves survived the dragon after all. Well, no matter, my goal remains the same. The dragon's [smaughorde|e] holds many gems from the elven realms, along with many projects that were promised to us. It's time that we received what's rightfully ours. \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
+ qfe_quest.036.desc: "As I stand before the gate of Erebor, I am shocked to see [GetScriptedCharacterByHistoryID('lineofdurin81').GetFirstNameNicknamed] come out to meet me. It seems the Dwarves survived the dragon after all. Well, no matter, my goal remains the same. The dragon's [smaughorde|e] holds many gems from the elven realms, along with many projects that were promised to us. It's time that we received what's rightfully ours. \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|e]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
  qfe_quest.036.a: "Ask for what's rightfully mine"
  qfe_quest.036.a.sucess: "Thorin accepts"
  qfe_quest.036.a.failure: "Thorin refuses"
  elf_share_tooltip: "Thranduil receives his gems"
  
  qfe_quest.037.t: "Thranduil demands a share"
- qfe_quest.037.desc: "[GetScriptedCharacterByHistoryID('lineoforopher3').GetFirstName] stands before the great gate of [erebor|e] and dares to demand a share of the wealth from the mountain. He claims that a portion of the [smaughorde|e] consisted of projects and other items that rightfully belonged to the [eldar|e], and he would have them returned. He is only asking for about #highlight 2000 @gold_icon!#! which would be an acceptable sum compared to the gold in [erebor|e]...\n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
+ qfe_quest.037.desc: "[GetScriptedCharacterByHistoryID('lineoforopher3').GetFirstName] stands before the great gate of [erebor|e] and dares to demand a share of the wealth from the mountain. He claims that a portion of the [smaughorde|e] consisted of projects and other items that rightfully belonged to the [eldar|e], and he would have them returned. He is only asking for about #highlight 2000 @gold_icon!#! which would be an acceptable sum compared to the gold in [erebor|e]...\n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|e]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
  qfe_quest.037.a: "I will not surrender a single coin!"
  qfe_quest.037.b: "He will have his gold"
  
  ### Battle of the 5 armies event chain
  
  qfe_quest.040.t: "The Mountain Unguarded"
- qfe_quest.040.desc: "With the death of [smaug|E], the realm of [erebor|e] is unguarded, the [dragons|e] [smaughorde|e] is up for grabs. While it's a pity that I won't be able to use [smaug|E] in my schemes after all, his death should not go to waste. \n\n [GetScriptedCharacterByHistoryID('lineofazog2').GetFirstName] has been stewing since the end of the [warofdwarvesandorcs|e], I've managed to keep him and his forces in [GetTitleByKey('k_gundabad').GetNameNoTier] in reserve, they will be needed in the coming war. But they might be needed now more... if Bolg can take the mountain, and the dragon's [smaughorde|e] with it, before the dwarves can solidify control, the north would be as good as mine... \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
+ qfe_quest.040.desc: "With the death of [smaug|e], the realm of [erebor|e] is unguarded, the [dragons|e] [smaughorde|e] is up for grabs. While it's a pity that I won't be able to use [smaug|e] in my schemes after all, his death should not go to waste. \n\n [GetScriptedCharacterByHistoryID('lineofazog2').GetFirstName] has been stewing since the end of the [warofdwarvesandorcs|e], I've managed to keep him and his forces in [GetTitleByKey('k_gundabad').GetNameNoTier] in reserve, they will be needed in the coming war. But they might be needed now more... if Bolg can take the mountain, and the dragon's [smaughorde|e] with it, before the dwarves can solidify control, the north would be as good as mine... \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|e]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
  qfe_quest.040.a: "Send the Orcs to War!"
  qfe_quest.040.b: "Now is not the time"
  march_on_erebor: "[GetScriptedCharacterByHistoryID('lineofazog2').GetFirstName] and the Orcs of the north will march on [erebor|e]"
  
  qfe_quest.041.t: "Orders from the Necromancer"
- qfe_quest.041.desc: "The [darklord|e] has sent word that the [orcs|e] of [GetTitleByKey('k_gundabad').GetNameNoTier] are to immediately march on [erebor|e]. [sauroncharacter|E] has decided that the death of [smaug|e] has provided an opening to seize the dwarven realm and its vast wealth. Sauron expects the limited dwarves there to not be able to pose a significant threat, and we are expected to seize the mountain and hold it against the [elves|e] of [mirkwood|e] and the [dwarves|e] of the Iron Hills. With luck, the mountain will serve as a new base in the region."
+ qfe_quest.041.desc: "The [darklord|e] has sent word that the [orcs|e] of [GetTitleByKey('k_gundabad').GetNameNoTier] are to immediately march on [erebor|e]. [sauroncharacter|e] has decided that the death of [smaug|e] has provided an opening to seize the dwarven realm and its vast wealth. Sauron expects the limited dwarves there to not be able to pose a significant threat, and we are expected to seize the mountain and hold it against the [elves|e] of [mirkwood|e] and the [dwarves|e] of the Iron Hills. With luck, the mountain will serve as a new base in the region."
  qfe_quest.041.a: "To Erebor!"
  qfe_quest.041.b: "We don't work for Sauron!"
  
@@ -382,7 +382,7 @@ l_english:
  qfe_situation.002.a: "The Shadow Grows..."
  
  qfe_quest.045.t: "Dispersing the [smaughorde|e] "
- qfe_quest.045.desc: "Now that the mountain has been secured and the threat of invasion ended, it's time that we give out the hard-won gold... \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|E]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
+ qfe_quest.045.desc: "Now that the mountain has been secured and the threat of invasion ended, it's time that we give out the hard-won gold... \n\n#highlight @gold_icon! [smaughorde|e] of [smauggolden|e]: [GetGlobalVariable('qfe_erebor_horde').GetValue]@gold_icon!#!"
  qfe_quest.045.a: "Give out what's fair."
  
  qfe_quest.046.t: "There and Back Again"
@@ -394,7 +394,7 @@ l_english:
  qfe_quest.047.desc: "[GetScriptedCharacterByHistoryID('lineofsauron').GetFirstName] has provided us with a great boon to use against the [dwarves|e] of [ereborrealm|e], Were-worms of the East, at his direction we can use these Worms to travel great distances and attack the [lonelymountain|e] far faster than we could just by marching, no matter how fast"
  qfe_quest.047.a: "Use the Tunnels"
  qfe_quest.047.b: "Walk"
- wormways: "Every [army|E] will travel to [GetTitleByKey('b_vargurat').GetNameNoTier]"
+ wormways: "Every [army|e] will travel to [GetTitleByKey('b_vargurat').GetNameNoTier]"
  
  qfe_quest.048.t: "The Arkenstone"
  qfe_quest.048.desc: "Deep in the depths of [smaug|e]s [smaughorde|e] a single glittering gem stands out from the rest. Its the Arkenstone of Thrain! The Heart of the Mountain! The Gem was the single most valuable thing lost in the [sackoferebor|e] and the centerpeice of [smaug|e]s horde. to have it once more is something that brings a tear to my eye.  \n\n#weak 'It was a globe with a thousand facets; it shone like silver in the firelight, like water in the sun, like snow under the stars, like rain upon the Moon!'"
@@ -403,30 +403,30 @@ l_english:
  ### Alternate Quest Routes
  
  qfe_quest.061.t: "The Hidden Hold of [GetTitleByKey('c_nordinbad').GetNameNoTier]"
- qfe_quest.061.desc: "Centuries ago, the [dragons|e] of the Grey Mountains drove us from these northern peaks in the [warofdwarvesanddragons|e]. while we fought valiantly, our holds were eventually destroyed and our gold plundered. However, one hold survived. [nordinbad|e] is the last hold of the [longbeards|E] in the north, though we lost contact after the [sackoferebor|e]. \n\nUpon arriving at the hold, we were pleased to be greeted by lord [GetScriptedCharacterByHistoryID('lineofgorin7').GetFirstName]. he was ecstatic that he received a visit from the king and we immediately discussed ways for him to aid in the [quest|e] and to reintegrate his hold back into the broader realm."
+ qfe_quest.061.desc: "Centuries ago, the [dragons|e] of the Grey Mountains drove us from these northern peaks in the [warofdwarvesanddragons|e]. while we fought valiantly, our holds were eventually destroyed and our gold plundered. However, one hold survived. [nordinbad|e] is the last hold of the [longbeards|e] in the north, though we lost contact after the [sackoferebor|e]. \n\nUpon arriving at the hold, we were pleased to be greeted by lord [GetScriptedCharacterByHistoryID('lineofgorin7').GetFirstName]. he was ecstatic that he received a visit from the king and we immediately discussed ways for him to aid in the [quest|e] and to reintegrate his hold back into the broader realm."
  qfe_quest.061.a: "Bring them back into the fold"
  qfe_quest.061.b: "Leave them on their own"
  qfe_quest.061.c: "The choice is up to them"
  
  qfe_quest.062.t: "The King under the Mountain"
- qfe_quest.062.desc: "I was watching over the valley, when I noticed a party of dwarves approaching from the south. I was shocked when I recognized [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed] among them. I rushed down to get the hold in order, then greeted the true King under the Mountain. \n\nTo my shock [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] said that he and his party were on a [quest|e] to slay [smauggolden|E] and retake [erebor|e], and he asked for my aid in whatever way I could."
+ qfe_quest.062.desc: "I was watching over the valley, when I noticed a party of dwarves approaching from the south. I was shocked when I recognized [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstNameNicknamed] among them. I rushed down to get the hold in order, then greeted the true King under the Mountain. \n\nTo my shock [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] said that he and his party were on a [quest|e] to slay [smauggolden|e] and retake [erebor|e], and he asked for my aid in whatever way I could."
  qfe_quest.062.a: "Swear Fealty to the True King under the Mountian"
  qfe_quest.062.b: "Provide provisions only"
  
  qfe_quest.063.t: "Fire Drake of the North!"
- qfe_quest.063.desc: "The [greymountains|e] are [dragon|e] country, it's why the dwarves abandoned them centuries ago, but even knowing that and taking precautions, we still ran afoul of a [drake|E]. Though smaller than [smaug|e] and having to be a young dragon, born after the [sackoferebor|e], it's still a major threat, one that we have to try to slay."
+ qfe_quest.063.desc: "The [greymountains|e] are [dragon|e] country, it's why the dwarves abandoned them centuries ago, but even knowing that and taking precautions, we still ran afoul of a [drake|e]. Though smaller than [smaug|e] and having to be a young dragon, born after the [sackoferebor|e], it's still a major threat, one that we have to try to slay."
  qfe_quest.063.a: "Attempt to fight it off"
  qfe_quest.063.a.sucess: "You fight off the drake"
  qfe_quest.063.a.failure: "The Quest Ends"
  
  qfe_quest.064.t: "Barrow Wights!"
- qfe_quest.064.desc: "Long ago, these lands were once part of the [GetTitleByKey('k_cardolan').GetName], and these lands served as royal burial grounds for the [dunedain|E] who inhabited them. But during the [angmar_wars|e], the [witchking|E] used [sorcery|e] to raise the honored dead as wights to defile the land and destroy its people.\n\nWhile traveling through the Barrow-Downs, we made sure to stick to the old roads, but one night I awoke to see the walking corpses dragging away [dwarfperil1.GetFirstName], [dwarfperil2.GetFirstName], and [dwarfperil3.GetFirstName]!"
+ qfe_quest.064.desc: "Long ago, these lands were once part of the [GetTitleByKey('k_cardolan').GetName], and these lands served as royal burial grounds for the [dunedain|e] who inhabited them. But during the [angmar_wars|e], the [witchking|e] used [sorcery|e] to raise the honored dead as wights to defile the land and destroy its people.\n\nWhile traveling through the Barrow-Downs, we made sure to stick to the old roads, but one night I awoke to see the walking corpses dragging away [dwarfperil1.GetFirstName], [dwarfperil2.GetFirstName], and [dwarfperil3.GetFirstName]!"
  qfe_quest.064.a: "Attempt to fight them off!"
  qfe_quest.064.a.sucess: "You rescue the dwarves."
  qfe_quest.064.a.failure: "The Wights vanish."
  
  qfe_quest.065.t: "The Tharbad Ferry"
- qfe_quest.065.desc: "The once great [dunedain|E] city of [tharbad|e] was abandoned following a series of floods almost 30 years ago. I thought that meant that we would be able to use the city's ford over the Greyflood without issue, but I was wrong. \n\nIt seems an enterprising [gondorian|E] merchant has taken control of the ruins and is charging a toll to use the ford, while providing an inn and rescue service on the river." 
+ qfe_quest.065.desc: "The once great [dunedain|e] city of [tharbad|e] was abandoned following a series of floods almost 30 years ago. I thought that meant that we would be able to use the city's ford over the Greyflood without issue, but I was wrong. \n\nIt seems an enterprising [gondorian|e] merchant has taken control of the ruins and is charging a toll to use the ford, while providing an inn and rescue service on the river."
  qfe_quest.065.b: "Pay the toll"
  qfe_quest.065.a: "Attempt the Crossing on our own"
  qfe_quest.065.a.sucess: "You cross successfully"
@@ -452,7 +452,7 @@ l_english:
  south_rhovanion_journey: "We will Cross the [GetTitleByKey('k_brownlands').GetNameNoTier]"
  
  qfe_quest.069.t: "The Necromancer"
- qfe_quest.069.desc: "We thought we had stayed far enough south to avoid the [necromancer_sauron|e]. We had not. coming out of the forest was a black cloud of utter malice, under the cloud came [smaughorde|e] upon [smaughorde|e] of [orcs|E] and the Giant Spiders of [mirkwood|e]. [gandalfcharacter|e] is holding out the best he can against the forces of darkness, but I'm not sure we will last much longer..."
+ qfe_quest.069.desc: "We thought we had stayed far enough south to avoid the [necromancer_sauron|e]. We had not. coming out of the forest was a black cloud of utter malice, under the cloud came [smaughorde|e] upon [smaughorde|e] of [orcs|e] and the Giant Spiders of [mirkwood|e]. [gandalfcharacter|e] is holding out the best he can against the forces of darkness, but I'm not sure we will last much longer..."
  qfe_quest.069.a: "We're counting on you Gandalf!"
  qfe_quest.069.a.sucess: "We Escape the Necromancer"
  qfe_quest.069.a.failure: "We are captured"
@@ -468,7 +468,7 @@ l_english:
  qfe_quest.071.b: "Cackle Evilly"
  
  qfe_quest.072.t: "Thrors Body"
- qfe_quest.072.desc: "The shadows part around an old dwarven corpse in the next cell over. With a shock, I realize it's the body of my father [GetScriptedCharacterByHistoryID('lineofdurin81').GetFirstName]! \n\nIt had been many decades since he vanished in the wilderness, but I never gave up hope that he would one day return to us. I guess that's never going to happen now. \n\n On one skeletal finger, I notice a small ring, polished despite the dust around it; it's the [artifact1].GetName]! and its within reach..."
+ qfe_quest.072.desc: "The shadows part around an old dwarven corpse in the next cell over. With a shock, I realize it's the body of my father [GetScriptedCharacterByHistoryID('lineofdurin81').GetFirstName]! \n\nIt had been many decades since he vanished in the wilderness, but I never gave up hope that he would one day return to us. I guess that's never going to happen now. \n\n On one skeletal finger, I notice a small ring, polished despite the dust around it; it's the [artifact1.GetName]! and its within reach..."
  qfe_quest.072.a: "Take the Ring"
  qfe_quest.072.b: "Leave It"
  
@@ -479,14 +479,14 @@ l_english:
  qfe_quest.073.a.failure: "You fail to hold the fortress"
  
  qfe_quest.074.t: "The Dead Marshes"
- qfe_quest.074.desc: "We are currently traversing across the [GetTitleByKey('c_dead_marshes').GetNameNoTier], the ancient field of the [battleofdagorlad|e], now all that remains of this once glorious battlefield where [sauroncharacter|E] himself was forced to flee are ancient corpses and evil spirits. \n\nThe most important thing about the marshes is that we can't be entranced by the spirits below, for if we follow the lights, we will never be seen again."
+ qfe_quest.074.desc: "We are currently traversing across the [GetTitleByKey('c_dead_marshes').GetNameNoTier], the ancient field of the [battleofdagorlad|e], now all that remains of this once glorious battlefield where [sauroncharacter|e] himself was forced to flee are ancient corpses and evil spirits. \n\nThe most important thing about the marshes is that we can't be entranced by the spirits below, for if we follow the lights, we will never be seen again."
  qfe_quest.074.a: "[GetScriptedCharacterByHistoryID('lineofbaggins12').GetFirstName] Leads us through."
  qfe_quest.074.b: "I Lead the Party Through"
  qfe_quest.074.a.sucess: "You pass safely"
  qfe_quest.074.a.failure: "You join the honored dead"
  
  qfe_quest.075.t: "A Chance Find"
- qfe_quest.075.desc: "as we were wandering the [GetTitleByKey('c_dead_marshes').GetNameNoTier], out of the corner of my eye, I spotted an ancient blade poking up through the muck. It was in excellent condition considering how long it had been there. Daring the marshes, I pulled the sword out and was shocked to see it was [artifact1].GetName], the Sword of [GetScriptedCharacterByHistoryID('lineofamdir1').GetFirstName] the king of the [lorien|e]. The sword was said to have been lost after [GetScriptedCharacterByHistoryID('lineofamdir1').GetFirstName] fell to the [darklord|e], but clearly some of the [elves|e] who survived the [warlastalliance|e] were trying to bring the weapon to bury with their king. They must have dropped it while braving the marshes. \n\nNevertheless, the blade could not come at a better time, [smaug|e] will not go quietly, and we need every advantage we can get."
+ qfe_quest.075.desc: "as we were wandering the [GetTitleByKey('c_dead_marshes').GetNameNoTier], out of the corner of my eye, I spotted an ancient blade poking up through the muck. It was in excellent condition considering how long it had been there. Daring the marshes, I pulled the sword out and was shocked to see it was [artifact1.GetName], the Sword of [GetScriptedCharacterByHistoryID('lineofamdir1').GetFirstName] the king of the [lorien|e]. The sword was said to have been lost after [GetScriptedCharacterByHistoryID('lineofamdir1').GetFirstName] fell to the [darklord|e], but clearly some of the [elves|e] who survived the [warlastalliance|e] were trying to bring the weapon to bury with their king. They must have dropped it while braving the marshes. \n\nNevertheless, the blade could not come at a better time, [smaug|e] will not go quietly, and we need every advantage we can get."
  
  qfe_quest.076.t: "The Doors of Durin"
  qfe_quest.076.desc: "We stand before the ancient gates of [khazaddum|e], long closed. Many centuries have passed since our people were driven from these halls by a [balrog|e] of [morgothcharacter|e], and mere decades since I last visited the halls of my forefathers. My Cousin [GetScriptedCharacterByHistoryID('lineofdurin90').GetFirstNameNicknamed] claims to have seen a #warning Demon of Shadow and Flame#! deep in the halls after the [warofdwarvesandorcs|e], but since the death of [GetScriptedCharacterByHistoryID('lineofazog1').GetFirstName] the caves have lain abandoned. \n\nThe Doors of Durin were enchanted in ages past to only allow the friends of the dwarves to enter. To open them, one must speak the password."
@@ -516,7 +516,7 @@ l_english:
  qfe_quest.080.c: "We'll be back for [khazaddum|e]"
  
  qfe_quest.081.t: "Return of The King Under The Mountain"
- qfe_quest.081.desc: "[GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] Has Done it! [smauggolden|E] is dead and [ereborrealm|e] has been reclaimed! now is the time for us to focus on restoring our ancient glory and returning to our glory days. part of that is to reaffirm the oaths of the [GetTitleByKey('k_iron_hils').GetNameNoTier] to the King."
+ qfe_quest.081.desc: "[GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] Has Done it! [smauggolden|e] is dead and [ereborrealm|e] has been reclaimed! now is the time for us to focus on restoring our ancient glory and returning to our glory days. part of that is to reaffirm the oaths of the [GetTitleByKey('k_iron_hils').GetNameNoTier] to the King."
  qfe_quest.081.a: "Swear Fealty to the King"
  qfe_quest.081.b: "Maintain some independence"
  qfe_quest.081.c: "Remain Independent"
@@ -528,7 +528,7 @@ l_english:
  ### Situation Events
  
  qfe_situation.005.t: "Smaug attacks [smaug_target.GetNameNoTier]"
- qfe_situation.005.desc: "The [dragon|e] [smauggolden|E] has risen from his lair in [erebor|e] and struck [smaug_target.GetNameNoTier], laying waste to the region and taking gold for his [smaughorde|e]. as the region burns around me, I have to make a decision on what to do about the greatest of all calamities"
+ qfe_situation.005.desc: "The [dragon|e] [smauggolden|e] has risen from his lair in [erebor|e] and struck [smaug_target.GetNameNoTier], laying waste to the region and taking gold for his [smaughorde|e]. as the region burns around me, I have to make a decision on what to do about the greatest of all calamities"
  qfe_situation.005.a: "Try to Drive him off"
  qfe_situation.005.a.sucess: "You drive off Smaug"
  qfe_situation.005.a.failure: "You fail to drive off Smaug"
@@ -545,13 +545,13 @@ l_english:
  qfe_situation.007.b: "Execute the false ring bearer"
  
  qfe_situation.010.t: "Time to Act"
- qfe_situation.010.desc: "For too long has the [necromancer_sauron|e] lain in [dolguldur|e], polluting [mirkwood|e] with his dark [sorcery|e] and breeding dark creatures. weather he is [sauroncharacter|E], one of the [nazgul|e] or merely a mortal mage enough is enough, it’s time to reveal him and expel him from his dark tower"
+ qfe_situation.010.desc: "For too long has the [necromancer_sauron|e] lain in [dolguldur|e], polluting [mirkwood|e] with his dark [sorcery|e] and breeding dark creatures. weather he is [sauroncharacter|e], one of the [nazgul|e] or merely a mortal mage enough is enough, it’s time to reveal him and expel him from his dark tower"
  qfe_situation.010.a: "The [whitecouncil|e] Will March on [dolguldur|e]"
  qfe_situation.010.b: "Leave the choice to the council"
  marchondolguldur: "The [whitecouncil|e] will [travel|e] to [GetTitleByKey('c_amon_lanc').GetNameNoTier]"
  
  qfe_situation.011.t: "The Necromancer Revealed"
- qfe_situation.011.desc: "Upon Arriving in [dolguldur|e] we assaulted the fortress with our power, the lesser servants of the shadow soon fell away against the blades of the [eldar|e], but it did not take long before the towers master revealed himself. \n\n[sauroncharacter|E] stands before us, still a mere shell of his former self without the [onering|e], hefting a mace forged of black iron, it’s time to determine if we are able to banish the [darklord|e] from the forest once and for all!"
+ qfe_situation.011.desc: "Upon Arriving in [dolguldur|e] we assaulted the fortress with our power, the lesser servants of the shadow soon fell away against the blades of the [eldar|e], but it did not take long before the towers master revealed himself. \n\n[sauroncharacter|e] stands before us, still a mere shell of his former self without the [onering|e], hefting a mace forged of black iron, it’s time to determine if we are able to banish the [darklord|e] from the forest once and for all!"
  qfe_situation.011.a: "#T Go Back To The Shadow From Wence You Came!#!"
  qfe_situation.011.b: "Let the Battle Begin!"
  qfe_situation.011.a.sucess: "You Banish the Dark Lord"
@@ -607,7 +607,7 @@ l_english:
  ### Gandalf Story
  
  qfe_quest.090.t: "The Shadow Over Mirkwood"
- qfe_quest.090.desc: "A [necromancer_sauron|e] dwells in [dolguldur|e], I have previously traveled to the dark tower and investigated its master, my last time through I even uncovered the body of [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] Father, [GetScriptedCharacterByHistoryID('lineofdurin82').GetFirstName], I fear that the [necromancer_sauron|e] is none other than [sauroncharacter|E], and after speaking with the other members of the [whitecouncil|e] we have all agreed to finally move on him. I must travel to [lorien|E] immediately to meet up with the other members of the council and plan the attack"
+ qfe_quest.090.desc: "A [necromancer_sauron|e] dwells in [dolguldur|e], I have previously traveled to the dark tower and investigated its master, my last time through I even uncovered the body of [GetScriptedCharacterByHistoryID('lineofdurin83').GetFirstName] Father, [GetScriptedCharacterByHistoryID('lineofdurin82').GetFirstName], I fear that the [necromancer_sauron|e] is none other than [sauroncharacter|e], and after speaking with the other members of the [whitecouncil|e] we have all agreed to finally move on him. I must travel to [lorien|e] immediately to meet up with the other members of the council and plan the attack"
  qfe_quest.090.a: "To the Golden Wood!"
  lorien_journey: "I will Travel to [lorien|e]"
  
@@ -624,12 +624,12 @@ l_english:
  qfe_misc.03.b: "Its to risky"
  
  qfe_misc.04.t: "Victory over the Orcs!"
- qfe_misc.04.desc: "[GetTitleByKey('d_goblin_town').GetNameNoTier] lies in ruins, the Valemen have atleast driven the [goblins|E] from their tunnels and into the light. at last [GetTitleByKey('d_high_pass').GetNameNoTier] has been reclaimed! \n\nHowever there are those amoung the victorious host who want things to change in the Vale. It has been long years since we had a king. but my leadership during the war has lead to many of the warriors proclaiming me the King of the Vale. I could easily assume the title..."
+ qfe_misc.04.desc: "[GetTitleByKey('d_goblin_town').GetNameNoTier] lies in ruins, the Valemen have atleast driven the [goblins|e] from their tunnels and into the light. at last [GetTitleByKey('d_high_pass').GetNameNoTier] has been reclaimed! \n\nHowever there are those amoung the victorious host who want things to change in the Vale. It has been long years since we had a king. but my leadership during the war has lead to many of the warriors proclaiming me the King of the Vale. I could easily assume the title..."
  qfe_misc.04.a: "I accept the crown"
  qfe_misc.04.b: "I'm not a king"
  
  qfe_misc.05.t: "The Lord of the Vale"
- qfe_misc.05.desc: "Following the victory over the [goblins|E] [GetScriptedCharacterByHistoryID('lineofbeorn1').GetFirstName] has been proclamed King of the Vale by the victorious host. emassaries have arrived from the new King asking for our Fealty. How do we respond?"
+ qfe_misc.05.desc: "Following the victory over the [goblins|e] [GetScriptedCharacterByHistoryID('lineofbeorn1').GetFirstName] has been proclamed King of the Vale by the victorious host. emassaries have arrived from the new King asking for our Fealty. How do we respond?"
  qfe_misc.05.a: "Hail the lord of the Vale"
  qfe_misc.05.b: "We have no king"
  
@@ -668,12 +668,12 @@ l_english:
  base: "base"
  
  qfe_misc.11.t: "The Return of Angmar"
- qfe_misc.11.desc: "The [witchking|E] has returned to Angmar and his heralds have arrived demanding fealty. we are but pawns in the Great Eye's plans and should submit to the lord of the [nazgul|e] but the final decision for our fate rests with us"
+ qfe_misc.11.desc: "The [witchking|e] has returned to Angmar and his heralds have arrived demanding fealty. we are but pawns in the Great Eye's plans and should submit to the lord of the [nazgul|e] but the final decision for our fate rests with us"
  qfe_misc.11.a: "All Hail the Witch-King!"
  qfe_misc.11.b: "We stay on our own"
  
  qfe_misc.12.t: "Return to Mumakan"
- qfe_misc.12.desc: "My lord [sauroncharacter|E] has commanded me to return to [GetTitleByKey('e_mumakan').GetNameNoTier] and deal with any threats that arise to our plans in the south. being one of the [nazgul|e] i have no choice but to accept"
+ qfe_misc.12.desc: "My lord [sauroncharacter|e] has commanded me to return to [GetTitleByKey('e_mumakan').GetNameNoTier] and deal with any threats that arise to our plans in the south. being one of the [nazgul|e] i have no choice but to accept"
  qfe_misc.12.a: "My Lord Commands"
  
  qfe_misc.13.t: "Indurs Return"
@@ -682,7 +682,7 @@ l_english:
  qfe_misc.13.b: "We stand alone"
  
  qfe_misc.14.t: "Return to Khand"
- qfe_misc.14.desc: "My lord [sauroncharacter|E] has commanded me to return to [GetTitleByKey('e_khand').GetNameNoTier] and deal with any threats that arise to our plans in the east. being one of the [nazgul|e] i have no choice but to accept"
+ qfe_misc.14.desc: "My lord [sauroncharacter|e] has commanded me to return to [GetTitleByKey('e_khand').GetNameNoTier] and deal with any threats that arise to our plans in the east. being one of the [nazgul|e] i have no choice but to accept"
  qfe_misc.14.a: "My lord commands"
  
  qfe_misc.15.t: "Return of Ovantha"

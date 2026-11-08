@@ -23,7 +23,7 @@ l_english:
  
  
  decision_investigate_necromancer: "Investigate The Necromancer"
- decision_investigate_necromancer_desc: "A Shadow Stirs in [mirkwood|e], a [necromancer_sauron|E] dwells in the ancient tower of [dolguldur|e], his identity remains a mystery and it would be prudent of us to investigate him and his activities"
+ decision_investigate_necromancer_desc: "A Shadow Stirs in [mirkwood|e], a [necromancer_sauron|e] dwells in the ancient tower of [dolguldur|e], his identity remains a mystery and it would be prudent of us to investigate him and his activities"
  decision_investigate_necromancer_tooltip: "Investigate The Necromancer"
  decision_investigate_necromancer_confirm: "Launch Investigation"
  white_council_investigate: "[travel|e] to [GetTitleByKey('c_amon_lanc').GetNameNoTier] to Investigate"
@@ -45,7 +45,7 @@ l_english:
  sauron_sent_mordor_willing: "You Return to [GetTitleByKey('e_mordor').GetNameNoTier]"
  
  decision_dispatch_witch_king: "Dispatch Er-Murazor"
- decision_dispatch_witch_king_desc: "It has been many long years since [angmar|E] struck terror in the realms of the north. yet times are changing, Should conditions allow it, or circumstances force it, I can dispatch [GetScriptedCharacterByHistoryID('nazgul1').GetFirstName], the [witchking|e] to once more reign over the north"
+ decision_dispatch_witch_king_desc: "It has been many long years since [angmar|e] struck terror in the realms of the north. yet times are changing, Should conditions allow it, or circumstances force it, I can dispatch [GetScriptedCharacterByHistoryID('nazgul1').GetFirstName], the [witchking|e] to once more reign over the north"
  decision_dispatch_witch_king_tooltip: "Dispatch Er-Murazor"
  decision_dispatch_witch_king_confirm: "Dispatch Er-Murazor"
  decision_dispatch_witch_king_effect: "[GetScriptedCharacterByHistoryID('nazgul1').GetFirstName] returns to restore [GetTitleByKey('k_angmar').GetNameNoTier]"
@@ -93,7 +93,7 @@ l_english:
  ### Misc
  
  decision_restore_atyamar: "Restore Atyamar"
- decision_restore_atyamar_desc: "During the [greatjourney|E] many [elves|e], esspecially those of [telerielves|e] origin opted to stay around the Vales of Anduin, these [silvanelves|e] would later form the great realms of [lothlorien|e] and the [greenwood|e]. if these lands and peoples could be brought under one crown, Atyamar, the second home, could be restored and the [silvanelves|e] could be reunited"
+ decision_restore_atyamar_desc: "During the [greatjourney|e] many [elves|e], esspecially those of [telerielves|e] origin opted to stay around the Vales of Anduin, these [silvanelves|e] would later form the great realms of [lothlorien|e] and the [greenwood|e]. if these lands and peoples could be brought under one crown, Atyamar, the second home, could be restored and the [silvanelves|e] could be reunited"
  decision_restore_atyamar_tooltip: " Restore Atyamar"
  decision_restore_atyamar_confirm: "Welcome Home"
  decision_atyamar_effect: "Every county in [GetGeographicalRegion('custom_atyamar').GetName] will gain [GetModifier('elven_homeland_county_modifier').GetNameWithTooltip]."
