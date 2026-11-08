@@ -144,27 +144,27 @@ l_english:
  
  bookmark_qfe_thranduil:  "King Thranduil"
  bookmark_qfe_thranduil_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_thranduil_desc:  "Thranduil, the Elvenking, Lord of the woodland realm, is a fairly passive player in Middle-earth. From his halls in northwestern [mirkwood|e] he rules justly but rarely involves himself in the greater events of the day. \n\nBut things are changing in the Dalelands, the [dragon|e] [smaug|e] is stirring and the [dwarves|e] are plotting. will he leave his halls or will he at last make his mark on Middle-earth?"
+ bookmark_qfe_thranduil_desc:  "Thranduil, the Elvenking, Lord of the woodland realm, is a fairly passive player in Middle-earth. From his halls in northwestern Mirkwood he rules justly but rarely involves himself in the greater events of the day. \n\nBut things are changing in the Dalelands, the dragon Smaug is stirring and the Dwarves are plotting. will he leave his halls or will he at last make his mark on Middle-earth?"
  
  bookmark_qfe_thorin: "Thorin Oakenshield"
  bookmark_qfe_thorin_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_thorin_desc: "Thorin has had a rough life. Raised in [ereborrealm|e] at the height of its power, he watched [smauggolden|e] destroy his home and shatter his people. watched his father and grandfather fall to the challenges that faced them, already has experienced failure in retaking [moria|e] and has spent the last decades biding his time in the [bluemountains|e]. \n\nBut word from [gandalfcharacter|e] has ignited a fire in the dwarf king, [erebor|e] must be reclaimed! [smaug|e] must fall! And Thorin intends to be the one to bring the dragon down."
+ bookmark_qfe_thorin_desc: "Thorin has had a rough life. Raised in Erebor at the height of its power, he watched Smaug the Golden destroy his home and shatter his people. watched his father and grandfather fall to the challenges that faced them, already has experienced failure in retaking Moria and has spent the last decades biding his time in the Blue Mountains. \n\nBut word from Gandalf has ignited a fire in the dwarf king, Erebor must be reclaimed! Smaug must fall! And Thorin intends to be the one to bring the dragon down."
  
  bookmark_qfe_bilbo: "Bilbo Baggins"
  bookmark_qfe_bilbo_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_bilbo_desc: "Bilbo Baggins is an unremarkable [hobbit|e], around 3 foot 3, he loves nothing more than sitting in his home with a good book and warm meal. But the wizard [gandalfcharacter|e] has spied something more in the young hobbit, Bilbo is about to be offered the chance of a lifetime, and the time may come for hobbits to decide the fate of men."
+ bookmark_qfe_bilbo_desc: "Bilbo Baggins is an unremarkable hobbit, around 3 foot 3, he loves nothing more than sitting in his home with a good book and warm meal. But the wizard Gandalf has spied something more in the young hobbit, Bilbo is about to be offered the chance of a lifetime, and the time may come for hobbits to decide the fate of men."
  
  bookmark_qfe_dain: "Dain Ironfoot"
  bookmark_qfe_dain_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_dain_desc: "Dain Ironfoot, Lord of the Iron Hills, leads the largest [longbeard|e] colony left in Middle-earth. Since the destruction of [ereborrealm|e], they have had the majority of their population. He's built his realm into a true bastion, the only realm of the north truly able to counter the shadow rising in Mordor. But things are about to change in the north, Dain's cousin Thorin prepares to retake [erebor|e] and Dain stands ready to aid him and restore the realm of their ancestors."
+ bookmark_qfe_dain_desc: "Dain Ironfoot, Lord of the Iron Hills, leads the largest Longbeard colony left in Middle-earth. Since the destruction of Erebor, they have had the majority of their population. He's built his realm into a true bastion, the only realm of the north truly able to counter the shadow rising in Mordor. But things are about to change in the north, Dain's cousin Thorin prepares to retake Erebor and Dain stands ready to aid him and restore the realm of their ancestors."
  
  bookmark_qfe_master: "Master Stevron"
  bookmark_qfe_master_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_master_desc: "Master Stevron of Laketown is in a delicate position. Laketown is the northernmost settlement that survived [smauggolden|e]'s ire. But that doesn't mean it flourished. Since the [sackoferebor|e] Laketown has stagnated; each year, the Dalelands produce less as the Desolation of Smaug drains the land. even as word comes of the return of the King Under the Mountain, Laketown stands between Thorin and [smaug|e] and that could be disastrous. \n\nTo play as Bard the Bowman, start as Master Stevron and play through the event chain."
+ bookmark_qfe_master_desc: "Master Stevron of Laketown is in a delicate position. Laketown is the northernmost settlement that survived Smaug the Golden's ire. But that doesn't mean it flourished. Since the Sack of Erebor Laketown has stagnated; each year, the Dalelands produce less as the Desolation of Smaug drains the land. even as word comes of the return of the King Under the Mountain, Laketown stands between Thorin and Smaug and that could be disastrous. \n\nTo play as Bard the Bowman, start as Master Stevron and play through the event chain."
  
  bookmark_qfe_bolg: "Overlord Bolg"
  bookmark_qfe_bolg_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_bolg_desc: "The True heir to Azog the Defiler, Bolg rules over Gundabad with an iron fist. biding his time since the orcs' defeat in the [warofdwarvesandorcs|e], he's secretly been in communication with the [necromancer_sauron|e], plotting for a new wave of orcish dominion across the north, starting with [erebor|e]"
+ bookmark_qfe_bolg_desc: "The True heir to Azog the Defiler, Bolg rules over Gundabad with an iron fist. biding his time since the orcs' defeat in the War of the Dwarves and Orcs, he's secretly been in communication with the Necromancer, plotting for a new wave of orcish dominion across the north, starting with Erebor"
 
  bm_2941_shadow_over_mirkwood: "Shadow Over Mirkwood"
  bm_2941_shadow_over_mirkwood_desc: "For too long has the Necromancer lain in Greenwood, his presence in Dol Guldur has warped the once strong forest into Mirkwood, foul things grow in the Dark, Forces that should have stayed dead have returned, and rumors swirl of the return of the Dark Lord \n\nThe White Council has seen the warning signs and is finally about to act to once and for all drive the Necromancer from the forest"
@@ -172,23 +172,23 @@ l_english:
 
  bookmark_qfe_gandalf: "Gandalf The Grey"
  bookmark_qfe_gandalf_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_gandalf_desc: "Gandalf The Grey has had a busy time in Middle-earth, a [maiagod|e] from [valinor|e], he has been sent by the [valargods|e] to aid the peoples of Middle-earth against the Shadow, since then he has spent his time hunting for [sauroncharacter|e] and the other remnants of [morgothcharacter|e]s works. He has recently grown suspicious of the [necromancer_sauron|e] in [dolguldur|e] and the dragon [smauggolden|e] and is in the early stages of executing his plans to counter them"
+ bookmark_qfe_gandalf_desc: "Gandalf The Grey has had a busy time in Middle-earth, a Maia from Valinor, he has been sent by the Valar to aid the peoples of Middle-earth against the Shadow, since then he has spent his time hunting for Sauron and the other remnants of Morgoth's works. He has recently grown suspicious of the Necromancer in Dol Guldur and the dragon Smaug the Golden and is in the early stages of executing his plans to counter them"
 
  bookmark_qfe_saruman: "Saruman the White"
  bookmark_qfe_saruman_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_saruman_desc: "Saruman the White is the leader of the [whitecouncil|e] of the wise, a group of [elves|e] and [wizards|e] aiming to counter [sauroncharacter|e] and all his works. Saruman has set himself up in [orthanc|e] to both guards over [rohan|e] and very quietly search the [anduin|e] for the missing [onering|e]. he has been a continuous voice of caution against moving on the [necromancer_sauron|e] and instead prefers to watch his actions from afar"
+ bookmark_qfe_saruman_desc: "Saruman the White is the leader of the White Council of the wise, a group of Elves and wizards aiming to counter Sauron and all his works. Saruman has set himself up in Orthanc to both guards over Rohan and very quietly search the Anduin for the missing One Ring. he has been a continuous voice of caution against moving on the Necromancer and instead prefers to watch his actions from afar"
  
  bookmark_qfe_sauron: "Necromancer Sauron"
  bookmark_qfe_sauron_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_sauron_desc: "The [necromancer_sauron|e] is in truth but another guise for the [darklord|e] [sauroncharacter|e]. Hiding in the ancient [greenwood|e], his presence has slowly warped the forest into [mirkwood|e]. he has had to balance the [suspicion|e] of the [whitecouncil|e] against his own plans for world domination, quietly supporting various dark forces across the world while quietly searching for the lost [onering|e]"
+ bookmark_qfe_sauron_desc: "The Necromancer is in truth but another guise for the Dark Lord Sauron. Hiding in the ancient Greenwood, his presence has slowly warped the forest into Mirkwood. he has had to balance the suspicion of the White Council against his own plans for world domination, quietly supporting various dark forces across the world while quietly searching for the lost One Ring"
  
  bookmark_qfe_elrond: "Elrond of Rivendell"
  bookmark_qfe_elrond_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_elrond_desc: "Elrond has had a fairly tame millennia, since the fall of the [witchking|e] of [angmar|e] his realm has been safe and secure nestled a valley in the [mistymountains|e], but times are changing, the [whitecouncil|e] is almost ready to move on the [necromancer_sauron|e] and Thorin Oakenshield is preparing his quest to retake [erebor|e]. How Elrond responds could very easily shift the course of history..."
+ bookmark_qfe_elrond_desc: "Elrond has had a fairly tame millennia, since the fall of the Witch-king of Angmar his realm has been safe and secure nestled a valley in the Misty Mountains, but times are changing, the White Council is almost ready to move on the Necromancer and Thorin Oakenshield is preparing his quest to retake Erebor. How Elrond responds could very easily shift the course of history..."
  
  bookmark_qfe_galadriel: "Lady Galadriel"
  bookmark_qfe_galadriel_subheading: "$BOOKMARK_SUBHEADING_DEFAULT$"
- bookmark_qfe_galadriel_desc: "The Lady of Lorien is arguably the [whitecouncil|e]s most respected member, trained by [meliancharacter|e] in Doriath in the [elderdays|e] her knowledge of lore is unparallelled in Middle-earth and she has been watching the [necromancer_sauron|e] closely, she senses a shadow in [mirkwood|e], and she has to suspect that [sauroncharacter|e] has returned. should her suspicions prove true, the golden wood might once more be roused to war."
+ bookmark_qfe_galadriel_desc: "The Lady of Lorien is arguably the White Council's most respected member, trained by Melian in Doriath in the Elder Days her knowledge of lore is unparallelled in Middle-earth and she has been watching the Necromancer closely, she senses a shadow in Mirkwood, and she has to suspect that Sauron has returned. should her suspicions prove true, the golden wood might once more be roused to war."
  
  
  
