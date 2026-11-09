@@ -1,6 +1,10 @@
 ﻿
 
 l_english:
+ qfe_quest.014.c: "TODO: Third decision for quest event 014."
+ qfe_situation.012.b: "TODO: Second decision for situation event 012."
+ qfe_quest.036.b: "TODO: Second decision for quest event 036."
+ qfe_rhovanion.002.b: "TODO: Second decision for Rhovanion event 002."
 
  event_window_widget_quest: "#highlight [quest_points|e]: [GetGlobalVariable('qfe_quest_points').GetValue]#!"
  event_window_widget_quest_tooltip_widget: "These track how well you have done on your quest. Higher points will lead to the final skill challenges being easier."
