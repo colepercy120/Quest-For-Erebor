@@ -31,7 +31,6 @@ desolation_of_smaug = {
 
 desolation_of_smaug_blast_radius = {
 	regions = {
-		middleearth_west_rhovanion
 		middleearth_mountains_iron
 		middleearth_west
 		middleearth_mountains_misty
@@ -77,10 +76,9 @@ shadow_over_mirkwood_outer = {
 		middleearth_west_rhovanion_lothlorien
 		middleearth_west_rhovanion_dalelands
 	}
-	kingdoms = {
-		k_brownlands
-	}
 	duchies = {
+		d_brown_lands
+		d_tumcelon
 		d_east_bight
 		d_heahand
 		d_anthardor
@@ -97,7 +95,8 @@ custom_atyamar = {
 		middleearth_west_rhovanion_lothlorien
 		middleearth_west_rhovanion_mirkwood
 	}
-	kingdoms = {
-		k_brownlands
+	duchies = {
+		d_brown_lands
+		d_tumcelon
 	}
 }
