@@ -15,7 +15,7 @@ vbox = {
 			name = "quest_icon"
 			size = { 50 50 }
 			framesize = { 80 80 }
-			texture = "gfx\interface\icons\widgets\QFE_quest.dds"
+			texture = "gfx/interface/icons/widgets/QFE_quest.dds"
 			tooltip = "event_window_widget_quest_tooltip_widget"
 		}
 
