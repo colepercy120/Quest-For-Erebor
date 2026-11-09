@@ -473,7 +473,7 @@ battle_five_armies_war_set_up = {
 	}
 	every_independent_ruler = {
 		limit = {
-			is_good = yes
+			faith_is_good = yes
 			capital_province = {
 				geographical_region = desolation_of_smaug
 			}
