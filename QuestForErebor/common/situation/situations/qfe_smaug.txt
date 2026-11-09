@@ -117,7 +117,7 @@
 		}
 		scramble = {
 			max_duration = { months = 12 }
-			icon = "gfx\interface\icons\situation_types\dale_pikes.dds"
+			icon = "gfx/interface/icons/situation_types/dale_pikes.dds"
 			illustration = "gfx/interface/illustrations/situation_phase/impact.dds"
 			map_province_effect = drought
 			map_province_effect_intensity = 0.4
