@@ -237,7 +237,7 @@ window = {
 					hbox  = {
 						layoutpolicy_horizontal = expanding
 						
-						margin = 50
+						margin = { 50 50 }
 
 						
 						# Progressbar (custom built)
@@ -268,7 +268,7 @@ window = {
 								}
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
-								margin = 30
+								margin = { 30 30 }
 								scrollbox = { # Shows sub-regions
 									name = "sub_region_scrollbox"
 			
